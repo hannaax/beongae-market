@@ -19,5 +19,15 @@ export default function BoardDetail() {
     })
   }
 
-  return <BoardDetailUI data={data} onClickDelete={onClickDelete} />
+  const onClickMove = () => {
+    router.push(`/boards/${router.query.Boardid}/edit`)
+  }
+
+  return (
+    <BoardDetailUI
+      data={data}
+      onClickDelete={onClickDelete}
+      onClickMove={onClickMove}
+    />
+  )
 }

@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
-import { CREATE_BOARD } from "./BoardWrite.queries"
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 import BoardWriteUI from "./BoardWrite.presenter"
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
   const router = useRouter()
+
+  const [isEdit, setIsEdit] = useState("")
+  const [data, setData] = useState("")
 
   const [activeBtn, setActiveBtn] = useState(false)
 
@@ -20,6 +23,7 @@ export default function BoardWrite() {
   const [contentsError, setContentsError] = useState("")
 
   const [createBoard] = useMutation(CREATE_BOARD)
+  const [updateBoard] = useMutation(UPDATE_BOARD)
 
   const onChangeWriter = (event) => {
     setWriter(event.target.value)
@@ -94,6 +98,26 @@ export default function BoardWrite() {
     }
   }
 
+  const onClickUpdate = async () => {
+    const updateBoardInput = {}
+    if (title) updateBoardInput.title = title
+    if (contents) updateBoardInput.contents = contents
+
+    try {
+      const result = await updateBoard({
+        variables: {
+          boardId: router.query.boardId,
+          password: password,
+          updateBoardInput,
+        },
+      })
+      router.push(`/boards/${result.data.updateBoard._id}/edit`)
+      console.log(result)
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return (
     <BoardWriteUI
       writerError={writerError}
@@ -105,7 +129,10 @@ export default function BoardWrite() {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
+      onClickUpdate={onClickUpdate}
       activeBtn={activeBtn}
+      isEdit={props.isEdit}
+      data={data}
     />
   )
 }
