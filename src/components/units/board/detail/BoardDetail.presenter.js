@@ -1,4 +1,5 @@
 import * as S from "./BoardDetail.styles"
+import { getDate } from "../../../commons/libraries/utils"
 
 export default function BoardDetailUI(props) {
   return (
@@ -11,13 +12,17 @@ export default function BoardDetailUI(props) {
               <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
               <S.DateWrapper>
                 <S.DateLabel>Date</S.DateLabel>
-                <S.Date>{props.data?.fetchBoard?.createdAt}</S.Date>
+                <S.Date>{getDate(props.data?.fetchBoard?.createdAt)}</S.Date>
               </S.DateWrapper>
             </S.Info>
           </S.LeftHeader>
           <S.RightHeader>
-            <S.UrlCopyBtn>주소 복사</S.UrlCopyBtn>
-            <S.LocationBtn>위치</S.LocationBtn>
+            <S.UrlCopyBtn>
+              <img src="/images/board/detail/url.png" />
+            </S.UrlCopyBtn>
+            <S.LocationBtn>
+              <img src="/images/board/detail/location.png" />
+            </S.LocationBtn>
           </S.RightHeader>
         </S.Header>
         <S.Body>
@@ -26,11 +31,15 @@ export default function BoardDetailUI(props) {
         </S.Body>
         <S.LikeBtns>
           <S.LikeBtnWrapper>
-            <S.LikeBtn>좋아요</S.LikeBtn>
+            <S.LikeBtn>
+              <img src="/images/board/detail/like.png" />
+            </S.LikeBtn>
             <S.LikeCount>좋아요 수</S.LikeCount>
           </S.LikeBtnWrapper>
           <S.DislikeBtnWrapper>
-            <S.DislikeBtn>싫어요</S.DislikeBtn>
+            <S.DislikeBtn>
+              <img src="/images/board/detail/dislike.png" />
+            </S.DislikeBtn>
             <S.DislikeCount>싫어요 수</S.DislikeCount>
           </S.DislikeBtnWrapper>
         </S.LikeBtns>

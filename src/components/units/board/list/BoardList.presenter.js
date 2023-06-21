@@ -1,61 +1,35 @@
+import { getDate } from "../../../commons/libraries/utils"
+import * as S from "./BoardList.styles"
+
 export default function BoardListUI(props) {
   return (
-    <>
-      <table>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>날짜</th>
-        <tr>
-          <td>a</td>
-        </tr>
-        <tr>
-          <td>b</td>
-        </tr>
-        <tr>
-          <td>c</td>
-        </tr>
-        <tr>
-          <td>d</td>
-        </tr>
-      </table>
-    </>
-
-    // { props.data?.fetchBoards?.map(el)=> (
-    //     <tr>
-    //     <td>{el.number}</td>
-    //     </tr>
-    //     <tr>
-    //     <td>{el.title}</td>
-    //     </tr>
-    //     <tr>
-    //     <td>{el.writer}</td>
-    //     </tr>
-    //     <tr>
-    //     <td>{el.createdAt}</td>
-    //     </tr>
-    // )}
-
-    // <Wrapper>
-    //   <TableTop />
-    //   <Row>
-    //     <ColumnHeaderBasic>ID</ColumnHeaderBasic>
-    //     <ColumnHeaderTitle>제목</ColumnHeaderTitle>
-    //     <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
-    //     <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
-    //   </Row>
-    //   {props.data?.fetchBoards.map(el) => {
-    //     <Row key={el._id}>
-    //       <ColumnBasic>{el._id}</ColumnBasic>
-    //       <ColumnTitle>{el.title}</ColumnTitle>
-    //       <ColumnBasic>{el.writer}</ColumnBasic>
-    //       <ColumnBasic>{el.createdAt}</ColumnBasic>
-    //     </Row>
-    //   }}
-    //   <TableBottom />
-    //   <Footer>
-    //     <Button>게시물 등록하기</Button>
-    //   </Footer>
-    // </Wrapper>
+    <S.Wrapper>
+      <S.TableTop />
+      <S.Row>
+        <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
+      </S.Row>
+      {props.data?.fetchBoards.map((el) => (
+        <S.Row key={el._id}>
+          <S.ColumnBasic>
+            {String(el._id).slice(-4).toUpperCase()}
+          </S.ColumnBasic>
+          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+            {el.title}
+          </S.ColumnTitle>
+          <S.ColumnBasic>{el.writer}</S.ColumnBasic>
+          <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
+        </S.Row>
+      ))}
+      <S.TableBottom />
+      <S.Footer>
+        <S.Button onClick={props.onClickMoveToBoardNew}>
+          <S.PencilIcon src="/images/board/list/write.png" />
+          게시물 등록하기
+        </S.Button>
+      </S.Footer>
+    </S.Wrapper>
   )
 }

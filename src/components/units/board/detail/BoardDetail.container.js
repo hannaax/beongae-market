@@ -10,23 +10,23 @@ export default function BoardDetail() {
     variables: { boardId: router.query.boardId },
   })
 
-  const [deleteBoard] = useMutation(DELETE_BOARD)
+  // const [deleteBoard] = useMutation(DELETE_BOARD)
 
-  const onClickDelete = (event) => {
-    deleteBoard({
-      variables: { number: Number(event.target.id) },
-      refetchQueries: [{ queries: FETCH_BOARD }],
-    })
-  }
+  // const onClickDelete = (event) => {
+  //   deleteBoard({
+  //     variables: { boardId: Number(event.target.id) },
+  //     refetchQueries: [{ queries: FETCH_BOARD }],
+  //   })
+  // }
 
   const onClickMove = () => {
-    router.push(`/boards/${router.query.Boardid}/edit`)
+    router.push(`/boards/${router.query.boardId}/edit`)
   }
 
   return (
     <BoardDetailUI
       data={data}
-      onClickDelete={onClickDelete}
+      // onClickDelete={onClickDelete}
       onClickMove={onClickMove}
     />
   )

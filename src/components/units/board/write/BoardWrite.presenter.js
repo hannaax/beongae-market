@@ -8,10 +8,13 @@ export default function BoardWriteUI(props) {
         <S.InputWrapper>
           <S.Label>작성자</S.Label>
           <S.Writer
+            readOnly={props.data?.fetchBoard.writer}
             type="text"
-            placeholder="이름을 적어주세요."
+            placeholder={
+              props.isEdit ? props.data?.fetchBoard.writer : "이름을 적어주세요"
+            }
             onChange={props.onChangeWriter}
-            defaultValue={props.data?.fetchBoard?.writer}
+            defaultValue={props.data?.fetchBoard.writer}
           />
           <S.Error>{props.writerError}</S.Error>
         </S.InputWrapper>
@@ -73,7 +76,7 @@ export default function BoardWriteUI(props) {
       <S.ButtonWrapper>
         <S.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-          activeBtn={props.activeBtn}
+          isActive={props.isEdit ? true : props.isActive}
         >
           {props.isEdit ? "수정" : "등록"}하기
         </S.SubmitButton>

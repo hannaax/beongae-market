@@ -21,6 +21,9 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #bdbdbd;
+  padding-bottom: 20px;
 `
 export const LeftHeader = styled.div`
   display: flex;
@@ -57,7 +60,9 @@ export const Body = styled.div`
   margin: 30px 0px;
   min-height: 600px;
 `
-export const Title = styled.h3``
+export const Title = styled.h2`
+  padding: 30px 0px;
+`
 export const Contents = styled.div``
 
 export const LikeBtns = styled.div`

@@ -7,10 +7,7 @@ import BoardWriteUI from "./BoardWrite.presenter"
 export default function BoardWrite(props) {
   const router = useRouter()
 
-  const [isEdit, setIsEdit] = useState("")
-  const [data, setData] = useState("")
-
-  const [activeBtn, setActiveBtn] = useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
@@ -31,7 +28,7 @@ export default function BoardWrite(props) {
       setWriterError("")
     }
     if (event.target.value && password && title && contents) {
-      setActiveBtn(true)
+      setIsActive(true)
     }
   }
 
@@ -41,7 +38,7 @@ export default function BoardWrite(props) {
       setPasswordError("")
     }
     if (writer && event.target.value && title && contents) {
-      setActiveBtn(true)
+      setIsActive(true)
     }
   }
 
@@ -51,7 +48,7 @@ export default function BoardWrite(props) {
       setTitleError("")
     }
     if (writer && password && event.target.value && contents) {
-      setActiveBtn(true)
+      setIsActive(true)
     }
   }
 
@@ -61,7 +58,7 @@ export default function BoardWrite(props) {
       setContentsError("")
     }
     if (writer && password && title && event.target.value) {
-      setActiveBtn(true)
+      setIsActive(true)
     }
   }
 
@@ -99,6 +96,15 @@ export default function BoardWrite(props) {
   }
 
   const onClickUpdate = async () => {
+    if (!title && !contents) {
+      alert("수정한 내용이 없습니다.")
+      return
+    }
+
+    if (!password) {
+      alert("비밀번호를 입력해주세요.")
+      return
+    }
     const updateBoardInput = {}
     if (title) updateBoardInput.title = title
     if (contents) updateBoardInput.contents = contents
@@ -111,10 +117,21 @@ export default function BoardWrite(props) {
           updateBoardInput,
         },
       })
-      router.push(`/boards/${result.data.updateBoard._id}/edit`)
+      router.push(`/boards/${result.data.updateBoard._id}`)
       console.log(result)
     } catch (error) {
       alert(error.message)
+    }
+  }
+
+  const onClickUpdate2 = async () => {
+    if (title || contents) {
+      if (password) {
+      } else {
+        alert("비밀번호를 입력해주세요.")
+      }
+    } else {
+      alert("수정한 내용이 없습니다.")
     }
   }
 
@@ -130,9 +147,9 @@ export default function BoardWrite(props) {
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      activeBtn={activeBtn}
+      isActive={isActive}
       isEdit={props.isEdit}
-      data={data}
+      data={props.data}
     />
   )
 }
