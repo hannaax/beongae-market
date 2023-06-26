@@ -1,6 +1,7 @@
 import { useQuery, gql } from "@apollo/client"
 import BoardListUI from "./BoardList.presenter"
 import { useRouter } from "next/router"
+import type { MouseEvent } from "react"
 
 const FETCH_BOARDS = gql`
   query fetchBoards {
@@ -13,16 +14,16 @@ const FETCH_BOARDS = gql`
   }
 `
 
-export default function BoardList() {
+export default function BoardList(): JSX.Element {
   const router = useRouter()
   const { data } = useQuery(FETCH_BOARDS)
 
-  const onClickMoveToBoardNew = () => {
-    router.push("/boards/new")
+  const onClickMoveToBoardNew = (): void => {
+    void router.push("/boards/new")
   }
 
-  const onClickMoveToBoardDetail = (event) => {
-    router.push(`/boards/${event.target.id}`)
+  const onClickMoveToBoardDetail = (event: MouseEvent): void => {
+    void router.push(`/boards/${(event.target as HTMLDivElement).id}`)
   }
 
   return (

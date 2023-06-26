@@ -1,7 +1,15 @@
+import type { MouseEvent } from "react"
+import type { IBoardReturn } from "../../../../commons/types/generated/types"
 import { getDate } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
 
-export default function BoardListUI(props) {
+interface IBoardListUIProps {
+  data: any
+  onClickMoveToBoardNew: (event: MouseEvent<HTMLButtonElement>) => void
+  onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void
+}
+
+export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
   return (
     <S.Wrapper>
       <S.TableTop />
@@ -11,7 +19,7 @@ export default function BoardListUI(props) {
         <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
-      {props.data?.fetchBoards.map((el) => (
+      {props.data?.fetchBoards.map((el: IBoardReturn) => (
         <S.Row key={el._id}>
           <S.ColumnBasic>
             {String(el._id).slice(-4).toUpperCase()}

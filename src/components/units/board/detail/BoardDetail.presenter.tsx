@@ -1,7 +1,15 @@
 import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
+import type { MouseEvent } from "react"
+import ReactPlayer from "react-player"
 
-export default function BoardDetailUI(props) {
+interface IBoardDetailUIProps {
+  data?: any
+  onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void
+  onClickMove: (event: MouseEvent<HTMLButtonElement>) => void
+}
+
+export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -27,7 +35,12 @@ export default function BoardDetailUI(props) {
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
-          <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+          <S.Contents>
+            {props.data?.fetchBoard?.youtubeUrl && (
+              <ReactPlayer url={props.data?.fetchBoard?.youtubeUrl} />
+            )}
+            {props.data?.fetchBoard?.contents}
+          </S.Contents>
         </S.Body>
         <S.LikeBtns>
           <S.LikeBtnWrapper>

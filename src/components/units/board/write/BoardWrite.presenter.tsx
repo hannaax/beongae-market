@@ -1,6 +1,27 @@
+import type { ChangeEvent, MouseEvent } from "react"
 import * as S from "./BoardWrite.styles"
+import { Modal } from "antd"
+import DaumPostcodeEmbed from "react-daum-postcode"
 
-export default function BoardWriteUI(props) {
+interface IBoardWriteUIProps {
+  writerError: string
+  passwordError: string
+  titleError: string
+  contentsError: string
+  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void
+  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void
+  isActive: boolean
+  isEdit: boolean
+  data: any
+  isOpen: boolean
+}
+
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.Wrapper>
       <S.Title>게시글 {props.isEdit ? "수정" : "등록"}</S.Title>
@@ -51,14 +72,28 @@ export default function BoardWriteUI(props) {
         <S.Label>주소</S.Label>
         <S.ZipcodeWrapper>
           <S.Zipcode placeholder="07250" />
-          <S.SearchButton>우편번호 검색</S.SearchButton>
+          <S.SearchButton onClick={props.showZipcodeModal}>
+            우편번호 검색
+          </S.SearchButton>
+          {props.isOpen && (
+            <Modal
+              open={true}
+              onOk={props.handleOk}
+              onCancel={props.handleCancel}
+            >
+              <DaumPostcodeEmbed onComplete={props.handleComplete} />
+            </Modal>
+          )}
         </S.ZipcodeWrapper>
         <S.Address />
         <S.Address />
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
-        <S.Youtube placeholder="링크를 복사해주세요." />
+        <S.Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutubeUrl}
+        />
       </S.InputWrapper>
       <S.ImageWrapper>
         <S.Label>사진첨부</S.Label>

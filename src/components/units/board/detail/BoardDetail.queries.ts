@@ -12,10 +12,10 @@ export const FETCH_BOARD = gql`
   }
 `
 
-// export const DELETE_BOARD = gql`
-//   mutation deleteBoard($boardId: Int) {
-//     deleteBoard(boardId: $boardId) {
-//       message
-//     }
-//   }
-// `
+export const DELETE_BOARD = gql`
+  mutation deleteBoard($boardId: Int) {
+    deleteBoard(boardId: $boardId) {
+      message
+    }
+  }
+`

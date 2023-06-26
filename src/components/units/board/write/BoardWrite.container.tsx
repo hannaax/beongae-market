@@ -1,10 +1,22 @@
 import { useState } from "react"
+import type { ChangeEvent } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 import BoardWriteUI from "./BoardWrite.presenter"
+import { Modal } from "antd"
+import type {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../../commons/types/generated/types"
 
-export default function BoardWrite(props) {
+interface IBoardWriteProps {
+  isEdit: boolean
+  data: any
+}
+
+export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
 
   const [isActive, setIsActive] = useState(false)
@@ -13,16 +25,23 @@ export default function BoardWrite(props) {
   const [password, setPassword] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
+  const [youtubeUrl, setYoutubeUrl] = useState("")
 
   const [writerError, setWriterError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [titleError, setTitleError] = useState("")
   const [contentsError, setContentsError] = useState("")
 
-  const [createBoard] = useMutation(CREATE_BOARD)
-  const [updateBoard] = useMutation(UPDATE_BOARD)
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD)
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD)
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value)
     if (event.target.value !== "") {
       setWriterError("")
@@ -32,7 +51,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)
     if (event.target.value !== "") {
       setPasswordError("")
@@ -42,7 +61,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
     if (event.target.value !== "") {
       setTitleError("")
@@ -52,7 +71,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.target.value)
     if (event.target.value !== "") {
       setContentsError("")
@@ -60,6 +79,10 @@ export default function BoardWrite(props) {
     if (writer && password && title && event.target.value) {
       setIsActive(true)
     }
+  }
+
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value)
   }
 
   const onClickSubmit = async () => {
@@ -84,25 +107,26 @@ export default function BoardWrite(props) {
               password,
               title,
               contents,
+              youtubeUrl,
             },
           },
         })
         console.log(result.data.createBoard._id)
-        router.push(`/boards/${result.data.createBoard._id}`)
+        void router.push(`/boards/${result.data.createBoard._id}`)
       } catch (error) {
-        alert(error.message)
+        Modal.error({ content: error.message })
       }
     }
   }
 
   const onClickUpdate = async () => {
     if (!title && !contents) {
-      alert("수정한 내용이 없습니다.")
+      Modal.warning({ content: "수정한 내용이 없습니다." })
       return
     }
 
     if (!password) {
-      alert("비밀번호를 입력해주세요.")
+      Modal.warning({ content: "비밀번호를 입력해주세요." })
       return
     }
     const updateBoardInput = {}
@@ -113,27 +137,43 @@ export default function BoardWrite(props) {
       const result = await updateBoard({
         variables: {
           boardId: router.query.boardId,
-          password: password,
+          password,
           updateBoardInput,
         },
       })
-      router.push(`/boards/${result.data.updateBoard._id}`)
+      void router.push(`/boards/${result.data.updateBoard._id}`)
       console.log(result)
     } catch (error) {
-      alert(error.message)
+      Modal.error({ content: error.message })
     }
   }
 
-  const onClickUpdate2 = async () => {
-    if (title || contents) {
-      if (password) {
-      } else {
-        alert("비밀번호를 입력해주세요.")
-      }
-    } else {
-      alert("수정한 내용이 없습니다.")
-    }
+  // const onClickUpdate2 = async () => {
+  //   if (title || contents) {
+  //     if (password) {
+  //     } else {
+  //       alert("비밀번호를 입력해주세요.")
+  //     }
+  //   } else {
+  //     alert("수정한 내용이 없습니다.")
+  //   }
+  // }
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const showZipcodeModal = (): void => {
+    setIsOpen(true)
   }
+
+  const handleOk = (): void => {
+    setIsOpen(false)
+  }
+
+  const handleCancel = (): void => {
+    setIsOpen(false)
+  }
+
+  const handleComplete = (): void => {}
 
   return (
     <BoardWriteUI
@@ -147,9 +187,15 @@ export default function BoardWrite(props) {
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
+      isOpen={isOpen}
+      showZipcodeModal={showZipcodeModal}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      handleComplete={handleComplete}
     />
   )
 }
