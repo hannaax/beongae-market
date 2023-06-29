@@ -13,7 +13,7 @@ const Li = styled.li`
   padding: 10px;
 `
 
-export default function Header() {
+export default function Navigation() {
   return (
     <>
       <Ul>

@@ -5,12 +5,12 @@ export const Wrapper = styled.div`
   margin: 100px;
 `
 export const TableTop = styled.div`
-  border-top: 2px solid gray;
+  border-top: 2px solid #ccc;
   margin-top: 20px;
 `
 
 export const TableBottom = styled.div`
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #ccc;
 `
 
 export const Row = styled.div`
@@ -18,7 +18,7 @@ export const Row = styled.div`
   flex-direction: row;
   height: 52px;
   line-height: 52px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #ccc;
 
   :hover {
     color: #027efa;
@@ -28,11 +28,13 @@ export const Row = styled.div`
 export const ColumnHeaderBasic = styled.div`
   width: 10%;
   text-align: center;
+  font-weight: 800;
 `
 
 export const ColumnHeaderTitle = styled.div`
   width: 70%;
   text-align: center;
+  font-weight: 800;
 `
 
 export const ColumnBasic = styled.div`
@@ -44,6 +46,8 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
 `
+
+export const Pagination = styled.div``
 
 export const Footer = styled.div`
   display: flex;

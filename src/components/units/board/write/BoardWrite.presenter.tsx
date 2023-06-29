@@ -13,12 +13,16 @@ interface IBoardWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void
   isActive: boolean
   isEdit: boolean
   data: any
   isOpen: boolean
+  zipcode: string
+  address: string
+  addressDetail: string
 }
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
@@ -71,7 +75,10 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       <S.InputWrapper>
         <S.Label>주소</S.Label>
         <S.ZipcodeWrapper>
-          <S.Zipcode placeholder="07250" />
+          <S.Zipcode
+            placeholder="07250"
+            value={props.data?.fetchBoard?.boardAddress.zipcode}
+          />
           <S.SearchButton onClick={props.showZipcodeModal}>
             우편번호 검색
           </S.SearchButton>
@@ -85,14 +92,15 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             </Modal>
           )}
         </S.ZipcodeWrapper>
-        <S.Address />
-        <S.Address />
+        <S.Address value={props.data?.fetchBoard?.boardAddress.address} />
+        <S.Address onChange={props.onChangeAddressDetail} />
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
         <S.Youtube
           placeholder="링크를 복사해주세요."
           onChange={props.onChangeYoutubeUrl}
+          defaultValue={props.data?.fetchBoard?.boardAddress.youtubeUrl}
         />
       </S.InputWrapper>
       <S.ImageWrapper>

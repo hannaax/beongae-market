@@ -8,13 +8,15 @@ const Wrapper = styled.div`
   height: 70px;
   padding: 25px 50px;
 `
-const Logo = styled.div``
+const Logo = styled.img`
+  width: 120px;
+`
 const User = styled.div``
 
 export default function Header() {
   return (
     <Wrapper>
-      <Logo>로고</Logo>
+      {/* <Logo src="/images/logo.png"></Logo> */}로고
       <User>유저</User>
     </Wrapper>
   )

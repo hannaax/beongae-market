@@ -2,11 +2,13 @@ import type { MouseEvent } from "react"
 import type { IBoardReturn } from "../../../../commons/types/generated/types"
 import { getDate } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
+import Paginations01 from "../../../commons/paginations/01/Paginations01"
 
 interface IBoardListUIProps {
   data: any
   onClickMoveToBoardNew: (event: MouseEvent<HTMLButtonElement>) => void
   onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void
+  onClickPage: (event: MouseEvent<HTMLSpanElement>) => void
 }
 
 export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
@@ -32,6 +34,24 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
         </S.Row>
       ))}
       <S.TableBottom />
+      <Paginations01 refetch={props.refetch} count={props.count} />
+      {/* <S.Pagination>
+        <span onClick={props.onClickPrevPage}>이전페이지</span>
+        {new Array(10).fill(1).map(
+          (_, index) =>
+            index + props.startPage <= props.lastPage && (
+              <span
+                id={String(index + props.startPage)}
+                onClick={props.onClickPage}
+                key={index + props.startPage}
+                style={{ margin: "5px" }}
+              >
+                {index + props.startPage}
+              </span>
+            )
+        )}
+        <span onClick={props.onClickNextPage}>다음페이지</span>
+      </S.Pagination> */}
       <S.Footer>
         <S.Button onClick={props.onClickMoveToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" />

@@ -25,8 +25,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const [password, setPassword] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
-  const [youtubeUrl, setYoutubeUrl] = useState("")
 
+  const [youtubeUrl, setYoutubeUrl] = useState("")
+  const [zipcode, setZipcode] = useState("")
+  const [address, setAddress] = useState("")
+  const [addressDetail, setAddressDetail] = useState("")
   const [writerError, setWriterError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [titleError, setTitleError] = useState("")
@@ -108,6 +111,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
               title,
               contents,
               youtubeUrl,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         })
@@ -148,17 +156,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }
 
-  // const onClickUpdate2 = async () => {
-  //   if (title || contents) {
-  //     if (password) {
-  //     } else {
-  //       alert("비밀번호를 입력해주세요.")
-  //     }
-  //   } else {
-  //     alert("수정한 내용이 없습니다.")
-  //   }
-  // }
-
   const [isOpen, setIsOpen] = useState(false)
 
   const showZipcodeModal = (): void => {
@@ -173,7 +170,17 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setIsOpen(false)
   }
 
-  const handleComplete = (): void => {}
+  const handleComplete = (event): void => {
+    // 주소 value 받아와서 state에 저장
+    console.log(event.address)
+    setIsOpen(false)
+    setZipcode(event.zonecode)
+    setAddress(event.address)
+  }
+
+  const onChangeAddressDetail = (event): void => {
+    setAddressDetail(event.target.value)
+  }
 
   return (
     <BoardWriteUI
@@ -188,6 +195,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onChangeAddressDetail={onChangeAddressDetail}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
@@ -196,6 +204,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       handleOk={handleOk}
       handleCancel={handleCancel}
       handleComplete={handleComplete}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
     />
   )
 }

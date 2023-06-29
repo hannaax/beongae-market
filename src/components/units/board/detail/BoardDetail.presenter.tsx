@@ -2,6 +2,7 @@ import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
 import type { MouseEvent } from "react"
 import ReactPlayer from "react-player"
+import { Tooltip } from "antd"
 
 interface IBoardDetailUIProps {
   data?: any
@@ -10,6 +11,7 @@ interface IBoardDetailUIProps {
 }
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
+  console.log(props.data)
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -28,9 +30,16 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             <S.UrlCopyBtn>
               <img src="/images/board/detail/url.png" />
             </S.UrlCopyBtn>
-            <S.LocationBtn>
-              <img src="/images/board/detail/location.png" />
-            </S.LocationBtn>
+            <Tooltip
+              placement="topRight"
+              title={`${props.data?.fetchBoard?.boardAddress.address ?? ""} ${
+                props.data?.fetchBoard?.boardAddress.addressDetail ?? ""
+              }`}
+            >
+              <S.LocationBtn>
+                <img src="/images/board/detail/location.png" />
+              </S.LocationBtn>
+            </Tooltip>
           </S.RightHeader>
         </S.Header>
         <S.Body>
@@ -40,6 +49,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               <ReactPlayer url={props.data?.fetchBoard?.youtubeUrl} />
             )}
             {props.data?.fetchBoard?.contents}
+            {props.data?.fetchBoard?.address}
           </S.Contents>
         </S.Body>
         <S.LikeBtns>

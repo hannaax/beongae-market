@@ -43,8 +43,13 @@ export const DateWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `
-export const DateLabel = styled.div``
-export const Date = styled.div``
+export const DateLabel = styled.div`
+  border-right: 1px solid #aaa;
+  padding-right: 5px;
+`
+export const Date = styled.div`
+  padding-left: 5px;
+`
 export const RightHeader = styled.div`
   display: flex;
   flex-direction: row;
