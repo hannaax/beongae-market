@@ -120,10 +120,6 @@ export const UploadButton = styled.button`
   cursor: pointer;
 `
 
-export const FileInput = styled.input`
-  display: none;
-`
-
 export const OptionWrapper = styled.div`
   width: 996px;
   padding-top: 40px;

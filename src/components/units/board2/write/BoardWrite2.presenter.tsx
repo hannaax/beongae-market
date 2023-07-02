@@ -1,9 +1,8 @@
 import type { ChangeEvent, MouseEvent } from "react"
-import * as S from "./BoardWrite.styles"
+import * as S from "./BoardWrite2.styles"
 import { Modal } from "antd"
-import DaumPostcodeEmbed from "react-daum-postcode"
 
-interface IBoardWriteUIProps {
+interface IBoardWriteUI2Props {
   writerError: string
   passwordError: string
   titleError: string
@@ -12,20 +11,13 @@ interface IBoardWriteUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void
-  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void
-  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void
-  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void
   isActive: boolean
   isEdit: boolean
   data: any
   isOpen: boolean
-  zipcode: string
-  address: string
-  addressDetail: string
 }
 
-export default function BoardWriteUI(props: IBoardWriteUIProps) {
+export default function BoardWriteUI(props: IBoardWriteUI2Props) {
   return (
     <S.Wrapper>
       <S.Title>게시글 {props.isEdit ? "수정" : "등록"}</S.Title>
@@ -72,55 +64,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         />
         <S.Error>{props.contentsError}</S.Error>
       </S.InputWrapper>
-      <S.InputWrapper>
-        <S.Label>주소</S.Label>
-        <S.ZipcodeWrapper>
-          <S.Zipcode
-            placeholder="07250"
-            value={props.data?.fetchBoard?.boardAddress.zipcode}
-          />
-          <S.SearchButton onClick={props.showZipcodeModal}>
-            우편번호 검색
-          </S.SearchButton>
-          {props.isOpen && (
-            <Modal
-              open={true}
-              onOk={props.handleOk}
-              onCancel={props.handleCancel}
-            >
-              <DaumPostcodeEmbed onComplete={props.handleComplete} />
-            </Modal>
-          )}
-        </S.ZipcodeWrapper>
-        <S.Address value={props.data?.fetchBoard?.boardAddress.address} />
-        <S.Address onChange={props.onChangeAddressDetail} />
-      </S.InputWrapper>
-      <S.InputWrapper>
-        <S.Label>유튜브</S.Label>
-        <S.Youtube
-          placeholder="링크를 복사해주세요."
-          onChange={props.onChangeYoutubeUrl}
-          defaultValue={props.data?.fetchBoard?.boardAddress.youtubeUrl}
-        />
-      </S.InputWrapper>
-      <S.ImageWrapper>
-        <S.Label>사진첨부</S.Label>
-        <S.UploadButton onClick={props.onClickUploadBtn}>+</S.UploadButton>
-        <S.UploadButton onClick={props.onClickUploadBtn}>+</S.UploadButton>
-        <S.UploadButton onClick={props.onClickUploadBtn}>+</S.UploadButton>
-        <S.FileInput
-          type="file"
-          ref={props.fileRef}
-          onChange={props.onChangeFiles}
-        />
-      </S.ImageWrapper>
-      <S.OptionWrapper>
-        <S.Label>메인설정</S.Label>
-        <S.RadioButton type="radio" id="youtube" name="radio-button" />
-        <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
-        <S.RadioButton type="radio" id="image" name="radio-button" />
-        <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
-      </S.OptionWrapper>
       <S.ButtonWrapper>
         <S.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}

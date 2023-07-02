@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
@@ -18,6 +18,7 @@ interface IBoardWriteProps {
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
+  const fileRef = useRef<HTMLInputElement>(null)
 
   const [isActive, setIsActive] = useState(false)
 
@@ -182,6 +183,12 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setAddressDetail(event.target.value)
   }
 
+  const onClickUploadBtn = () => {
+    fileRef.current?.click()
+  }
+
+  const onChangeFiles = async (event) => {}
+
   return (
     <BoardWriteUI
       writerError={writerError}
@@ -207,6 +214,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      fileRef={fileRef}
+      onClickUploadBtn={onClickUploadBtn}
+      onChangeFiles={onChangeFiles}
     />
   )
 }

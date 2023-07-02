@@ -3,14 +3,44 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-// const Carousel = styled.div`
-//   width: 100%;
-//   height: 200px;
-//   background-color: lightgray;
-// `
+const Wrapper = styled.div`
+  height: 400px;
+  overflow: hidden;
+  .slick-list {
+    // 부모
+    height: 100%;
+    margin: 0 -10px;
+    box-sizing: border-box;
+  }
+
+  .slick-slide > div {
+    // 자식 안에 div
+    margin: 10px;
+    box-sizing: border-box;
+  }
+  .slick-dots {
+    bottom: +20px;
+    /* .slick-active {
+      button::before {
+        color: #fff;
+      }
+    }
+    button::before {
+      color: #ccc;
+    } */
+  }
+`
+
+export const SliderItem = styled.img`
+  height: 400px;
+  width: 100%;
+  margin: auto;
+  object-fit: none;
+`
 
 export default function Banner() {
   const settings = {
+    arrows: true,
     dots: true,
     infinite: true,
     speed: 500,
@@ -19,33 +49,18 @@ export default function Banner() {
   }
 
   return (
-    <>
-      {/* <Carousel> */}
-      <div>
-        <Slider {...settings}>
-          <div style={{ height: 100 }}>
-            <h3>1</h3>
-            <img src="/images/banner.png" />
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
-      </div>
-
-      {/* </Carousel> */}
-    </>
+    <Wrapper>
+      <Slider {...settings}>
+        <div>
+          <SliderItem src="/images/banner2.jpg" />
+        </div>
+        <div>
+          <SliderItem src="/images/banner1.jpg" />
+        </div>
+        <div>
+          <SliderItem src="/images/banner.png" />
+        </div>
+      </Slider>
+    </Wrapper>
   )
 }
