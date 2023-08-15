@@ -1,4 +1,6 @@
 import styled from "@emotion/styled"
+import { Modal } from "antd"
+import { DaumPostcodeEmbed } from "react-daum-postcode"
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -110,6 +112,10 @@ export const ImageWrapper = styled.div`
   padding-top: 40px;
 `
 
+export const ImageBox = styled.div`
+  display: flex;
+`
+
 export const UploadButton = styled.button`
   width: 78px;
   height: 78px;
@@ -176,3 +182,7 @@ export const Error = styled.div`
   font-size: 14px;
   color: red;
 `
+
+export const AddressModal = styled(Modal)``
+
+export const AddressSearchInput = styled(DaumPostcodeEmbed)``

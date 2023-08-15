@@ -15,8 +15,10 @@ export default function BoardDetail(): JSX.Element {
 
   const onClickDelete = (event: MouseEvent): void => {
     void deleteBoard({
-      variables: { boardId: Number((event.target as HTMLButtonElement).id) },
-      refetchQueries: [{ queries: FETCH_BOARD }],
+      variables: { boardId: Number(event.currentTarget.id) },
+      refetchQueries: [
+        { queries: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
     })
   }
 

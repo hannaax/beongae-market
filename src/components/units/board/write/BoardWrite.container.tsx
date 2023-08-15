@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
@@ -10,27 +10,24 @@ import type {
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types"
-
-interface IBoardWriteProps {
-  isEdit: boolean
-  data: any
-}
+import type { Address } from "react-daum-postcode"
+import type { IBoardWriteProps } from "./BoardWrite.types"
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
-  const fileRef = useRef<HTMLInputElement>(null)
-
   const [isActive, setIsActive] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
-
   const [youtubeUrl, setYoutubeUrl] = useState("")
   const [zipcode, setZipcode] = useState("")
   const [address, setAddress] = useState("")
   const [addressDetail, setAddressDetail] = useState("")
+  const [fileUrls, setFileUrls] = useState(["", "", ""])
+
   const [writerError, setWriterError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [titleError, setTitleError] = useState("")
@@ -89,6 +86,28 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setYoutubeUrl(event.target.value)
   }
 
+  const onClickAddressSearch = (): void => {
+    setIsOpen((prev) => !prev)
+  }
+
+  const onCompleteAddressSearch = (data: Address): void => {
+    setAddress(data.address)
+    setZipcode(data.zonecode)
+    setIsOpen((prev) => !prev)
+  }
+
+  const onChangeAddressDetail = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
+    setAddressDetail(event.target.value)
+  }
+
+  const onChangeFileUrls = (fileUrl: string, index: number): void => {
+    const newFileUrls = [...fileUrls]
+    newFileUrls[index] = fileUrl
+    setFileUrls(newFileUrls)
+  }
+
   const onClickSubmit = async () => {
     if (!writer) {
       setWriterError("작성자를 입력해주세요.")
@@ -117,10 +136,16 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 address,
                 addressDetail,
               },
+              images: [...fileUrls],
             },
           },
         })
-        console.log(result.data.createBoard._id)
+        console.log(result.data?.createBoard._id)
+        if (result.data?.createBoard._id === undefined) {
+          alert("요청에 문제가 있습니다.")
+          return
+        }
+
         void router.push(`/boards/${result.data.createBoard._id}`)
       } catch (error) {
         Modal.error({ content: error.message })
@@ -129,7 +154,19 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   }
 
   const onClickUpdate = async () => {
-    if (!title && !contents) {
+    const currentFiles = JSON.stringify(fileUrls)
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images)
+    const isChangedFiles = currentFiles !== defaultFiles
+
+    if (
+      !title &&
+      !contents &&
+      !youtubeUrl &&
+      !address &&
+      !addressDetail &&
+      !zipcode &&
+      !isChangedFiles
+    ) {
       Modal.warning({ content: "수정한 내용이 없습니다." })
       return
     }
@@ -141,8 +178,22 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     const updateBoardInput = {}
     if (title) updateBoardInput.title = title
     if (contents) updateBoardInput.contents = contents
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl
+    if (zipcode || address || addressDetail) {
+      updateBoardInput.boardAddress = {}
+      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode
+      if (address) updateBoardInput.boardAddress.address = address
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail
+    }
+    if (isChangedFiles) updateBoardInput.images = fileUrls
 
     try {
+      if (typeof router.query.boardId !== "string") {
+        alert("시스템에 문제가 있습니다.")
+        return
+      }
+
       const result = await updateBoard({
         variables: {
           boardId: router.query.boardId,
@@ -157,38 +208,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const showZipcodeModal = (): void => {
-    setIsOpen(true)
-  }
-
-  const handleOk = (): void => {
-    setIsOpen(false)
-  }
-
-  const handleCancel = (): void => {
-    setIsOpen(false)
-  }
-
-  const handleComplete = (event): void => {
-    // 주소 value 받아와서 state에 저장
-    console.log(event.address)
-    setIsOpen(false)
-    setZipcode(event.zonecode)
-    setAddress(event.address)
-  }
-
-  const onChangeAddressDetail = (event): void => {
-    setAddressDetail(event.target.value)
-  }
-
-  const onClickUploadBtn = () => {
-    fileRef.current?.click()
-  }
-
-  const onChangeFiles = async (event) => {}
-
   return (
     <BoardWriteUI
       writerError={writerError}
@@ -199,24 +218,20 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       onChangeTitle={onChangeTitle}
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
-      onClickSubmit={onClickSubmit}
-      onClickUpdate={onClickUpdate}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
       onChangeAddressDetail={onChangeAddressDetail}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
+      onClickSubmit={onClickSubmit}
+      onClickUpdate={onClickUpdate}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
       isOpen={isOpen}
-      showZipcodeModal={showZipcodeModal}
-      handleOk={handleOk}
-      handleCancel={handleCancel}
-      handleComplete={handleComplete}
       zipcode={zipcode}
       address={address}
-      addressDetail={addressDetail}
-      fileRef={fileRef}
-      onClickUploadBtn={onClickUploadBtn}
-      onChangeFiles={onChangeFiles}
+      fileUrls={fileUrls}
     />
   )
 }

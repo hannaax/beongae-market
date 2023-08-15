@@ -8,14 +8,11 @@ import type {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
-import { useState } from "react"
+import { MouseEvent, useState } from "react"
 
 // const DELETE_BOARD_COMMENTS = gql``
 
 export default function BoardCommentList() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [deletePw, setDeletePw] = useState("")
-
   const router = useRouter()
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
@@ -24,28 +21,6 @@ export default function BoardCommentList() {
     variables: { boardId: router.query.boardId },
   })
   // const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENTS)
-
-  const showModal = () => {
-    setIsOpen(true)
-  }
-
-  const handleOk = () => {
-    setIsOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsOpen(false)
-  }
-
-  const onClickDelete = () => {
-    showModal()
-    // deletePw가 BoardWrite의 pw와 일치하면
-    // deleteBoard 실행
-  }
-
-  const onChangeDeletePw = (event) => {
-    setDeletePw(event.target.value)
-  }
 
   const onLoadMore = (): void => {
     if (!data) return
@@ -72,13 +47,14 @@ export default function BoardCommentList() {
   return (
     <BoardCommentListUI
       data={data}
-      onClickDelete={onClickDelete}
-      showModal={showModal}
-      handleOk={handleOk}
-      handleCancel={handleCancel}
-      isOpen={isOpen}
-      onChangeDeletePw={onChangeDeletePw}
+      // onClickDelete={onClickDelete}
+      // showModal={showModal}
+      // handleOk={handleOk}
+      // handleCancel={handleCancel}
+      // isOpen={isOpen}
+      // onChangeDeletePw={onChangeDeletePw}
       loadFunc={onLoadMore}
+      // onClickUpdate={onClickUpdate}
     />
   )
 }

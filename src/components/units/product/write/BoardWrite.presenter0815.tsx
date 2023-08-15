@@ -1,0 +1,176 @@
+import * as S from "./BoardWrite.styles"
+import type { IBoardWriteUIProps } from "./BoardWrite.types"
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
+import { v4 as uuidv4 } from "uuid"
+
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  return (
+    <>
+      {props.isOpen && (
+        <S.AddressModal
+          open={true}
+          onOk={props.onClickAddressSearch}
+          onCancel={props.onClickAddressSearch}
+        >
+          <S.AddressSearchInput onComplete={props.onCompleteAddressSearch} />
+        </S.AddressModal>
+      )}
+      <S.Wrapper>
+        <S.Title>상품 {props.isEdit ? "수정" : "등록"}</S.Title>
+        <S.WriterWrapper>
+          <S.InputWrapper>
+            <S.Label>상품명</S.Label>
+            <S.Name
+              readOnly={props.data?.fetchBoard.writer}
+              type="text"
+              placeholder="상품명을 작성해주세요"
+              onChange={props.onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
+            />
+            <S.Error>{props.writerError}</S.Error>
+          </S.InputWrapper>
+        </S.WriterWrapper>
+        <S.InputWrapper>
+          <S.Label>상품설명</S.Label>
+          <S.Detail
+            placeholder="상품을 설명해주세요."
+            onChange={props.onChangeContents}
+            defaultValue={props.data?.fetchBoard?.contents}
+          />
+          <S.Error>{props.contentsError}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>판매 가격</S.Label>
+          <S.Price
+            placeholder="판매가격을 입력해주세요."
+            // onChange={props.onChangeContents}
+            defaultValue={props.data?.fetchBoard?.contents}
+          />
+          <S.Error>{props.contentsError}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>태그 입력</S.Label>
+          <S.Tag
+            placeholder="태그를 입력해주세요."
+            // onChange={props.onChangeContents}
+            defaultValue={props.data?.fetchBoard?.contents}
+          />
+          <S.Error>{props.contentsError}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>주소</S.Label>
+          <S.ZipcodeWrapper>
+            <S.Zipcode
+              placeholder="07250"
+              readOnly
+              value={
+                props.zipcode !== ""
+                  ? props.zipcode
+                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+              }
+            />
+            <S.SearchButton onClick={props.onClickAddressSearch}>
+              우편번호 검색
+            </S.SearchButton>
+          </S.ZipcodeWrapper>
+          <S.Address
+            readOnly
+            value={
+              props.address !== ""
+                ? props.address
+                : props.data?.fetchBoard.boardAddress?.address ?? ""
+            }
+          />
+          <S.Address
+            onChange={props.onChangeAddressDetail}
+            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+          />
+        </S.InputWrapper>
+        {/* <S.InputWrapper>
+          <S.Label>유튜브</S.Label>
+          <S.Youtube
+            placeholder="링크를 복사해주세요."
+            onChange={props.onChangeYoutubeUrl}
+            defaultValue={props.data?.fetchBoard?.youtubeUrl}
+          />
+        </S.InputWrapper> */}
+        <S.InputWrapper>
+          <S.Label>거래위치</S.Label>
+          <S.LocationWrapper>
+            <script
+              type="text/javascript"
+              src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2"
+            ></script>
+            <div
+              id="map"
+              style={{
+                width: "300px",
+                height: "180px",
+                backgroundColor: "#eee",
+              }}
+            >
+              지도이미지
+            </div>
+            <S.AddressWrapper>
+              <S.Label>주소</S.Label>
+              {/* <S.Zipcode
+                  placeholder="07250"
+                  readOnly
+                  value={
+                    props.zipcode !== ""
+                      ? props.zipcode
+                      : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+                  }
+                /> */}
+              {/* <S.SearchButton onClick={props.onClickAddressSearch}>
+                  우편번호 검색
+                </S.SearchButton> */}
+              <S.Address
+                readOnly
+                value={
+                  props.address !== ""
+                    ? props.address
+                    : props.data?.fetchBoard.boardAddress?.address ?? ""
+                }
+              />
+              <S.Address
+                onChange={props.onChangeAddressDetail}
+                defaultValue={
+                  props.data?.fetchBoard.boardAddress?.addressDetail
+                }
+              />
+            </S.AddressWrapper>
+          </S.LocationWrapper>
+        </S.InputWrapper>
+        <S.ImageWrapper>
+          <S.Label>사진첨부</S.Label>
+          <S.ImageBox>
+            {props.fileUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </S.ImageBox>
+        </S.ImageWrapper>
+        <S.OptionWrapper>
+          <S.Label>메인설정</S.Label>
+          <S.RadioButton type="radio" id="youtube" name="radio-button" />
+          <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
+          <S.RadioButton type="radio" id="image" name="radio-button" />
+          <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
+        </S.OptionWrapper>
+        <S.ButtonWrapper>
+          <S.SubmitButton
+            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+            isActive={props.isEdit ? true : props.isActive}
+          >
+            {props.isEdit ? "수정" : "등록"}하기
+          </S.SubmitButton>
+        </S.ButtonWrapper>
+      </S.Wrapper>
+    </>
+  )
+}

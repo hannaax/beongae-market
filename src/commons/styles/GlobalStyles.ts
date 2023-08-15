@@ -4,11 +4,54 @@ export const GlobalStyles = css`
   * {
     margin: 0;
     padding: 0;
-    font-family: myfont;
+    border: 0;
+    box-sizing: border-box;
+    /* font: inherit; */
+    vertical-align: middle;
+    text-decoration: none;
+    /* font-size: 16px; */
+    color: "#0a0a0a";
   }
-
-  @font-face {
-    font-family: "myfont";
-    src: url("/fonts/NanumGothic.ttf");
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
+  }
+  html {
+    font-family: "Noto Sans CJK KR", sans-serif;
+    /* font-family: "Noto Sans KR", sans-serif; */
+  }
+  body {
+    /* background-color: #eee; */
+    color: navy;
+  }
+  ol,
+  ul,
+  li {
+    list-style: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  button,
+  input,
+  textarea {
+    font-family: "Noto Sans CJK KR", sans-serif;
+    font-size: 14px;
+  }
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 `
