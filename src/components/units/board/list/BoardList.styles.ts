@@ -3,27 +3,47 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 `
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 48px;
+  margin: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
 `
+
+export const FlexTop = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const FlexMid = styled.div`
+  margin: 40px 0;
+`
+export const FlexBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 export const TableTop = styled.div`
   border-top: 2px solid #ccc;
   margin-top: 20px;
 `
 
 export const TableBottom = styled.div`
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #ddd;
 `
 
 export const Row = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
-  line-height: 52px;
-  border-bottom: 1px solid #ccc;
+  line-height: 45px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 25px;
   cursor: pointer;
 `
 
@@ -44,6 +64,8 @@ export const ColumnHeaderTitle = styled.div`
 export const ColumnBasic = styled.div`
   /* width: 10%; */
   text-align: center;
+  /* padding-right: 15px; */
+  color: #aaa;
 `
 
 export const ColumnTitle = styled.div`

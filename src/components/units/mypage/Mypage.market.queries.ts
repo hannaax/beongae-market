@@ -18,6 +18,7 @@ export const FETCH_USEDITEMS_I_SOLD = gql`
       _id
       name
       price
+      images
       seller {
         _id
         name

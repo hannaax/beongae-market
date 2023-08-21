@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const ItemWrapper = styled.div`
   width: 100%;
-  margin: 0 48px;
+  margin: 0 100px;
   padding-top: 20px;
   height: 128px;
   border-bottom: 1px solid lightgray;

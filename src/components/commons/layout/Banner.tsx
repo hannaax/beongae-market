@@ -27,8 +27,8 @@ const Wrapper = styled.div`
     }
     button::before {
       color: #ccc;
-    } */
-  }
+    }
+  } */
 `
 
 export const SliderItem = styled.img`

@@ -16,19 +16,22 @@ export default function BoardDetail(): JSX.Element {
   })
 
   useEffect(() => {
-    console.log(data)
+    console.log("data", data)
     let recentlyViewedItems = JSON.parse(
       localStorage.getItem("recentlyViewedItems") ?? "[]"
     )
-
-    console.log(recentlyViewedItems)
 
     // recentlyViewedItems = new Set(recentlyViewedItems)
 
     // recentlyViewedItems.add(JSON.stringify(data))
 
+    let cnt = 0
+
     if (data !== undefined) {
-      recentlyViewedItems.push(data)
+      recentlyViewedItems.map((el) => {
+        if (el.fetchUseditem._id === data.fetchUseditem._id) cnt++
+      })
+      if (cnt === 0) recentlyViewedItems.push(data)
     }
 
     console.log(recentlyViewedItems)

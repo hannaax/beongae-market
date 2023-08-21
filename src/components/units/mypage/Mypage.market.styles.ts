@@ -1,10 +1,20 @@
 import styled from "@emotion/styled"
 
+// export const Wrapper = styled.div`
+//   padding: 72px 48px;
+//   width: 100%;
+//   border: solid 1px #ddd;
+// `
+
 export const Wrapper = styled.div`
-  padding: 72px 48px;
-  width: 100%;
-  border: solid 1px #ddd;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
+
 export const Header = styled.div`
   width: 100%;
   height: 50px;
@@ -26,44 +36,51 @@ export const Category = styled.li``
 export const DivisionLine = styled.div``
 
 export const TableTop = styled.div`
-  border-top: 2px solid #ccc;
+  /* border-top: 2px solid #ccc; */
   margin-top: 20px;
 `
 
 export const TableBottom = styled.div`
-  border-bottom: 2px solid #ccc;
+  /* border-bottom: 2px solid #ccc; */
 `
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
+  /* display: grid; */
+  height: 150px;
   line-height: 52px;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
+  border: 1px solid #ddd;
   cursor: pointer;
 `
 
-export const ColumnHeaderBasic = styled.div`
-  width: 20%;
-  text-align: center;
-  font-weight: 600;
-  cursor: default;
-`
+// export const ColumnHeaderBasic = styled.div`
+//   width: 200px;
+//   text-align: center;
+//   font-weight: 600;
+//   cursor: default;
+// `
 
-export const ColumnHeaderTitle = styled.div`
-  width: 40%;
-  text-align: center;
-  font-weight: 600;
-  cursor: default;
+// export const ColumnHeaderTitle = styled.div`
+//   width: 200px;
+//   text-align: center;
+//   font-weight: 600;
+//   cursor: default;
+// `
+
+export const Img = styled.img`
+  width: 150px;
+  height: 150px;
 `
 
 export const ColumnBasic = styled.div`
-  width: 20%;
+  width: 100%;
   text-align: center;
 `
 
 export const ColumnTitle = styled.div`
-  width: 40%;
+  width: 100%;
   text-align: center;
 `
 

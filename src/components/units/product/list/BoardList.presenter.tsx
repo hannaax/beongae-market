@@ -33,23 +33,22 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
       <S.Wrapper>
         <S.TableTop>
           <S.States>
-            <S.State>판매중상품</S.State>
-            <S.State>판매된상품</S.State>
+            {/* <S.State>판매중상품</S.State>
+            <S.State>판매된상품</S.State> */}
           </S.States>
           <Searchbars01
             refetch={props.refetch}
             // refetchBoardsCount={props.refetchBoardsCount}
             // onChangeKeyword={props.onChangeKeyword}
           />
-          <DatePicker
+          {/* <DatePicker
             selected={startDate}
             onChange={(date: Date) => setStartDate(date)}
             selectsStart
             startDate={startDate}
             endDate={endDate}
-          />
-
-          <S.DateSearch>날짜 검색</S.DateSearch>
+          /> */}
+          <S.DateSearch></S.DateSearch>
         </S.TableTop>
         <InfiniteScroll
           pageStart={0}
@@ -63,22 +62,12 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
                 id={product._id}
                 onClick={props.onClickMoveToBoardDetail}
               >
-                {product.images[0] && product.images[1] ? (
+                {product.images.length ? (
                   <S.Img
-                    src={`https://storage.googleapis.com/${product.images[0]}`}
-                  ></S.Img>
-                ) : product.images[0] ? (
-                  <S.Img
-                    src={`https://storage.googleapis.com/${product.images[0]}`}
-                  ></S.Img>
-                ) : product.images[1] ? (
-                  <S.Img
-                    src={`https://storage.googleapis.com/${product.images[1]}`}
-                  ></S.Img>
-                ) : product.images[2] ? (
-                  <S.Img
-                    src={`https://storage.googleapis.com/${product.images[2]}`}
-                  ></S.Img>
+                    src={`https://storage.googleapis.com/${product.images.find(
+                      (img) => img
+                    )}`}
+                  />
                 ) : (
                   <div
                     style={{

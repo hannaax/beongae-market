@@ -94,6 +94,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setAddress(data.address)
     setZipcode(data.zonecode)
     setIsOpen((prev) => !prev)
+    console.log(data)
   }
 
   const onChangeAddressDetail = (

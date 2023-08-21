@@ -29,20 +29,20 @@ const ProductsRecentlyVieved = styled.div`
 `
 
 export default function SideBar() {
+  const [recentlyViewedItems, SetRecentlyViewedItems] = useState([])
+
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("recentlyViewedItems"))
     console.log(data)
     SetRecentlyViewedItems(data)
   }, [])
 
-  const [recentlyViewedItems, SetRecentlyViewedItems] = useState([])
-
   console.log("items", recentlyViewedItems)
 
-  const ITEMS_LENGTH = recentlyViewedItems.length
+  const ITEMS_LENGTH = recentlyViewedItems.length ?? 1
   return (
     <Wrapper>
-      <ProductsPicked>
+      {/* <ProductsPicked>
         <p>찜한 상품</p>
         <p>
           <Favorite sx={{ fontSize: "13px" }} /> 1
@@ -55,7 +55,7 @@ export default function SideBar() {
           <div>{recentlyViewedItems[ITEMS_LENGTH - 2]?.fetchUseditem.name}</div>
           <div>{recentlyViewedItems[ITEMS_LENGTH - 3]?.fetchUseditem.name}</div>
         </div>
-      </ProductsRecentlyVieved>
+      </ProductsRecentlyVieved> */}
     </Wrapper>
   )
 }

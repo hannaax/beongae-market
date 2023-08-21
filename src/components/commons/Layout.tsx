@@ -5,19 +5,20 @@ import Footer from "./layout/Footer"
 
 export default function Layout(props: any) {
   return (
-    <>
-      {/* <div style={{ position: "fixed", top: 0, backgroundColor: "#fff" }}> */}
+    <div>
       <div>
-        <Header />
-      </div>
-      <div>
-        <Navigation />
-      </div>
-      {/* </div> */}
-      <div>
-        {/* <div style={{ display: "flex" }}> */}
-        {props.children}
-        {/* <div
+        {/* <div style={{ position: "fixed", top: 0, backgroundColor: "#fff" }}> */}
+        <div>
+          <Header />
+        </div>
+        <div>
+          <Navigation />
+        </div>
+        {/* </div> */}
+        <div>
+          <div>
+            {props.children}
+            {/* <div
             style={{
               position: "fixed",
               top: "200px",
@@ -25,11 +26,14 @@ export default function Layout(props: any) {
               width: "window.innerWidth - 1200px",
             }}
           > */}
-        <SideBar />
-        {/* </div>
-        </div> */}
-        <Footer />
+            <div>
+              <SideBar />
+            </div>
+          </div>
+          {/* </div> */}
+          <Footer />
+        </div>
       </div>
-    </>
+    </div>
   )
 }

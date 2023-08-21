@@ -5,6 +5,7 @@ import { DaumPostcodeEmbed } from "react-daum-postcode"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 `
 
 export const Wrapper = styled.div`
@@ -69,7 +70,7 @@ export const Label = styled.div`
   padding-top: 13px;
   font-size: 18px;
   font-weight: 500;
-  width: 100px;
+  width: 100%;
 `
 
 export const InputWrapper = styled.div`

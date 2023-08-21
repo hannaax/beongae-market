@@ -3,9 +3,9 @@ import Home from "../src/components/units/home/Home.container"
 
 export default function HomePage(): JSX.Element {
   return (
-    <>
+    <div style={{ marginTop: "100px" }}>
       <Banner />
       <Home />
-    </>
+    </div>
   )
 }

@@ -3,10 +3,12 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 `
 export const Wrapper = styled.div`
   width: 100%;
   margin: 100px;
+  padding: 8px;
 `
 export const TableTop = styled.div`
   /* border-top: 2px solid #ccc;
@@ -24,8 +26,8 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
-  line-height: 52px;
+  /* height: 52px;
+  line-height: 52px; */
   border-bottom: 1px solid #ccc;
 
   :hover {
@@ -100,9 +102,20 @@ export const DateSearch = styled.div``
 export const ItemWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
-export const Item = styled.div``
+export const Item = styled.div`
+  margin: 10px;
+`
 
 export const Img = styled.img`
   width: 200px;

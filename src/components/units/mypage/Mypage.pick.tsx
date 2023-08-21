@@ -1,28 +1,29 @@
-import { useEffect } from "react"
-import {
-  FETCH_USEDITEMS_COUNT_I_SOLD,
-  FETCH_USEDITEMS_I_SOLD,
-} from "./Mypage.market.queries"
 import { useQuery } from "@apollo/client"
+import {
+  FETCH_USEDITEMS_COUNT_I_PICKED,
+  FETCH_USEDITEMS_I_PICKED,
+} from "./Mypage.market.queries"
 import * as S from "./Mypage.market.styles"
+import { useEffect } from "react"
 
-export default function MypageMarket() {
-  const { data: dataUseditemsISold } = useQuery(FETCH_USEDITEMS_I_SOLD)
-  const { data: dataUseditemsCountISold } = useQuery(
-    FETCH_USEDITEMS_COUNT_I_SOLD
+export default function MypagePick() {
+  const { data: dataUseditemsIPicked } = useQuery(FETCH_USEDITEMS_I_PICKED)
+
+  const { data: dataUseditemsCountIPicked } = useQuery(
+    FETCH_USEDITEMS_COUNT_I_PICKED
   )
 
   useEffect(() => {
-    console.log("sold", dataUseditemsISold?.fetchUseditemsISold)
+    console.log("pick", dataUseditemsIPicked)
   }, [])
 
   return (
     <>
-      <div style={{ marginBottom: "10px" }}>
-        판매상품<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
+      <div>
+        찜<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
       </div>
       <S.Wrapper>
-        {dataUseditemsISold?.fetchUseditemsISold.map((product, idx) => (
+        {dataUseditemsIPicked?.fetchUseditemIPicked.map((product, idx) => (
           <S.Row key={product._id}>
             {product.images.length ? (
               <S.Img

@@ -3,6 +3,7 @@ import { Modal } from "antd"
 import { DaumPostcodeEmbed } from "react-daum-postcode"
 
 export const Wrapper = styled.div`
+  margin-top: 100px;
   width: 1200px;
   /* height: 1847px; */
   border: 1px solid black;
@@ -131,7 +132,7 @@ export const FileInput = styled.input`
 `
 
 export const OptionWrapper = styled.div`
-  width: 996px;
+  width: 100%;
   padding-top: 40px;
 `
 

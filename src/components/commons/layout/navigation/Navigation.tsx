@@ -37,19 +37,15 @@ export default function Navigation() {
   }
 
   return (
-    <Wrapper>
-      {NAVIGATION_MENUS.map((el) => (
-        <Fragment key={el.page}>
-          <MenuItem id={el.page} onClick={onClickMenu}>
-            {el.name}
-          </MenuItem>
-        </Fragment>
-      ))}
-      {/* <Ul>
-        <Li>자유게시판</Li>
-        <Li>중고마켓</Li>
-        <Li>마이페이지</Li>
-      </Ul> */}
-    </Wrapper>
+    // <Wrapper>
+    //   {NAVIGATION_MENUS.map((el) => (
+    //     <Fragment key={el.page}>
+    //       <MenuItem id={el.page} onClick={onClickMenu}>
+    //         {el.name}
+    //       </MenuItem>
+    //     </Fragment>
+    //   ))}
+    // </Wrapper>
+    <></>
   )
 }

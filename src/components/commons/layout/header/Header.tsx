@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import type { IQuery } from "../../src/commons/types/generated/types"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { useRecoilState } from "recoil"
-import { useEffect } from "react"
+import { useEffect, Fragment } from "react"
 import Link from "next/link"
 import Searchbars01 from "../../searchbars/01/Searchbars01.container"
 import { useRouter } from "next/router"
@@ -14,6 +14,14 @@ import {
 } from "@mui/icons-material"
 import * as S from "./Header.styles"
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./Header.queries"
+
+const NAVIGATION_MENUS = [
+  // { name: "게시판2", page: "/boards2" },
+  // { name: "고양이모음", page: "/openapis" },
+  { name: "중고마켓", page: "/product" },
+  { name: "자유게시판", page: "/boards" },
+  // { name: "마이페이지", page: "/mypage" },
+]
 
 export default function Header() {
   const { data } =
@@ -32,8 +40,12 @@ export default function Header() {
   //   }, [])
   // }
 
+  const onClickMenu = (event) => {
+    void router.push(event.currentTarget.id)
+  }
+
   return (
-    <>
+    <S.Container>
       <S.Wrapper>
         <div
           onClick={() => {
@@ -43,26 +55,46 @@ export default function Header() {
           <S.Logo src="/images/logo_yellow.png"></S.Logo>
         </div>
         {/* <Searchbars01 /> */}
+        <S.Menu>
+          {NAVIGATION_MENUS.map((el) => (
+            <Fragment key={el.page}>
+              <S.MenuItem id={el.page} onClick={onClickMenu}>
+                {el.name}
+              </S.MenuItem>
+            </Fragment>
+          ))}
+        </S.Menu>
         <S.RightBody>
           {data?.fetchUserLoggedIn ? (
             <div style={{ display: "flex" }}>
               <Link href="/product/new">
-                <S.HeaderIcon>
-                  <S.Img src="/images/header/sell.png" alt="" /> 판매하기
-                </S.HeaderIcon>
+                <a>
+                  <S.HeaderIcon>
+                    {/* <S.Img src="/images/header/sell.png" alt="" /> */}
+                    판매하기
+                  </S.HeaderIcon>
+                </a>
               </Link>
               <S.DivisionLine>│</S.DivisionLine>
-              <Link href="/mypage">
+              {/* <Link href="/mypage">
+                <S.HeaderIcon> */}{" "}
+              {/* <S.Img src="/images/header/mystore.png" alt="" />
+                  내상점
+                </S.HeaderIcon>
+              </Link> */}
+              <a href="/mypage">
                 <S.HeaderIcon>
                   {" "}
-                  <S.Img src="/images/header/mystore.png" alt="" /> 내상점
+                  {/* <S.Img src="/images/header/mystore.png" alt="" /> */}
+                  내상점
                 </S.HeaderIcon>
-              </Link>
+              </a>
               <S.DivisionLine>│</S.DivisionLine>
               <Link href="#">
                 <S.HeaderIcon>
                   {" "}
-                  <Logout /> 로그아웃
+                  {/* <Logout /> */}
+                  나가기
                 </S.HeaderIcon>
               </Link>
             </div>
@@ -78,6 +110,6 @@ export default function Header() {
           )}
         </S.RightBody>
       </S.Wrapper>
-    </>
+    </S.Container>
   )
 }

@@ -7,14 +7,15 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   /* width: 1200px; */
-  margin: 48px;
+  margin: 100px;
   height: 100%;
   width: 100%;
 `
 
 export const Title = styled.h1`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
+  margin-bottom: 20px;
 `
 
 export const TableBottom = styled.div`
@@ -74,10 +75,15 @@ export const DateSearch = styled.div``
 
 export const ItemWrap = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
-export const Item = styled.div``
+export const Item = styled.div`
+  margin: 10px;
+`
 
 export const Img = styled.img`
   width: 200px;

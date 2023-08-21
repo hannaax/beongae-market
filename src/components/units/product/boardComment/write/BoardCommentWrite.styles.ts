@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 0px 48px;
+  margin: 0px 100px;
 `
 export const PencilIcon = styled.img``
 

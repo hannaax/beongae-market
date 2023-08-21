@@ -10,7 +10,5 @@ export default function Mypage() {
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN)
 
-  console.log(data)
-
   return <MypageUI onClickMoveToPage={onClickMoveToPage} data={data} />
 }

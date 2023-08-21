@@ -3,16 +3,20 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 `
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 48px;
+  margin: 0 100px;
 `
 
 export const Header = styled.div`
   display: flex;
   width: 100%;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `
 
 export const LeftHeader = styled.div`

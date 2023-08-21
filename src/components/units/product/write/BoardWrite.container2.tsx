@@ -34,20 +34,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
     document.head.appendChild(script)
 
-    script.onload = initializeMap
-
-    // 페이지 변경 시 맵 내용을 로드합니다
-    router.events.on("routeChangeComplete", initializeMap)
-
-    // 초기화 이벤트를 제거합니다
-    return () => {
-      router.events.off("routeChangeComplete", initializeMap)
-    }
-  }, [router.asPath])
-
-  const initializeMap = () => {
-    if (typeof window !== "undefined" && window.kakao && window.kakao.maps) {
-      // 카카오 맵 객체 초기화 및 API 사용 로직을 작성하세요
+    script.onload = () => {
       window.kakao.maps.load(function () {
         const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
         const options = {
@@ -58,52 +45,22 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
         const map = new window.kakao.maps.Map(container, options) // 지도 생성 및 객체 리턴
 
-        // 주소-좌표 변환 객체를 생성합니다
-        const geocoder = new window.kakao.maps.services.Geocoder()
+        // // 주소-좌표 변환 객체를 생성합니다
+        // const geocoder = new window.kakao.maps.services.Geocoder()
 
-        // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(
-          "경기 성남시 분당구 판교역로 235 에이치스퀘어",
-          function (result, status) {
-            // 정상적으로 검색이 완료됐으면
-            if (status === kakao.maps.services.Status.OK) {
-              console.log(result)
-            }
-          }
-        )
+        // // 주소로 좌표를 검색합니다
+        // geocoder.addressSearch(
+        //   "경기 성남시 분당구 판교역로 235 에이치스퀘어",
+        //   function (result, status) {
+        //     // 정상적으로 검색이 완료됐으면
+        //     if (status === kakao.maps.services.Status.OK) {
+        //       console.log(result)
+        //     }
+        //   }
+        // )
       })
-    } else {
-      // 실패한 경우에 대한 예외 처리를 작성하세요
     }
-  }
-
-  //   script.onload = () => {
-  //     window.kakao.maps.load(function () {
-  //       const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
-  //       const options = {
-  //         // 지도를 생성할 때 필요한 기본 옵션
-  //         center: new window.kakao.maps.LatLng(37.462381, 126.813369), // 지도의 중심좌표.
-  //         level: 3, // 지도의 레벨(확대, 축소 정도)
-  //       }
-
-  //       const map = new window.kakao.maps.Map(container, options) // 지도 생성 및 객체 리턴
-
-  //       // 주소-좌표 변환 객체를 생성합니다
-  //       const geocoder = new window.kakao.maps.services.Geocoder()
-
-  //       // 주소로 좌표를 검색합니다
-  //       geocoder.addressSearch(
-  //         "경기 성남시 분당구 판교역로 235 에이치스퀘어",
-  //         function (result, status) {
-  //           // 정상적으로 검색이 완료됐으면
-  //           if (status === kakao.maps.services.Status.OK) {
-  //             console.log(result)
-  //           }
-  //         }
-  //       )
-  //     })
-  //   }
-  // }, [])
+  }, [])
 
   const [isActive, setIsActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
