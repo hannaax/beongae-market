@@ -1,15 +1,8 @@
 import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
-import type { MouseEvent } from "react"
 import ReactPlayer from "react-player"
 import { Tooltip } from "antd"
-import { SDK_VERSION } from "firebase/app"
-
-interface IBoardDetailUIProps {
-  data?: any
-  onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void
-  onClickMove: (event: MouseEvent<HTMLButtonElement>) => void
-}
+import type { IBoardDetailUIProps } from "./BoardDetail.types"
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (

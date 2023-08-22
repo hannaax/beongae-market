@@ -1,18 +1,11 @@
-import type { MouseEvent } from "react"
 import type { IBoardReturn } from "../../../../commons/types/generated/types"
-import { elapsedTime, getDate } from "../../../commons/libraries/utils"
+import { elapsedTime } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
 import Paginations01 from "../../../commons/paginations/01/Paginations01"
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container"
 import { v4 as uuidv4 } from "uuid"
 import { Favorite } from "@mui/icons-material"
-
-interface IBoardListUIProps {
-  data: any
-  onClickMoveToBoardNew: (event: MouseEvent<HTMLButtonElement>) => void
-  onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void
-  onClickPage: (event: MouseEvent<HTMLSpanElement>) => void
-}
+import type { IBoardListUIProps } from "./BoardList.types"
 
 const SECRET = "@#$%"
 

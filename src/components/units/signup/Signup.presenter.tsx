@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { Container, Input, SubmitButton, Wrapper } from "./Signup.styles"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import type { ISignupUIProps } from "./Signup.types"
 // import { ReactComponent as Kakao } from "./images/login/kakao.svg"
 // import { ReactComponent as Google } from "./images/login/google.svg"
 
@@ -17,7 +18,7 @@ const schema = yup.object({
     .required("비밀번호는 필수 입력입니다"),
 })
 
-export default function SignupUI(props) {
+export default function SignupUI(props: ISignupUIProps) {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",

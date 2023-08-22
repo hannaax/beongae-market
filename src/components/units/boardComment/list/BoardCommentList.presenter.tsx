@@ -1,8 +1,9 @@
 import { Rate } from "antd"
 import InfiniteScroll from "react-infinite-scroller"
 import BoardCommentListUIItem from "./BoardCommentList.presenterItem"
+import type { IBoardCommentListUIProps } from "./BoardCommentList.types"
 
-export default function BoardCommentListUI(props) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   // console.log(data)
   // data?.fetchBoardComments?.map((el) => console.log(el))
 

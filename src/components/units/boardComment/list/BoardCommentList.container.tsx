@@ -8,7 +8,7 @@ import type {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
-import { MouseEvent, useState } from "react"
+import type { MouseEvent, useState } from "react"
 
 // const DELETE_BOARD_COMMENTS = gql``
 

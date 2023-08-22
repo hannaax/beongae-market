@@ -51,7 +51,7 @@ export default function BoardList(): JSX.Element {
     void refetch({ page: startPage + 10 })
   }
 
-  const searchDebounce = (value) => {
+  const searchDebounce = (value: string) => {
     // _.debounce(() => {
     //   value
     // }, 500)
@@ -66,7 +66,7 @@ export default function BoardList(): JSX.Element {
     // $$$$ 기준 split
   }
 
-  const onChangeKeyword = (value) => {
+  const onChangeKeyword = (value: string) => {
     setKeyword(value)
   }
 

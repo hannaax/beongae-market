@@ -40,22 +40,5 @@ export default function SideBar() {
   console.log("items", recentlyViewedItems)
 
   const ITEMS_LENGTH = recentlyViewedItems.length ?? 1
-  return (
-    <Wrapper>
-      {/* <ProductsPicked>
-        <p>찜한 상품</p>
-        <p>
-          <Favorite sx={{ fontSize: "13px" }} /> 1
-        </p>
-      </ProductsPicked>
-      <ProductsRecentlyVieved>
-        <p>최근본 상품</p>
-        <div>
-          <div>{recentlyViewedItems[ITEMS_LENGTH - 1]?.fetchUseditem.name}</div>
-          <div>{recentlyViewedItems[ITEMS_LENGTH - 2]?.fetchUseditem.name}</div>
-          <div>{recentlyViewedItems[ITEMS_LENGTH - 3]?.fetchUseditem.name}</div>
-        </div>
-      </ProductsRecentlyVieved> */}
-    </Wrapper>
-  )
+  return <Wrapper></Wrapper>
 }

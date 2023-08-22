@@ -6,4 +6,8 @@ export interface IBoardCommentWriteUIProps {
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void
   onClickWrite: () => void
   setStar: Dispatch<SetStateAction<number>>
+  isEdit: boolean
+  writer: string
+  password: string
+  contents: string
 }
