@@ -1,6 +1,6 @@
 ## 1. 프로젝트 소개
 
-![번개마켓 (1)](https://github.com/hannaax/beongae-market/assets/111215320/5af94ce2-a18b-404d-b937-e847266da13e)
+![번개마켓 (1)](https://github.com/hannaax/beongae-market/assets/111215320/360285bb-d565-4eac-b872-8d3950e672dc)
 
 개인 중고물품 거래 사이트, 번개마켓⚡입니다.
 
