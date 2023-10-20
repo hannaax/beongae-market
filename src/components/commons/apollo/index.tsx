@@ -26,6 +26,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   // 3. 프리렌더링 무시 - useEffect 방법
   useEffect(() => {
+    console.log("token", accessToken)
     const result = localStorage.getItem("accessToken")
     setAccessToken(result ?? "")
   }, [])

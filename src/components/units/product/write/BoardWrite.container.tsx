@@ -61,19 +61,23 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
         // 주소-좌표 변환 객체를 생성합니다
         const geocoder = new window.kakao.maps.services.Geocoder()
 
+        console.log("geo", geocoder)
+
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(
-          "경기 성남시 분당구 판교역로 235 에이치스퀘어",
-          function (result, status) {
-            // 정상적으로 검색이 완료됐으면
-            if (status === kakao.maps.services.Status.OK) {
-              console.log(result)
-            }
+        geocoder.addressSearch(address, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === kakao.maps.services.Status.OK) {
+            console.log("result", result[0].address.x)
+            console.log("opt", options)
+            // options.center(new window.kakao.maps.LatLng(38, 126.813369))
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
+            map.setCenter(coords)
           }
-        )
+        })
       })
     } else {
       // 실패한 경우에 대한 예외 처리를 작성하세요
+      console.log("실패")
     }
   }
 
@@ -122,6 +126,32 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const [tagError, setTagError] = useState("")
   const [addressError, setAddressError] = useState("")
   const [fileUrlsError, setFileUrlsError] = useState(["", "", ""])
+
+  // ================= //
+
+  useEffect(() => {
+    if (address) {
+      window.kakao.maps.load(function () {
+        const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
+        const options = {
+          center: new window.kakao.maps.LatLng(37.462381, 126.813369),
+          level: 3,
+        }
+        const map = new window.kakao.maps.Map(container, options)
+
+        const geocoder = new window.kakao.maps.services.Geocoder()
+
+        geocoder.addressSearch(address, function (result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
+            map.setCenter(coords)
+          }
+        })
+      })
+    }
+  }, [address])
+
+  // ================= //
 
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
@@ -182,6 +212,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setAddress(data.address)
     // setZipcode(data.zonecode)
     setIsOpen((prev) => !prev)
+    console.log("address", address)
   }
 
   const onChangeAddressDetail = (
