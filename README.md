@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 1. 프로젝트 소개
 
-## Getting Started
+![번개마켓 (1)](https://github.com/hannaax/beongae-market/assets/111215320/360285bb-d565-4eac-b872-8d3950e672dc)
 
-First, run the development server:
+개인 중고물품 거래 사이트, 번개마켓⚡입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
+<br>
+
+- **진행 기간**
+    
+    2023.06.17 ~
+    
+- **프로젝트 실행 방법**
+
+```
+$ git clone git@github.com:hannaax/beongae-market.git
+$ yarn add
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2. 기술스택
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- frontend : reactjs, nextjs, typescript, recoil, graphql, apollo-client, emotion, antd, material-ui
+- backend : 제공 API 사용
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 3. 구현
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**중고마켓**
 
-## Learn More
+- 물품 등록, 물품 수정, 물품 삭제, 물품 검색
+- 문의 작성, 문의 조회
 
-To learn more about Next.js, take a look at the following resources:
+**자유게시판**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 게시글 작성, 게시글 수정, 게시글 삭제, 게시글 조회, 게시글 검색
+- 댓글 작성, 댓글 조회, 댓글 삭제
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Auth**
 
-## Deploy on Vercel
+- 회원가입, 로그인
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Mypage**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 회원정보, 판매상품, 찜상품, 최근본상품, 비밀번호 변경
+
+gif 업로드 예정입니다.
+
