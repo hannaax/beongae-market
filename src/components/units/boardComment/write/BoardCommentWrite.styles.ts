@@ -1,7 +1,13 @@
 import styled from "@emotion/styled"
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`
+
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 100%;
   margin: 0px 100px;
   margin-bottom: 100px;
 `
@@ -21,8 +27,17 @@ export const Input = styled.input`
   border: 1px solid lightgray;
   margin-right: 20px;
 `
-export const RateInput = styled.div``
+export const RateInput = styled.div`
+  display: flex;
+  flex-direction: center;
+  width: 100%;
+`
+
+export const ContentsWrapperDiv = styled.div``
 export const ContentsWrapper = styled.div`
+  /* display: flex;
+  justify-content: center; */
+  width: 100%;
   border: 1px solid lightgray;
 `
 export const Contents = styled.textarea`
