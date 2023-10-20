@@ -12,16 +12,24 @@ export const FETCH_BOARD_COMMENTS = gql`
   }
 `
 
+export const UPDATE_BOARD_COMMENT = gql`
+  mutation updateBoardComment(
+    $updateBoardCommentInput: UpdateBoardCommentInput!
+    $password: String
+    $boardCommentId: ID!
+  ) {
+    updateBoardComment(
+      updateBoardCommentInput: $updateBoardCommentInput
+      password: $password
+      boardCommentId: $boardCommentId
+    ) {
+      _id
+    }
+  }
+`
+
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
   }
 `
-
-// export const FETCH_USEDITEM_QUESTIONS = gql``
-
-// export const FETCH_USEDITEM_QUESTION_ANSWERS = gql``
-
-// export const DELETE_USERITEM_QUESTION = gql``
-
-// export const DELETE_USERITEM_QUESTION_ANSWER = gql``

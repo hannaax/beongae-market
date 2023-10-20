@@ -16,19 +16,53 @@ export const Wrapper = styled.div`
   top: 0;
   z-index: 3;
   background-color: #fff;
+  box-shadow: 0 0 8px #ddd;
+
   @media (max-width: 1000px) {
     padding: 30px;
   }
 `
+
+export const MenuIcon = styled.div`
+  display: none;
+  @media (max-width: 800px) {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+  }
+`
+
+export const LogoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media (max-width: 800px) {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+  }
+`
+
 export const Logo = styled.img`
   width: 150px;
 `
 
 export const Menu = styled.div`
   display: flex;
+  justify-content: center;
+  width: 100%;
   font-size: 20px;
   @media (max-width: 800px) {
+    position: absolute;
+    top: 100px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
     display: none;
+
+    &.block {
+      display: block;
+    }
   }
 `
 
@@ -46,8 +80,19 @@ export const RightBody = styled.div`
   align-items: center;
 `
 
-export const HeaderIcon = styled.div`
-  padding: 10px;
+export const Button1 = styled.div`
+  padding: 10px 5px;
+  width: 75px;
+`
+
+export const Button2 = styled.div`
+  padding: 10px 5px;
+  width: 55px;
+`
+
+export const Button3 = styled.div`
+  padding: 10px 5px;
+  width: 55px;
 `
 
 export const DivisionLine = styled.div`

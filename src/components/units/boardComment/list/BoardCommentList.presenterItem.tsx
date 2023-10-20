@@ -5,10 +5,12 @@ import { useState } from "react"
 import type {
   IMutation,
   IMutationDeleteBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
 } from "../../../../commons/types/generated/types"
 import {
   DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
+  UPDATE_BOARD_COMMENT,
 } from "./BoardCommentList.queries"
 import { useRouter } from "next/router"
 import { getDate } from "../../../commons/libraries/utils"
@@ -20,6 +22,11 @@ export default function BoardCommentListUIItem(props) {
   const [isEdit, setIsEdit] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [password, setPassword] = useState("")
+
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT)
 
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
@@ -49,7 +56,7 @@ export default function BoardCommentListUIItem(props) {
     setPassword(event.target.value)
   }
 
-  const onClickUpdate = (): void => {
+  const onClickUpdate = async (event): void => {
     // 기존 댓글들을 fetch로 불러오면 배열 형태
     // 아니면, 기존 댓글 개수만큼 배열 만들어서
     // 요소들에 다 false 넣기
@@ -67,6 +74,58 @@ export default function BoardCommentListUIItem(props) {
     //   // el? "":""
     // })
     setIsEdit(true)
+    // if (
+    //   !title &&
+    //   !contents &&
+    //   !youtubeUrl &&
+    //   !address &&
+    //   !addressDetail &&
+    //   !zipcode &&
+    //   !isChangedFiles
+    // ) {
+    //   Modal.warning({ content: "수정한 내용이 없습니다." })
+    //   return
+    // }
+
+    // if (!password) {
+    //   Modal.warning({ content: "비밀번호를 입력해주세요." })
+    //   return
+    // }
+    // const updateBoardInput = {}
+    // if (title) updateBoardInput.title = title
+    // if (contents) updateBoardInput.contents = contents
+    // if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl
+    // if (zipcode || address || addressDetail) {
+    //   updateBoardInput.boardAddress = {}
+    //   if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode
+    //   if (address) updateBoardInput.boardAddress.address = address
+    //   if (addressDetail)
+    //     updateBoardInput.boardAddress.addressDetail = addressDetail
+    // }
+    // if (isChangedFiles) updateBoardInput.images = fileUrls
+
+    try {
+      // if (typeof router.query.boardId !== "string") {
+      //   alert("시스템에 문제가 있습니다.")
+      //   return
+      // }
+
+      const result = await updateBoardComment({
+        variables: {
+          updateBoardCommentInput: {
+            contents: "test",
+            rating: 3,
+          },
+          password,
+          boardCommentId: event.currentTarget.id,
+        },
+      })
+      // void router.push(`/boards/${result.data.updateBoard._id}`)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+      // Modal.error({ content: error.message })
+    }
   }
 
   const showModal = () => {
@@ -119,6 +178,7 @@ export default function BoardCommentListUIItem(props) {
           isEdit={isEdit}
           onClickUpdate={onClickUpdate}
           el={props.el}
+          id={props.el._id}
         />
       )}
     </>

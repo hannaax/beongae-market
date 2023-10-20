@@ -2,27 +2,32 @@ import styled from "@emotion/styled"
 import { Modal } from "antd"
 import { DaumPostcodeEmbed } from "react-daum-postcode"
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
   margin-top: 100px;
-  width: 1200px;
+`
+
+export const Wrapper = styled.div`
+  /* width: 1200px; */
+  width: 100%;
   /* height: 1847px; */
   border: 1px solid black;
   margin: 100px;
-  padding-top: 80px;
+  /* padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
-  padding-right: 102px;
+  padding-right: 102px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   border: none;
-  box-shadow: 0px 0px 10px gray;
+  /* box-shadow: 0px 0px 10px gray; */
 `
 
 export const Title = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 600;
 `
 
 export const WriterWrapper = styled.div`
@@ -34,14 +39,17 @@ export const WriterWrapper = styled.div`
 `
 
 export const Writer = styled.input`
-  width: 486px;
+  /* width: 486px; */
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
+  margin-right: 10px;
 `
 
 export const Password = styled.input`
-  width: 486px;
+  /* width: 486px; */
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
@@ -55,17 +63,20 @@ export const Label = styled.div`
 
 export const InputWrapper = styled.div`
   padding-top: 40px;
+  width: 100%;
 `
 
 export const Subject = styled.input`
-  width: 996px;
+  /* width: 996px; */
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `
 
 export const Contents = styled.textarea`
-  width: 996px;
+  /* width: 996px; */
+  width: 100%;
   height: 480px;
   padding-left: 16px;
   padding: 14px;
@@ -75,6 +86,7 @@ export const Contents = styled.textarea`
 export const ZipcodeWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
 `
 
 export const Zipcode = styled.input`
@@ -94,7 +106,8 @@ export const SearchButton = styled.button`
 `
 
 export const Address = styled.input`
-  width: 996px;
+  /* width: 996px; */
+  width: 100%;
   height: 52px;
   margin-top: 16px;
   padding-left: 16px;
@@ -102,14 +115,16 @@ export const Address = styled.input`
 `
 
 export const Youtube = styled.input`
-  width: 996px;
+  /* width: 996px; */
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `
 
 export const ImageWrapper = styled.div`
-  width: 996px;
+  /* width: 996px; */
+  width: 100%;
   padding-top: 40px;
 `
 

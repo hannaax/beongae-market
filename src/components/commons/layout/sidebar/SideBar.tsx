@@ -29,16 +29,16 @@ const ProductsRecentlyVieved = styled.div`
 `
 
 export default function SideBar() {
-  const [recentlyViewedItems, SetRecentlyViewedItems] = useState([])
+  // const [recentlyViewedItems, SetRecentlyViewedItems] = useState([])
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("recentlyViewedItems"))
-    console.log(data)
-    SetRecentlyViewedItems(data)
-  }, [])
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("recentlyViewedItems"))
+  //   console.log(data)
+  //   SetRecentlyViewedItems(data)
+  // }, [])
 
-  console.log("items", recentlyViewedItems)
+  // console.log("items", recentlyViewedItems)
 
-  const ITEMS_LENGTH = recentlyViewedItems.length ?? 1
+  // const ITEMS_LENGTH = recentlyViewedItems.length ?? 1
   return <Wrapper></Wrapper>
 }

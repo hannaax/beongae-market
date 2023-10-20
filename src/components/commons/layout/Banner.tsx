@@ -38,6 +38,16 @@ export const SliderItem = styled.img`
   object-fit: none;
 `
 
+export const Div = styled.div`
+  position: relative;
+`
+
+export const Span = styled.div`
+  position: absolute;
+  top: 50px;
+  left: 50px;
+`
+
 export default function Banner() {
   const settings = {
     arrows: true,
@@ -52,15 +62,21 @@ export default function Banner() {
     <Wrapper>
       <Slider {...settings}>
         <div>
-          <SliderItem src="/images/banner1.jpg" />
-        </div>
-        <div>
           <SliderItem src="/images/banner2.jpg" />
         </div>
         <div>
-          <SliderItem src="/images/banner.png" />
+          <SliderItem src="/images/banner14.jpg" />
+        </div>
+        <div>
+          <SliderItem src="/images/banner15.jpg" />
         </div>
       </Slider>
     </Wrapper>
   )
 }
+
+/* {" "}
+          <Div style={{ backgroundImage: "/images/banner1.jpg" }}>
+            <Span>당신을 위한 중고마켓</Span>
+          </Div>{" "}
+          */

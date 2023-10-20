@@ -16,7 +16,7 @@ export const TableTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 `
 
 export const TableBottom = styled.div`

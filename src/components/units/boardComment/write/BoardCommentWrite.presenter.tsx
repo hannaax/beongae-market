@@ -20,6 +20,7 @@ export default function BoardCommentWriteUI(
           onChange={props.onChangeWriter}
           value={props.writer !== "" ? props.writer : props.el?.writer ?? ""}
           readOnly={props.isEdit}
+          defaultValue={props.data?.fetchBoard.writer}
         ></S.Input>
         <S.Input
           type="password"

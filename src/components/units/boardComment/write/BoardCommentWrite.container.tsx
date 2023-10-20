@@ -1,5 +1,5 @@
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter"
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
 import { useRouter } from "next/router"
 import type { ChangeEvent } from "react"
@@ -8,6 +8,8 @@ import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries"
 import type {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IQuery,
+  IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
 
 export default function BoardCommentWrite(props): JSX.Element {
@@ -67,6 +69,7 @@ export default function BoardCommentWrite(props): JSX.Element {
       writer={writer}
       password={password}
       contents={contents}
+      onClickUpdate={props.onClickUpdate}
     />
   )
 }

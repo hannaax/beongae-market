@@ -23,7 +23,7 @@ export default function MypagePick() {
         찜<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
       </div>
       <S.Wrapper>
-        {dataUseditemsIPicked?.fetchUseditemIPicked.map((product, idx) => (
+        {dataUseditemsIPicked?.fetchUseditemIPicked?.map((product, idx) => (
           <S.Row key={product._id}>
             {product.images.length ? (
               <S.Img

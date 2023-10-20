@@ -38,7 +38,6 @@ export const Img = styled.img`
 export const RightHeader = styled.div`
   padding: 30px 50px;
   width: 100%;
-  border: 1px solid #ddd;
 `
 
 export const Name = styled.div`

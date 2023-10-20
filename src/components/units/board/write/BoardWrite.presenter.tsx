@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid"
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
-    <>
+    <S.Container>
       {props.isOpen && (
         <S.AddressModal
           open={true}
@@ -128,6 +128,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           </S.SubmitButton>
         </S.ButtonWrapper>
       </S.Wrapper>
-    </>
+    </S.Container>
   )
 }

@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100%;
   min-height: 700px;
   background-color: #fafafa;
-  margin-top: 100px;
+  margin-top: 65px;
 `
 export const Wrapper = styled.div`
   width: 500px;
@@ -27,6 +27,12 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   outline: none;
   margin-top: 20px;
+`
+
+export const ErrorMessage = styled.div`
+  padding: 5px 0;
+  font-size: 14px;
+  color: #999;
 `
 
 export const SubmitButton = styled.button`

@@ -12,7 +12,6 @@ import { useRouter } from "next/router"
 import { useRecoilState } from "recoil"
 import { accessTokenState } from "../../../commons/stores"
 import { Modal } from "antd"
-import { toast } from "react-toastify"
 
 export default function Signup(props) {
   const router = useRouter()
@@ -72,7 +71,7 @@ export default function Signup(props) {
       console.log(result)
       // void router.push("/signin")
     } catch (error) {
-      toast(error.message)
+      alert(error.message)
     }
   }
 

@@ -133,9 +133,9 @@ export const SearchButton = styled.button`
   width: 124px;
   height: 52px;
   margin-left: 16px;
-  background-color: black;
+  background-color: #ffc700;
   cursor: pointer;
-  color: white;
+  color: #000;
 `
 
 export const Address = styled.input`

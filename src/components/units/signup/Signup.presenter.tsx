@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { Container, Input, SubmitButton, Wrapper } from "./Signup.styles"
+import * as S from "./Signup.styles"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import type { ISignupUIProps } from "./Signup.types"
@@ -25,8 +25,8 @@ export default function SignupUI(props: ISignupUIProps) {
   })
   return (
     <>
-      <Container>
-        <Wrapper>
+      <S.Container>
+        <S.Wrapper>
           <h1>{props.signin ? "로그인" : "회원가입"}</h1>
           <form
             onSubmit={handleSubmit(
@@ -34,16 +34,18 @@ export default function SignupUI(props: ISignupUIProps) {
             )}
             style={{ width: "100%" }}
           >
-            <Input type="text" placeholder="이메일" {...register("email")} />
-            <div>{formState.errors.email?.message}</div>
-            <Input
+            <S.Input type="text" placeholder="이메일" {...register("email")} />
+            <S.ErrorMessage>{formState.errors.email?.message}</S.ErrorMessage>
+            <S.Input
               type="password"
               placeholder="비밀번호"
               {...register("password")}
             />
-            <div>{formState.errors.password?.message}</div>
+            <S.ErrorMessage>
+              {formState.errors.password?.message}
+            </S.ErrorMessage>
             {/* {props.signin ? "" : <Input {...register(name)} />} */}
-            <SubmitButton
+            <S.SubmitButton
               style={{ backgroundColor: formState.isValid ? "#ffc700" : "" }}
               // isActive={props.isActive}
               onClick={
@@ -51,28 +53,26 @@ export default function SignupUI(props: ISignupUIProps) {
               }
             >
               {props.signin ? "로그인" : "회원가입"}
-            </SubmitButton>
-            <SubmitButton
+            </S.SubmitButton>
+            {/* <S.SubmitButton
               style={{
                 backgroundColor: "#fff",
                 border: "1px solid #999",
               }}
             >
-              {/* <Kakao /> */}
               카카오 로그인
-            </SubmitButton>
-            <SubmitButton
+            </S.SubmitButton>
+            <S.SubmitButton
               style={{
                 backgroundColor: "#fff",
                 border: "1px solid #999",
               }}
             >
-              {/* <Google /> */}
               구글 로그인
-            </SubmitButton>
+            </S.SubmitButton> */}
           </form>
-        </Wrapper>
-      </Container>
+        </S.Wrapper>
+      </S.Container>
     </>
 
     // ===========================

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { PaginationWrapper } from "./Paginations01.style"
 
 export default function Paginations01(props): JSX.Element {
   const [startPage, setStartPage] = useState(1)
@@ -28,7 +29,7 @@ export default function Paginations01(props): JSX.Element {
   // styles
 
   return (
-    <div>
+    <PaginationWrapper>
       <span onClick={onClickPrevPage}>{`<`}</span>
       {new Array(10).fill(1).map(
         (_, index) =>
@@ -44,6 +45,6 @@ export default function Paginations01(props): JSX.Element {
           )
       )}
       <span onClick={onClickNextPage}>{`>`}</span>
-    </div>
+    </PaginationWrapper>
   )
 }

@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import type { IQuery } from "../../src/commons/types/generated/types"
 import { gql, useMutation, useQuery } from "@apollo/client"
 import { useRecoilState } from "recoil"
-import { useEffect, Fragment } from "react"
+import { useEffect, Fragment, useState } from "react"
 import Link from "next/link"
 import Searchbars01 from "../../searchbars/01/Searchbars01.container"
 import { useRouter } from "next/router"
@@ -12,6 +12,7 @@ import {
   PersonOutline,
   Logout,
 } from "@mui/icons-material"
+import MenuIcon from "@mui/icons-material/Menu"
 import * as S from "./Header.styles"
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./Header.queries"
 
@@ -31,6 +32,7 @@ export default function Header() {
   const [logoutUser] = useMutation(LOGOUT_USER)
 
   const router = useRouter()
+  const [openMenu, setOpenMenu] = useState(false)
 
   //   useEffect(() => {
   //     if (localStorage.getItem("accessToken") === null) {
@@ -44,6 +46,15 @@ export default function Header() {
     void router.push(event.currentTarget.id)
   }
 
+  const onClickLogout = () => {
+    void logoutUser()
+  }
+
+  const test = () => {
+    // void
+    setOpenMenu(!openMenu)
+  }
+
   return (
     <S.Container>
       <S.Wrapper>
@@ -52,10 +63,15 @@ export default function Header() {
             void router.push("/")
           }}
         >
-          <S.Logo src="/images/logo_yellow.png"></S.Logo>
+          <S.MenuIcon>
+            <MenuIcon onClick={test} />
+          </S.MenuIcon>
+          <S.LogoWrapper>
+            <S.Logo src="/images/logo_yellow.png"></S.Logo>
+          </S.LogoWrapper>
         </div>
         {/* <Searchbars01 /> */}
-        <S.Menu>
+        <S.Menu className={openMenu ? "block" : ""}>
           {NAVIGATION_MENUS.map((el) => (
             <Fragment key={el.page}>
               <S.MenuItem id={el.page} onClick={onClickMenu}>
@@ -69,10 +85,10 @@ export default function Header() {
             <div style={{ display: "flex" }}>
               <Link href="/product/new">
                 <a>
-                  <S.HeaderIcon>
+                  <S.Button1>
                     {/* <S.Img src="/images/header/sell.png" alt="" /> */}
                     판매하기
-                  </S.HeaderIcon>
+                  </S.Button1>
                 </a>
               </Link>
               <S.DivisionLine>│</S.DivisionLine>
@@ -83,28 +99,28 @@ export default function Header() {
                 </S.HeaderIcon>
               </Link> */}
               <a href="/mypage">
-                <S.HeaderIcon>
+                <S.Button2>
                   {" "}
                   {/* <S.Img src="/images/header/mystore.png" alt="" /> */}
                   내상점
-                </S.HeaderIcon>
+                </S.Button2>
               </a>
               <S.DivisionLine>│</S.DivisionLine>
               <Link href="#">
-                <S.HeaderIcon>
+                <S.Button2 onClick={onClickLogout}>
                   {" "}
                   {/* <Logout /> */}
                   나가기
-                </S.HeaderIcon>
+                </S.Button2>
               </Link>
             </div>
           ) : (
             <>
               <Link href="/signin">
-                <span style={{ paddingRight: "10px" }}>로그인</span>
+                <S.Button1 style={{ paddingRight: "10px" }}>로그인</S.Button1>
               </Link>
               <Link href="/signup">
-                <span>회원가입</span>
+                <S.Button1>회원가입</S.Button1>
               </Link>
             </>
           )}

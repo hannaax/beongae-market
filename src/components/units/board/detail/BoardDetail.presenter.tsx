@@ -3,6 +3,7 @@ import { getDate } from "../../../commons/libraries/utils"
 import ReactPlayer from "react-player"
 import { Tooltip } from "antd"
 import type { IBoardDetailUIProps } from "./BoardDetail.types"
+import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (
@@ -15,7 +16,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               <S.Info>
                 <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
                 <S.DateWrapper>
-                  <S.DateLabel>Date</S.DateLabel>
+                  {/* <S.DateLabel>Date</S.DateLabel> */}
                   <S.Date>{getDate(props.data?.fetchBoard?.createdAt)}</S.Date>
                 </S.DateWrapper>
               </S.Info>
@@ -58,15 +59,17 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
           <S.LikeBtns>
             <S.LikeBtnWrapper>
               <S.LikeBtn>
-                <img src="/images/board/detail/like.png" />
+                <ThumbUpAltOutlined sx={{ color: "#ffc700" }} />
               </S.LikeBtn>
-              <S.LikeCount>좋아요 수</S.LikeCount>
+              <S.LikeCount>{props.data?.fetchBoard?.likeCount}</S.LikeCount>
             </S.LikeBtnWrapper>
             <S.DislikeBtnWrapper>
               <S.DislikeBtn>
-                <img src="/images/board/detail/dislike.png" />
+                <ThumbDownAltOutlined sx={{ color: "#aaa" }} />
               </S.DislikeBtn>
-              <S.DislikeCount>싫어요 수</S.DislikeCount>
+              <S.DislikeCount>
+                {props.data?.fetchBoard?.dislikeCount}
+              </S.DislikeCount>
             </S.DislikeBtnWrapper>
           </S.LikeBtns>
         </S.CardWrapper>

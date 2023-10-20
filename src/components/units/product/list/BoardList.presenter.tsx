@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react"
+import { type MouseEvent, useState } from "react"
 import type { IBoardReturn } from "../../../../commons/types/generated/types"
 import { elapsedTime, getDate } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
