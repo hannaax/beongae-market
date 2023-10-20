@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 
 export const UploadImage = styled.img`
-  width: 78px;
-  height: 78px;
+  width: 150px;
+  height: 150px;
   margin-right: 24px;
   cursor: pointer;
 `
