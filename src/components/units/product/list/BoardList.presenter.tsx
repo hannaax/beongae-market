@@ -3,7 +3,7 @@ import type { IBoardReturn } from "../../../../commons/types/generated/types"
 import { elapsedTime, getDate } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
 import Paginations01 from "../../../commons/paginations/01/Paginations01"
-import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container"
+import Searchbars01 from "../../../commons/searchbars/01/Searchbars01"
 import { v4 as uuidv4 } from "uuid"
 import { Create, Favorite } from "@mui/icons-material"
 import Link from "next/link"
@@ -76,17 +76,6 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
                       backgroundColor: "#eee",
                     }}
                   ></div>
-                  // {props.shoppingData?.map((product) => (
-                  //   <img src={product.image}/>
-                  // ))
-                  // }
-                  // <img
-                  //   src={images[i]}
-                  //   style={{
-                  //     width: "200px",
-                  //     height: "200px",
-                  //   }}
-                  // />
                 )}
                 <S.Text>
                   <S.Name>

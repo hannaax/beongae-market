@@ -1,4 +1,4 @@
-import Signup from "../../src/components/units/signup/Signup.container"
+import Signup from "../../src/components/units/signup/Signup"
 import { useState } from "react"
 
 export default function SigninPage() {

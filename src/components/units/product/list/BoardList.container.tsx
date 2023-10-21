@@ -1,8 +1,8 @@
 import { useQuery, gql } from "@apollo/client"
 import BoardListUI from "./BoardList.presenter"
 import { useRouter } from "next/router"
-import { ChangeEvent, MouseEvent, useEffect } from "react"
-import { useState } from "react"
+import { type ChangeEvent, type MouseEvent, useEffect, useState } from "react"
+
 import _ from "lodash"
 import type {
   IQuery,
@@ -34,68 +34,6 @@ export default function BoardList(): JSX.Element {
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT)
-
-  // 네이버 쇼핑api 테스트
-
-  // const [shoppingData, setShoppingData] = useState([])
-
-  // const getShoppingData = async () => {
-  //   const URL = "/v1/search/shop.json"
-  //   const ClientID = "KJRLHXrhhBXPLMLRgqQP"
-  //   const ClientSecret = "JU45Fb_oGj"
-
-  //   // await axios
-  //   //   .get(URL, {
-  //   //     params: {
-  //   //       query: "모자",
-  //   //       display: 20,
-  //   //     },
-  //   //     headers: {
-  //   //       "X-Naver-Client-Id": ClientID,
-  //   //       "X-Naver-Client-Secret": ClientSecret,
-  //   //     },
-  //   //   })
-  //   //   .then((res) => {
-  //   //     setShoppingData(res.data.items)
-  //   //   })
-  //   // .catch((e) => {
-  //   //   console.error(e);
-  //   // })
-  //   // }
-  //   try {
-  //     const res = await axios.get(URL, {
-  //       params: {
-  //         query: "모자",
-  //         display: 10,
-  //       },
-  //       headers: {
-  //         "X-Naver-Client-Id": ClientID,
-  //         "X-Naver-Client-Secret": ClientSecret,
-  //       },
-  //     })
-  //     setShoppingData(res.data.items)
-  //     return res.data.items
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   async function fetchShoppingData() {
-  //     const result = await getShoppingData()
-  //     console.log("naver", result)
-  //   }
-  //   void fetchShoppingData()
-  //   // console.log("naver", result)
-  // }, [])
-
-  //   useEffect(() => {
-  //     async function aaa(): Promise<void> {
-  //       const { Modal } = await import("antd") // code-splitting(코드스플릿팅)
-  //       Modal.success({ content: "게시글 등록에 성공했습니다" })
-  //     }
-  //     void aaa()
-  //   }, [])
 
   const [startPage, setStartPage] = useState(1)
 

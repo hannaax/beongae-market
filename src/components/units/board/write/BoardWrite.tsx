@@ -3,7 +3,6 @@ import type { ChangeEvent } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
-import BoardWriteUI from "./BoardWrite.presenter"
 import { Modal } from "antd"
 import type {
   IMutation,
@@ -12,6 +11,11 @@ import type {
 } from "../../../../commons/types/generated/types"
 import type { Address } from "react-daum-postcode"
 import type { IBoardWriteProps } from "./BoardWrite.types"
+
+import * as S from "./BoardWrite.styles"
+
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
+import { v4 as uuidv4 } from "uuid"
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
@@ -210,29 +214,129 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   }
 
   return (
-    <BoardWriteUI
-      writerError={writerError}
-      passwordError={passwordError}
-      titleError={titleError}
-      contentsError={contentsError}
-      onChangeWriter={onChangeWriter}
-      onChangeTitle={onChangeTitle}
-      onChangePassword={onChangePassword}
-      onChangeContents={onChangeContents}
-      onChangeYoutubeUrl={onChangeYoutubeUrl}
-      onChangeAddressDetail={onChangeAddressDetail}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
-      onChangeFileUrls={onChangeFileUrls}
-      onClickSubmit={onClickSubmit}
-      onClickUpdate={onClickUpdate}
-      isActive={isActive}
-      isEdit={props.isEdit}
-      data={props.data}
-      isOpen={isOpen}
-      zipcode={zipcode}
-      address={address}
-      fileUrls={fileUrls}
-    />
+    <S.Container>
+      {isOpen && (
+        <S.AddressModal
+          open={true}
+          onOk={onClickAddressSearch}
+          onCancel={onClickAddressSearch}
+        >
+          <S.AddressSearchInput onComplete={onCompleteAddressSearch} />
+        </S.AddressModal>
+      )}
+      <S.Wrapper>
+        <S.Title>게시글 {props.isEdit ? "수정" : "등록"}</S.Title>
+        <S.WriterWrapper>
+          <S.InputWrapper>
+            <S.Label>작성자</S.Label>
+            <S.Writer
+              readOnly={props.data?.fetchBoard.writer}
+              type="text"
+              placeholder={
+                props.isEdit
+                  ? props.data?.fetchBoard.writer
+                  : "이름을 적어주세요"
+              }
+              onChange={onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
+            />
+            <S.Error>{writerError}</S.Error>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.Label>비밀번호</S.Label>
+            <S.Password
+              type="password"
+              placeholder="비밀번호를 작성해주세요."
+              onChange={onChangePassword}
+            />
+            <S.Error>{passwordError}</S.Error>
+          </S.InputWrapper>
+        </S.WriterWrapper>
+        <S.InputWrapper>
+          <S.Label>제목</S.Label>
+          <S.Subject
+            type="text"
+            placeholder="제목을 작성해주세요."
+            onChange={onChangeTitle}
+            defaultValue={props.data?.fetchBoard?.title}
+          />
+          <S.Error>{titleError}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>내용</S.Label>
+          <S.Contents
+            placeholder="내용을 작성해주세요."
+            onChange={onChangeContents}
+            defaultValue={props.data?.fetchBoard?.contents}
+          />
+          <S.Error>{contentsError}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>주소</S.Label>
+          <S.ZipcodeWrapper>
+            <S.Zipcode
+              placeholder="07250"
+              readOnly
+              value={
+                zipcode !== ""
+                  ? zipcode
+                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+              }
+            />
+            <S.SearchButton onClick={onClickAddressSearch}>
+              우편번호 검색
+            </S.SearchButton>
+          </S.ZipcodeWrapper>
+          <S.Address
+            readOnly
+            value={
+              address !== ""
+                ? address
+                : props.data?.fetchBoard.boardAddress?.address ?? ""
+            }
+          />
+          <S.Address
+            onChange={onChangeAddressDetail}
+            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+          />
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>유튜브</S.Label>
+          <S.Youtube
+            placeholder="링크를 복사해주세요."
+            onChange={onChangeYoutubeUrl}
+            defaultValue={props.data?.fetchBoard?.youtubeUrl}
+          />
+        </S.InputWrapper>
+        <S.ImageWrapper>
+          <S.Label>사진첨부</S.Label>
+          <S.ImageBox>
+            {fileUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={onChangeFileUrls}
+              />
+            ))}
+          </S.ImageBox>
+        </S.ImageWrapper>
+        <S.OptionWrapper>
+          <S.Label>메인설정</S.Label>
+          <S.RadioButton type="radio" id="youtube" name="radio-button" />
+          <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
+          <S.RadioButton type="radio" id="image" name="radio-button" />
+          <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
+        </S.OptionWrapper>
+        <S.ButtonWrapper>
+          <S.SubmitButton
+            onClick={props.isEdit ? onClickUpdate : onClickSubmit}
+            isActive={props.isEdit ? true : isActive}
+          >
+            {props.isEdit ? "수정" : "등록"}하기
+          </S.SubmitButton>
+        </S.ButtonWrapper>
+      </S.Wrapper>
+    </S.Container>
   )
 }

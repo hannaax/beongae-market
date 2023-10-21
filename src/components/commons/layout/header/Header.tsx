@@ -4,7 +4,7 @@ import { gql, useMutation, useQuery } from "@apollo/client"
 import { useRecoilState } from "recoil"
 import { useEffect, Fragment, useState } from "react"
 import Link from "next/link"
-import Searchbars01 from "../../searchbars/01/Searchbars01.container"
+import Searchbars01 from "../../searchbars/01/Searchbars01"
 import { useRouter } from "next/router"
 import {
   PaidOutlined,

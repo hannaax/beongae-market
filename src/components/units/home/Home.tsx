@@ -1,14 +1,20 @@
+import { useQuery } from "@apollo/client"
+import { FETCH_USEDITEMS_OF_THE_BEST } from "./Home.queries"
+
 import * as S from "./Home.styles"
 import { v4 as uuidv4 } from "uuid"
 
-export default function HomeUI(props) {
+export default function Home(props) {
+  const { data } = useQuery(FETCH_USEDITEMS_OF_THE_BEST)
+  console.log(data)
+
   return (
     <>
       <S.Container>
         <S.Wrapper>
           <S.Title>인기상품</S.Title>
           <S.ItemWrap>
-            {props.data?.fetchUseditemsOfTheBest.map((product) => (
+            {data?.fetchUseditemsOfTheBest.map((product) => (
               <S.Item
                 key={uuidv4()}
                 id={product._id}

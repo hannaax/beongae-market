@@ -15,7 +15,7 @@ import {
 import { useRouter } from "next/router"
 import { getDate } from "../../../commons/libraries/utils"
 import type { ChangeEvent, MouseEvent } from "react"
-import BoardCommentWrite from "../write/BoardCommentWrite.container"
+import BoardCommentWrite from "../write/BoardCommentWrite"
 
 export default function BoardCommentListUIItem(props) {
   const router = useRouter()

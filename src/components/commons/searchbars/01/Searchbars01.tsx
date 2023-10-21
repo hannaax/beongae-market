@@ -1,7 +1,7 @@
-import Searchbars01UI from "./Searchbars01.presenter"
 import type { ChangeEvent } from "react"
 import _ from "lodash"
 import { useRouter } from "next/router"
+import { SearchIcon, Searchbar, SearchbarInput } from "./Searchbars01.styles"
 
 export default function Searchbars01(props): JSX.Element {
   const getDebounce = _.debounce((value) => {
@@ -19,5 +19,13 @@ export default function Searchbars01(props): JSX.Element {
     getDebounce(event.target.value)
   }
 
-  return <Searchbars01UI onChangeSearchbar={onChangeSearchbar} />
+  return (
+    <Searchbar>
+      <SearchbarInput
+        placeholder="상품명을 입력해 주세요."
+        onChange={onChangeSearchbar}
+      />
+      <SearchIcon />
+    </Searchbar>
+  )
 }

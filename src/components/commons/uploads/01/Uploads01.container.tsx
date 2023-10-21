@@ -5,6 +5,7 @@ import { checkValidationImage } from "./Uploads01.validation"
 import { useMutation } from "@apollo/client"
 import { UPLOAD_FILE } from "./Uploads01.queries"
 import { Modal } from "antd"
+import { UploadButton, UploadFileHidden, UploadImage } from "./Uploads01.styles"
 
 export default function Uploads01(props): JSX.Element {
   const fileRef = useRef<HTMLInputElement>(null)
@@ -31,11 +32,20 @@ export default function Uploads01(props): JSX.Element {
     }
   }
   return (
-    <Uploads01UI
-      fileRef={fileRef}
-      fileUrl={props.fileUrl}
-      onClickUpload={onClickUpload}
-      onChangeFile={onChangeFile}
-    />
+    <>
+      {props.fileUrl !== "" ? (
+        <UploadImage
+          onClick={onClickUpload}
+          src={`https://storage.googleapis.com/${fileUrl}`}
+        />
+      ) : (
+        <UploadButton onClick={onClickUpload}>
+          <p>+</p>
+          <p>Upload</p>
+        </UploadButton>
+      )}
+
+      <UploadFileHidden type="file" ref={fileRef} onChange={onChangeFile} />
+    </>
   )
 }

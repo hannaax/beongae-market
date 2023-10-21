@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
@@ -7,7 +7,6 @@ import {
   CREATE_USEDITEM,
   UPDATE_BOARD,
 } from "./BoardWrite.queries"
-import BoardWriteUI from "./BoardWrite.presenter"
 import { Modal } from "antd"
 import type {
   IMutation,
@@ -17,6 +16,34 @@ import type {
 import type { Address } from "react-daum-postcode"
 import type { IBoardWriteProps } from "./BoardWrite.types"
 import { useForm } from "react-hook-form"
+
+import * as S from "./BoardWrite.styles"
+
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
+import { v4 as uuidv4 } from "uuid"
+
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+import dynamic from "next/dynamic"
+import "react-quill/dist/quill.snow.css"
+
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill")
+
+    return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />
+  },
+  {
+    ssr: false,
+  }
+)
+
+const schema = yup.object({
+  name: yup.string().required("상품명을 입력해주세요."),
+  contents: yup.string().required("상품을 설명해주세요."),
+  price: yup.string().required("가격을 입력해주세요."),
+  images: yup.string().required("이미지를 첨부해주세요."),
+})
 
 declare const window: typeof globalThis & {
   kakao: any
@@ -80,34 +107,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       console.log("실패")
     }
   }
-
-  //   script.onload = () => {
-  //     window.kakao.maps.load(function () {
-  //       const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
-  //       const options = {
-  //         // 지도를 생성할 때 필요한 기본 옵션
-  //         center: new window.kakao.maps.LatLng(37.462381, 126.813369), // 지도의 중심좌표.
-  //         level: 3, // 지도의 레벨(확대, 축소 정도)
-  //       }
-
-  //       const map = new window.kakao.maps.Map(container, options) // 지도 생성 및 객체 리턴
-
-  //       // 주소-좌표 변환 객체를 생성합니다
-  //       const geocoder = new window.kakao.maps.services.Geocoder()
-
-  //       // 주소로 좌표를 검색합니다
-  //       geocoder.addressSearch(
-  //         "경기 성남시 분당구 판교역로 235 에이치스퀘어",
-  //         function (result, status) {
-  //           // 정상적으로 검색이 완료됐으면
-  //           if (status === kakao.maps.services.Status.OK) {
-  //             console.log(result)
-  //           }
-  //         }
-  //       )
-  //     })
-  //   }
-  // }, [])
 
   const [isActive, setIsActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -352,30 +351,167 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }
 
+  const { register, handleSubmit, formState } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  })
+
+  const QuillRef = useRef<ReactQuill>(false)
+  console.log("quillref", QuillRef)
+
+  useEffect(() => {
+    if (props.isEdit) {
+      if (QuillRef.current) {
+        const quill = QuillRef.current.getEditor()
+        console.log("quill", quill)
+        quill?.clipboard.dangerouslyPasteHTML(0, "test")
+      }
+    }
+  }, [QuillRef])
+
   return (
-    <BoardWriteUI
-      nameError={nameError}
-      contentsError={contentsError}
-      tagError={tagError}
-      addressError={addressError}
-      fileUrlsError={fileUrlsError}
-      onChangeName={onChangeName}
-      onChangeContents={onChangeContents}
-      onChangeTag={onChangeTag}
-      onChangeAddressDetail={onChangeAddressDetail}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
-      onChangeFileUrls={onChangeFileUrls}
-      onClickSubmit={onClickSubmit}
-      onClickUpdate={onClickUpdate}
-      isActive={isActive}
-      isEdit={props.isEdit}
-      data={props.data}
-      isOpen={isOpen}
-      // zipcode={zipcode}
-      address={address}
-      fileUrls={fileUrls}
-      handleChangeContents={handleChangeContents}
-    />
+    <>
+      {/* <form onSubmit={handleSubmit({props.isEdit ? props.onClickUpdate : props.onClickSubmit})}> */}
+      {/* <form onSubmit={handleSubmit(props.onClickSubmit)}> */}
+      {isOpen && (
+        <S.AddressModal
+          open={true}
+          onOk={onClickAddressSearch}
+          onCancel={onClickAddressSearch}
+        >
+          <S.AddressSearchInput onComplete={onCompleteAddressSearch} />
+        </S.AddressModal>
+      )}
+      <S.Container>
+        <S.Wrapper>
+          <S.Title>상품 {props.isEdit ? "수정" : "등록"}</S.Title>
+          <S.TitleBottom />
+          <S.WriterWrapper>
+            <S.InputWrapper>
+              <S.Label>상품명</S.Label>
+              <S.Name
+                type="text"
+                placeholder="상품명을 작성해주세요"
+                onChange={onChangeName}
+                defaultValue={props.data?.fetchUseditem.name}
+                // {...register("name")}
+              />
+              {/* <S.Error>{formState.errors.name?.message}</S.Error> */}
+            </S.InputWrapper>
+          </S.WriterWrapper>
+          <S.InputWrapper>
+            <S.Label>상품설명</S.Label>
+            <ReactQuill
+              placeholder={
+                props.isEdit
+                  ? props.data?.fetchUseditem.contents
+                  : "상품을 설명해주세요"
+              }
+              onChange={handleChangeContents}
+              style={{ width: "100%", height: "300px" }}
+              // {...register("contents")}
+              forwardedRef={QuillRef}
+            />
+            {/* <S.Error>{formState.errors.contents?.message}</S.Error> */}
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.Label>판매 가격</S.Label>
+            <S.Price
+              placeholder="판매가격을 입력해주세요."
+              onChange={onChangePrice}
+              defaultValue={props.data?.fetchUseditem.price}
+              // {...register("price")}
+            />
+            {/* <S.Error>{formState.errors.price?.message}</S.Error> */}
+          </S.InputWrapper>
+          {/* <S.InputWrapper>
+            <S.Label>태그 입력</S.Label>
+            <S.Tag
+              placeholder="상품을 설명해주세요."
+              onChange={props.onChangeTag}
+              defaultValue={props.data?.fetchUseditem.contents}
+            /> */}
+          {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
+          {/* </S.InputWrapper> */}
+          <S.InputWrapper>
+            <S.Label>거래위치</S.Label>
+            <S.LocationWrapper>
+              <script
+                type="text/javascript"
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
+              ></script>
+              <div
+                id="map"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  backgroundColor: "#eee",
+                }}
+              >
+                지도
+              </div>
+              <S.AddressWrapper>
+                <S.Label>주소</S.Label>
+                {/* <S.Zipcode
+                  placeholder="07250"
+                  readOnly
+                  value={
+                    props.zipcode !== ""
+                      ? props.zipcode
+                      : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+                  }
+                /> */}
+                <S.SearchButton onClick={onClickAddressSearch}>
+                  주소 검색
+                </S.SearchButton>
+                <S.Address
+                  readOnly
+                  value={
+                    address !== ""
+                      ? address
+                      : props.data?.usedItem.useditemAddress?.address ?? ""
+                  }
+                />
+                <S.Address
+                  onChange={onChangeAddressDetail}
+                  defaultValue={
+                    props.data?.usedItem.useditemAddress?.addressDetail
+                  }
+                />
+              </S.AddressWrapper>
+            </S.LocationWrapper>
+          </S.InputWrapper>
+          <S.ImageWrapper>
+            <S.Label>사진첨부</S.Label>
+            <S.ImageBox>
+              {fileUrls.map((el, index) => (
+                <Uploads01
+                  key={uuidv4()}
+                  index={index}
+                  fileUrl={el}
+                  onChangeFileUrls={onChangeFileUrls}
+                />
+              ))}
+            </S.ImageBox>
+          </S.ImageWrapper>
+          <S.OptionWrapper>
+            <S.Label>메인 사진 설정</S.Label>
+            <S.RadioButton type="radio" id="youtube" name="radio-button" />
+            <S.RadioLabel htmlFor="youtube">사진1</S.RadioLabel>
+            <S.RadioButton type="radio" id="image" name="radio-button" />
+            <S.RadioLabel htmlFor="image">사진2</S.RadioLabel>
+          </S.OptionWrapper>
+          <S.ButtonWrapper>
+            <S.SubmitButton
+              onClick={props.isEdit ? onClickUpdate : onClickSubmit}
+              isActive={props.isEdit ? true : isActive}
+            >
+              {props.isEdit ? "수정" : "등록"}하기
+            </S.SubmitButton>
+          </S.ButtonWrapper>
+        </S.Wrapper>
+      </S.Container>
+      {/* </form> */}
+    </>
   )
 }

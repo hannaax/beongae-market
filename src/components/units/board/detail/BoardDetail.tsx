@@ -1,11 +1,36 @@
+import { useQuery, useMutation } from "@apollo/client"
+import { useRouter } from "next/router"
+import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries"
+import type { MouseEvent } from "react"
+
 import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
 import ReactPlayer from "react-player"
 import { Tooltip } from "antd"
-import type { IBoardDetailUIProps } from "./BoardDetail.types"
 import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
 
-export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
+export default function BoardDetail(): JSX.Element {
+  const router = useRouter()
+
+  const { data } = useQuery(FETCH_BOARD, {
+    variables: { boardId: router.query.boardId },
+  })
+
+  const [deleteBoard] = useMutation(DELETE_BOARD)
+
+  const onClickDelete = (event: MouseEvent): void => {
+    void deleteBoard({
+      variables: { boardId: Number(event.currentTarget.id) },
+      refetchQueries: [
+        { queries: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    })
+  }
+
+  const onClickMove = (): void => {
+    void router.push(`/boards/${router.query.boardId}/edit`)
+  }
+
   return (
     <S.Container>
       <S.Wrapper>
@@ -14,10 +39,10 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             <S.LeftHeader>
               <S.Avatar src="/images/avatar.png" />
               <S.Info>
-                <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
+                <S.Writer>{data?.fetchBoard?.writer}</S.Writer>
                 <S.DateWrapper>
                   {/* <S.DateLabel>Date</S.DateLabel> */}
-                  <S.Date>{getDate(props.data?.fetchBoard?.createdAt)}</S.Date>
+                  <S.Date>{getDate(data?.fetchBoard?.createdAt)}</S.Date>
                 </S.DateWrapper>
               </S.Info>
             </S.LeftHeader>
@@ -27,8 +52,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               </S.UrlCopyBtn>
               <Tooltip
                 placement="topRight"
-                title={`${props.data?.fetchBoard.boardAddress?.address ?? ""} ${
-                  props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
+                title={`${data?.fetchBoard.boardAddress?.address ?? ""} ${
+                  data?.fetchBoard.boardAddress?.addressDetail ?? ""
                 }`}
               >
                 <S.LocationBtn>
@@ -38,12 +63,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             </S.RightHeader>
           </S.Header>
           <S.Body>
-            <S.Title>{props.data?.fetchBoard?.title}</S.Title>
+            <S.Title>{data?.fetchBoard?.title}</S.Title>
             <S.Contents>
-              {props.data?.fetchBoard?.youtubeUrl && (
-                <ReactPlayer url={props.data?.fetchBoard?.youtubeUrl} />
+              {data?.fetchBoard?.youtubeUrl && (
+                <ReactPlayer url={data?.fetchBoard?.youtubeUrl} />
               )}
-              {props.data?.fetchBoard?.images
+              {data?.fetchBoard?.images
                 ?.filter((el) => el)
                 .map((el) => (
                   <img
@@ -52,8 +77,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
                     alt=""
                   />
                 ))}
-              {props.data?.fetchBoard?.contents}
-              {props.data?.fetchBoard?.address}
+              {data?.fetchBoard?.contents}
+              {data?.fetchBoard?.address}
             </S.Contents>
           </S.Body>
           <S.LikeBtns>
@@ -61,25 +86,20 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               <S.LikeBtn>
                 <ThumbUpAltOutlined sx={{ color: "#ffc700" }} />
               </S.LikeBtn>
-              <S.LikeCount>{props.data?.fetchBoard?.likeCount}</S.LikeCount>
+              <S.LikeCount>{data?.fetchBoard?.likeCount}</S.LikeCount>
             </S.LikeBtnWrapper>
             <S.DislikeBtnWrapper>
               <S.DislikeBtn>
                 <ThumbDownAltOutlined sx={{ color: "#aaa" }} />
               </S.DislikeBtn>
-              <S.DislikeCount>
-                {props.data?.fetchBoard?.dislikeCount}
-              </S.DislikeCount>
+              <S.DislikeCount>{data?.fetchBoard?.dislikeCount}</S.DislikeCount>
             </S.DislikeBtnWrapper>
           </S.LikeBtns>
         </S.CardWrapper>
         <S.BottomWrapper>
           <S.BottomBtn>목록으로</S.BottomBtn>
-          <S.BottomBtn onClick={props.onClickMove}>수정하기</S.BottomBtn>
-          <S.BottomBtn
-            id={props.data?.fetchBoard?.number}
-            onClick={props.onClickDelete}
-          >
+          <S.BottomBtn onClick={onClickMove}>수정하기</S.BottomBtn>
+          <S.BottomBtn id={data?.fetchBoard?.number} onClick={onClickDelete}>
             삭제하기
           </S.BottomBtn>
         </S.BottomWrapper>

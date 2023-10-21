@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Signup from "../../src/components/units/signup/Signup.container"
+import Signup from "../../src/components/units/signup/Signup"
 import { useRouter } from "next/router"
 
 export default function SignupPage() {

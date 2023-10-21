@@ -1,4 +1,4 @@
-import BoardWrite from "../../../../src/components/units/product/write/BoardWrite.container"
+import BoardWrite from "../../../../src/components/units/product/write/BoardWrite"
 import { useRouter } from "next/router"
 import { FETCH_USEDITEM } from "../../../../src/components/units/product/detail/BoardDetail.queries"
 import { useQuery } from "@apollo/client"
