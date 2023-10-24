@@ -80,6 +80,9 @@ export default function Header() {
             </Fragment>
           ))}
         </S.Menu>
+        <S.Test className="block">
+          <S.Logo src="/images/logo_yellow.png"></S.Logo>
+        </S.Test>
         <S.RightBody>
           {data?.fetchUserLoggedIn ? (
             <div style={{ display: "flex" }}>

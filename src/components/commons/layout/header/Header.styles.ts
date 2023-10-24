@@ -40,6 +40,7 @@ export const LogoWrapper = styled.div`
     /* width: 100%; */
     display: flex;
     justify-content: center;
+    display: none;
   }
 `
 
@@ -55,6 +56,8 @@ export const Menu = styled.div`
   @media (max-width: 800px) {
     position: absolute;
     top: 100px;
+    left: 0px;
+
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -62,6 +65,18 @@ export const Menu = styled.div`
 
     &.block {
       display: block;
+    }
+  }
+`
+
+export const Test = styled.div`
+  display: none;
+  @media (max-width: 800px) {
+    &.block {
+      display: block;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
 `
