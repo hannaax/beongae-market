@@ -125,7 +125,7 @@ export default function Signup(props) {
           <h1>{props.signin ? "로그인" : "회원가입"}</h1>
           <form
             onSubmit={handleSubmit(
-              props.signin ? props.onClickLoginUser : props.onClickCreateUser
+              props.signin ? onClickLoginUser : onClickCreateUser
             )}
             style={{ width: "100%" }}
           >
