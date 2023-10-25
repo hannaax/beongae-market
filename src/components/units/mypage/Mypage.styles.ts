@@ -62,6 +62,13 @@ export const DefaultInfo = styled.div`
   /* margin-bottom: 50px; */
 `
 
+export const Info = styled.span`
+  display: inline-block;
+  margin-top: 0.5px;
+  margin-left: 5px;
+  line-height: 180%;
+`
+
 export const Navigation = styled.ul``
 
 export const LI = styled.li`

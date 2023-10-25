@@ -94,7 +94,7 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
                         </S.TextToken>
                       ))}
                   </S.Name>
-                  <S.Price>{product.price}원</S.Price>
+                  <S.Price>{product.price.toLocaleString()}원</S.Price>
                   <S.PostInfo>
                     <S.CreatedAt>{elapsedTime(product.createdAt)}</S.CreatedAt>
                     {/* <S.Like>

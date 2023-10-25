@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
-import Mypage from "../../src/components/units/mypage/Mypage.container"
 import { useEffect } from "react"
+import Mypage from "../../src/components/units/mypage/Mypage"
 
 export default function MypagePage(): JSX.Element {
   const router = useRouter()

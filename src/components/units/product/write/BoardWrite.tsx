@@ -26,6 +26,11 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import dynamic from "next/dynamic"
 import "react-quill/dist/quill.snow.css"
+import {
+  PersonPinCircleOutlined,
+  LocationOn,
+  PersonPinOutlined,
+} from "@mui/icons-material"
 
 const ReactQuill = dynamic(
   async () => {
@@ -400,7 +405,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             </S.InputWrapper>
           </S.WriterWrapper>
           <S.InputWrapper>
-            <S.Label>상품설명</S.Label>
+            <S.Label>상품 설명</S.Label>
             <ReactQuill
               placeholder={
                 props.isEdit
@@ -433,26 +438,24 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             /> */}
           {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
           {/* </S.InputWrapper> */}
-          <S.InputWrapper>
-            <S.Label>거래위치</S.Label>
-            <S.LocationWrapper>
-              <script
-                type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
-              ></script>
-              <div
-                id="map"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  backgroundColor: "#eee",
-                }}
-              >
-                지도
-              </div>
-              <S.AddressWrapper>
-                <S.Label>주소</S.Label>
-                {/* <S.Zipcode
+          <S.InputWrapper2>
+            <div>
+              <S.Label>거래 위치</S.Label>
+              <S.LocationWrapper>
+                <script
+                  type="text/javascript"
+                  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
+                ></script>
+                <S.MapWrapper id="map">
+                  <PersonPinCircleOutlined />
+                  {/* <LocationOn /> */}
+                  {/* <PersonPinOutlined /> */}
+                </S.MapWrapper>
+              </S.LocationWrapper>
+            </div>
+            <S.AddressWrapper>
+              <S.Label>거래 주소</S.Label>
+              {/* <S.Zipcode
                   placeholder="07250"
                   readOnly
                   value={
@@ -461,28 +464,28 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                       : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
                   }
                 /> */}
-                <S.SearchButton onClick={onClickAddressSearch}>
-                  주소 검색
-                </S.SearchButton>
-                <S.Address
-                  readOnly
-                  value={
-                    address !== ""
-                      ? address
-                      : props.data?.usedItem.useditemAddress?.address ?? ""
-                  }
-                />
-                <S.Address
-                  onChange={onChangeAddressDetail}
-                  defaultValue={
-                    props.data?.usedItem.useditemAddress?.addressDetail
-                  }
-                />
-              </S.AddressWrapper>
-            </S.LocationWrapper>
-          </S.InputWrapper>
+              <S.SearchButton onClick={onClickAddressSearch}>
+                주소 검색
+              </S.SearchButton>
+              <S.Address
+                readOnly
+                value={
+                  address !== ""
+                    ? address
+                    : props.data?.usedItem.useditemAddress?.address ?? ""
+                }
+              />
+              <S.Address
+                onChange={onChangeAddressDetail}
+                defaultValue={
+                  props.data?.usedItem.useditemAddress?.addressDetail
+                }
+              />
+            </S.AddressWrapper>
+            {/* </S.LocationWrapper> */}
+          </S.InputWrapper2>
           <S.ImageWrapper>
-            <S.Label>사진첨부</S.Label>
+            <S.Label>사진 첨부</S.Label>
             <S.ImageBox>
               {fileUrls.map((el, index) => (
                 <Uploads01

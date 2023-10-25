@@ -54,4 +54,14 @@ export const GlobalStyles = css`
     background-color: transparent;
     border: none;
   }
+  a:hover,
+  a:visited,
+  a:link,
+  a:active {
+    text-decoration: none;
+    color: #0a0a0a;
+  }
+  a:hover {
+    color: #0a0a0a;
+  }
 `

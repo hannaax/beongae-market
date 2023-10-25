@@ -74,12 +74,12 @@ export default function BoardCommentWrite(props): JSX.Element {
         {props.isEdit || (
           <div style={{ marginBottom: "20px" }}>
             <S.PencilIcon src="/images/boardComment/write/pencil.png" />
-            <span style={{ fontWeight: "600" }}> 문의하기</span>
+            <S.Title> 문의</S.Title>
           </div>
         )}
         <S.ContentsWrapper>
           <S.Contents
-            placeholder="이에 대한 민형사상 책임은 게시자에게 있습니다."
+            placeholder="문의글을 남겨주세요."
             onChange={onChangeContents}
             value={contents}
           ></S.Contents>

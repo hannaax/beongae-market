@@ -6,6 +6,10 @@ import styled from "@emotion/styled"
 //   border: solid 1px #ddd;
 // `
 
+export const WrapperHeader = styled.div`
+  margin-bottom: 15px;
+`
+
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -109,4 +113,10 @@ export const Button = styled.button`
 
 export const TextToken = styled.span`
   color: ${(props) => (props.isMatched ? "red" : "black")};
+`
+
+export const ItemNumber = styled.span`
+  display: inline-block;
+  margin-bottom: 3.5px;
+  margin-left: 8px;
 `

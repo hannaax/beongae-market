@@ -108,11 +108,26 @@ export const Tag = styled.input`
   border: 1px solid #bdbdbd;
 `
 
-export const LocationWrapper = styled.div`
+export const InputWrapper2 = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 40px;
   width: 100%;
+`
+
+export const LocationWrapper = styled.div`
+  /* display: flex; */
+  /* justify-content: space-between;
+  align-items: center; */
+  /* width: 100%; */
+`
+
+export const MapWrapper = styled.div`
+  width: 400px;
+  height: 250px;
+  background-color: #ececec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const AddressWrapper = styled.div`
@@ -132,7 +147,7 @@ export const Zipcode = styled.input`
 export const SearchButton = styled.button`
   width: 124px;
   height: 52px;
-  margin-left: 16px;
+  /* margin-left: 16px; */
   background-color: #ffc700;
   cursor: pointer;
   color: #000;

@@ -19,7 +19,11 @@ export default function MypageMarket() {
   return (
     <>
       <div style={{ marginBottom: "10px" }}>
-        판매상품<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
+        판매상품
+        <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
+          {" "}
+          2건
+        </S.ItemNumber>
       </div>
       <S.Wrapper>
         {dataUseditemsISold?.fetchUseditemsISold.map((product, idx) => (

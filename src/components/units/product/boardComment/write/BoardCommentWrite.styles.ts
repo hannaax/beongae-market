@@ -7,9 +7,18 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 0px 100px;
+  margin: 20px 100px;
+  margin-bottom: 30px;
 `
 export const PencilIcon = styled.img``
+
+export const Title = styled.span`
+  display: inline-block;
+  margin-bottom: 3.5px;
+  margin-left: 8px;
+  font-size: 18px;
+  font-weight: 700;
+`
 
 export const InputWrapper = styled.div`
   display: flex;

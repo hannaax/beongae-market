@@ -47,7 +47,7 @@ export default function Home(props) {
                 )}
                 <S.Text>
                   <S.Name>{product.name}</S.Name>
-                  <S.Price>{product.price}원</S.Price>
+                  <S.Price>{product.price.toLocaleString()}원</S.Price>
                   <S.PostInfo>
                     <S.CreatedAt>{product.createdAt}</S.CreatedAt>
                     <S.Like>♥ {product.pickedCount}</S.Like>

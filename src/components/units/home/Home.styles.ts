@@ -94,6 +94,14 @@ export const Text = styled.div``
 
 export const Name = styled.div`
   font-size: 16px;
+  width: 200px;
+  .ellipsis {
+    /* width: 200px;
+    max-width: 200px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `
 
 export const Price = styled.div`

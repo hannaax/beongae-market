@@ -47,7 +47,10 @@ export default function Header() {
   }
 
   const onClickLogout = () => {
+    const token = localStorage.getItem("accessToken")
+    console.log("token", token)
     void logoutUser()
+    localStorage.removeItem("accessToken")
   }
 
   const test = () => {

@@ -115,18 +115,18 @@ export default function BoardDetail(): JSX.Element {
             </S.LeftHeader>
             <S.RightHeader>
               <S.Name>{data?.fetchUseditem?.name}</S.Name>
-              <S.Price>{data?.fetchUseditem?.price}원</S.Price>
+              <S.Price>{data?.fetchUseditem?.price.toLocaleString()}원</S.Price>
               <S.HeaderInfo>
-                <S.PostInfo>
+                <S.PostInfoWrapper>
                   <S.Favorite>
-                    <Favorite fontSize="small" />{" "}
-                    {data?.fetchUseditem?.pickedCount}　
+                    <Favorite fontSize="small" />
+                    <S.PostInfo>{data?.fetchUseditem?.pickedCount}</S.PostInfo>
                   </S.Favorite>
                   <S.CreatedAt>
                     <AccessTimeFilled fontSize="small" />
-                    1주 전
+                    <S.PostInfo>1주 전</S.PostInfo>
                   </S.CreatedAt>
-                </S.PostInfo>
+                </S.PostInfoWrapper>
                 <S.ProductInfo>
                   <S.InfoWrapper>
                     <S.InfoLabel>· 상품상태</S.InfoLabel>

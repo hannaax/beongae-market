@@ -53,8 +53,15 @@ export const Price = styled.div`
 
 export const HeaderInfo = styled.div``
 
-export const PostInfo = styled.div`
+export const PostInfoWrapper = styled.div`
   display: flex;
+  color: #bbb;
+`
+
+export const PostInfo = styled.span`
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 25px;
   color: #bbb;
 `
 
@@ -74,13 +81,14 @@ export const InfoWrapper = styled.div`
 `
 
 export const InfoLabel = styled.div`
-  padding-right: 20px;
   color: #999999;
+  width: 100px;
 `
 
 export const Info = styled.div``
 
 export const Buttons = styled.div`
+  margin-top: 40px;
   display: flex;
 `
 

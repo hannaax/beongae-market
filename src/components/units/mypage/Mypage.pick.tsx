@@ -20,7 +20,11 @@ export default function MypagePick() {
   return (
     <>
       <div>
-        찜<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
+        찜
+        <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
+          {" "}
+          2건
+        </S.ItemNumber>
       </div>
       <S.Wrapper>
         {dataUseditemsIPicked?.fetchUseditemIPicked?.map((product, idx) => (

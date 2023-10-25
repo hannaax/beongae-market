@@ -15,11 +15,15 @@ export default function RecentlyViewedItems() {
   return (
     <>
       {" "}
-      <div>
-        최근본상품<span style={{ color: "#bbb", fontWeight: "600" }}> 2건</span>
-      </div>
+      <S.WrapperHeader>
+        최근본상품
+        <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
+          {" "}
+          2건
+        </S.ItemNumber>
+      </S.WrapperHeader>
       <S.Wrapper>
-        {recentlyViewedItems.map((product, idx) => (
+        {recentlyViewedItems?.map((product, idx) => (
           <S.Row key={product.fetchUseditem?._id}>
             {product.fetchUseditem?.images.length ? (
               <S.Img
@@ -46,7 +50,9 @@ export default function RecentlyViewedItems() {
               }}
             >
               <S.ColumnTitle>{product.fetchUseditem?.name}</S.ColumnTitle>
-              <S.ColumnBasic>{product.fetchUseditem?.price}</S.ColumnBasic>
+              <S.ColumnBasic>
+                <strong>{product.fetchUseditem?.price}</strong> 원
+              </S.ColumnBasic>
               <S.ColumnBasic>1</S.ColumnBasic>
             </div>
           </S.Row>
