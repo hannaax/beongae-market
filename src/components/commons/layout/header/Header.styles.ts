@@ -10,13 +10,14 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 80px;
   padding: 25px 100px;
   position: fixed;
   top: 0;
-  z-index: 3;
+  z-index: 5;
   background-color: #fff;
-  box-shadow: 0 0 8px #ddd;
+  box-shadow: 0 0 8px #ccc;
+  border: 1px solid #ddd;
 
   @media (max-width: 1000px) {
     padding: 30px;
@@ -55,13 +56,16 @@ export const Menu = styled.div`
   font-size: 20px;
   @media (max-width: 800px) {
     position: absolute;
-    top: 100px;
+    top: 78px;
     left: 0px;
-
     background-color: #fff;
     display: flex;
     flex-direction: column;
     display: none;
+    border-top: 1px solid #ccc;
+    padding: 20px 0;
+    width: 22%;
+    height: 1000px;
 
     &.block {
       display: block;
@@ -88,6 +92,9 @@ export const MenuItem = styled.div`
   /* :hover {
     font-weight: 600;
   } */
+  @media (max-width: 800px) {
+    padding: 10px 0;
+  }
 `
 
 export const RightBody = styled.div`
