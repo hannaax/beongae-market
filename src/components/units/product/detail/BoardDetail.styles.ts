@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   width: 100%;
   margin: 0 100px;
+  padding: 4vw;
 `
 
 export const Header = styled.div`
@@ -21,6 +22,9 @@ export const Header = styled.div`
 
 export const LeftHeader = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const Imgbox = styled.div`
@@ -33,11 +37,21 @@ export const Imgbox = styled.div`
 export const Img = styled.img`
   height: 480px;
   width: 100%;
+  @media (max-width: 1000px) {
+    width: 80%;
+  }
 `
 
 export const RightHeader = styled.div`
   padding: 30px 50px;
   width: 100%;
+  margin-left: 10vw;
+  @media (max-width: 1000px) {
+    padding: 30px 20vw;
+  }
+  @media (max-width: 500px) {
+    padding: 30px 10vw;
+  }
 `
 
 export const Name = styled.div`
@@ -135,7 +149,8 @@ export const BottomWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 100px;
+  margin-bottom: 30px;
 `
 export const BottomBtn = styled.button`
   width: 140px;

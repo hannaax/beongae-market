@@ -22,7 +22,7 @@ export default function Searchbars01(props): JSX.Element {
   return (
     <Searchbar>
       <SearchbarInput
-        placeholder="상품명을 입력해 주세요."
+        placeholder="검색어를 입력해 주세요."
         onChange={onChangeSearchbar}
       />
       <SearchIcon />

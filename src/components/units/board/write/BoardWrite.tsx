@@ -242,6 +242,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             />
             <S.Error>{writerError}</S.Error>
           </S.InputWrapper>
+          <S.Div />
           <S.InputWrapper>
             <S.Label>비밀번호</S.Label>
             <S.Password

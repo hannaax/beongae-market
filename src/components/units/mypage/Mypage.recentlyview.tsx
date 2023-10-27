@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import * as S from "./Mypage.market.styles"
+import { getDate } from "../../commons/libraries/utils"
 
 export default function RecentlyViewedItems() {
   const [recentlyViewedItems, SetRecentlyViewedItems] = useState([])
@@ -19,7 +20,7 @@ export default function RecentlyViewedItems() {
         최근본상품
         <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
           {" "}
-          2건
+          {recentlyViewedItems.length ?? 0}건
         </S.ItemNumber>
       </S.WrapperHeader>
       <S.Wrapper>
@@ -51,9 +52,12 @@ export default function RecentlyViewedItems() {
             >
               <S.ColumnTitle>{product.fetchUseditem?.name}</S.ColumnTitle>
               <S.ColumnBasic>
-                <strong>{product.fetchUseditem?.price}</strong> 원
+                <strong>{product.fetchUseditem?.price}</strong>
+                <S.Div>원</S.Div>
               </S.ColumnBasic>
-              <S.ColumnBasic>1</S.ColumnBasic>
+              <S.ColumnBasic>
+                {getDate(product.fetchUseditem?.createdAt)}
+              </S.ColumnBasic>
             </div>
           </S.Row>
         ))}

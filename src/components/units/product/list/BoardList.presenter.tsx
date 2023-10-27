@@ -48,6 +48,12 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
             startDate={startDate}
             endDate={endDate}
           /> */}
+          <a href="/product/new">
+            <S.Button>
+              <S.PencilIcon src="/images/board/list/write.png" />
+              <S.ButtonText>판매하기</S.ButtonText>
+            </S.Button>
+          </a>
           <S.DateSearch></S.DateSearch>
         </S.TableTop>
         <InfiniteScroll
@@ -109,15 +115,15 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
             ))}
           </S.ItemWrap>
         </InfiniteScroll>
-        <Paginations01 refetch={props.refetch} count={props.count} />
-        {/* <S.Footer>
-        <Link href="/product/new">
-          <S.Button>
-            <Create fontSize="small" />
-            <a>상품 등록</a>
-          </S.Button>
-        </Link>
-      </S.Footer> */}
+        <S.Footer>
+          <Paginations01 refetch={props.refetch} count={props.count} />
+          {/* <a href="/product/new">
+            <S.Button>
+              <Create fontSize="small" />
+              <a>상품 등록</a>
+            </S.Button>
+          </a> */}
+        </S.Footer>
       </S.Wrapper>
     </S.Container>
   )

@@ -51,9 +51,10 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   /* display: grid; */
   height: 150px;
-  line-height: 52px;
+  line-height: 35px;
   /* border-bottom: 1px solid #ccc; */
   border: 1px solid #ddd;
   cursor: pointer;
@@ -80,12 +81,12 @@ export const Img = styled.img`
 
 export const ColumnBasic = styled.div`
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 `
 
 export const ColumnTitle = styled.div`
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 `
 
 export const Footer = styled.div`
@@ -119,4 +120,9 @@ export const ItemNumber = styled.span`
   display: inline-block;
   margin-bottom: 3.5px;
   margin-left: 8px;
+`
+
+export const Div = styled.span`
+  display: inline-block;
+  margin-top: 1px;
 `

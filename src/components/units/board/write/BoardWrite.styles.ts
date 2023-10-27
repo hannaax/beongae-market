@@ -5,7 +5,7 @@ import { DaumPostcodeEmbed } from "react-daum-postcode"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 export const Wrapper = styled.div`
@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   /* height: 1847px; */
   border: 1px solid black;
   margin: 100px;
+  padding: 0 12px;
   /* padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
@@ -36,6 +37,10 @@ export const WriterWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 40px;
+`
+
+export const Div = styled.div`
+  width: 5vw;
 `
 
 export const Writer = styled.input`
@@ -97,12 +102,12 @@ export const Zipcode = styled.input`
 `
 
 export const SearchButton = styled.button`
-  width: 124px;
+  width: 120px;
   height: 52px;
   margin-left: 16px;
-  background-color: black;
+  background-color: #ffc700;
   cursor: pointer;
-  color: white;
+  color: #0a0a0a;
 `
 
 export const Address = styled.input`
@@ -182,15 +187,14 @@ export const CancelButton = styled.button`
 `
 
 export const SubmitButton = styled.button`
-  width: 179px;
-  height: 52px;
+  padding: 20px 35px;
   border: none;
   font-size: 16px;
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "yellow" : "")};
+  background-color: ${(props) => (props.isActive ? "#ffc700" : "#ffc700")};
 `
 
 export const Error = styled.div`

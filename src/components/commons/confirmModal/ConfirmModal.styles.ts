@@ -1,21 +1,16 @@
 import styled from "@emotion/styled"
 
 export const ModalContainer = styled.div`
-  display: none;
   background-color: #fff;
   position: fixed;
-  top: 0;
-  left: 0;
-  /* transform: translate(-50%, -50%); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /* padding: 2.4rem; */
-  padding: 25px 0rem;
-  /* border-radius: 0.8rem; */
-  width: 25vw;
-  height: 100%;
+  padding: 4rem;
+  border-radius: 0.8rem;
+  min-width: 30rem;
   z-index: 100;
-  @media (max-width: 800px) {
-    display: block;
-  }
 `
 
 export const ModalTitle = styled.h4`

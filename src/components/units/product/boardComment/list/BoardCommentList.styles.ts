@@ -4,18 +4,26 @@ import { Rate, Modal } from "antd"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  width: 100vw;
 `
 
 export const ItemWrapper = styled.div`
-  width: 100%;
-  margin: 0 100px;
+  display: flex;
+  flex-direction: column;
+  width: 77vw;
+  margin-right: 20px;
   padding-top: 20px;
   height: 128px;
   border-bottom: 1px solid lightgray;
+  @media (max-width: 800px) {
+    width: 80vw;
+  }
 `
 
 export const FlexWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  width: 100%;
 `
 
 export const Avatar = styled.img`
@@ -33,7 +41,7 @@ export const WriterRateWrapper = styled.div`
 `
 
 export const Writer = styled.div`
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
 `
 

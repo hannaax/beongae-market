@@ -5,6 +5,7 @@ import {
 } from "./Mypage.market.queries"
 import { useQuery } from "@apollo/client"
 import * as S from "./Mypage.market.styles"
+import { getDate } from "../../commons/libraries/utils"
 
 export default function MypageMarket() {
   const { data: dataUseditemsISold } = useQuery(FETCH_USEDITEMS_I_SOLD)
@@ -22,7 +23,7 @@ export default function MypageMarket() {
         판매상품
         <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
           {" "}
-          2건
+          {dataUseditemsISold?.fetchUseditemsISold.length ?? 0}건
         </S.ItemNumber>
       </div>
       <S.Wrapper>
@@ -53,8 +54,11 @@ export default function MypageMarket() {
               }}
             >
               <S.ColumnTitle>{product.name}</S.ColumnTitle>
-              <S.ColumnBasic>{product.price}</S.ColumnBasic>
-              <S.ColumnBasic>1</S.ColumnBasic>
+              <S.ColumnBasic>
+                <strong>{product.price}</strong>
+                <S.Div>원</S.Div>
+              </S.ColumnBasic>
+              <S.ColumnBasic>{getDate(product.createdAt)}</S.ColumnBasic>
             </div>
           </S.Row>
         ))}

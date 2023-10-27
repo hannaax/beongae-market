@@ -8,8 +8,12 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 20px 100px;
+  margin: 20px 10vw;
   margin-bottom: 30px;
+  @media (max-width: 800px) {
+    margin: 20px;
+    padding: 0 20px;
+  }
 `
 export const PencilIcon = styled.img``
 

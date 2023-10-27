@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0 100px;
+  margin: 0 10vw;
   padding: 8px;
   margin-bottom: 500px;
 `
@@ -60,6 +60,7 @@ export const Name = styled.div`
 
 export const DefaultInfo = styled.div`
   /* margin-bottom: 50px; */
+  margin-top: 5px;
 `
 
 export const Info = styled.span`
@@ -103,4 +104,8 @@ export const Li = styled.li`
   /* @media (max-width: 900px) {
     width: 80px;
   } */
+`
+
+export const Div = styled.div`
+  height: 2px;
 `

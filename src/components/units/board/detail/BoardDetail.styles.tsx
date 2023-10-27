@@ -3,18 +3,18 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 48px;
+  margin: 48px 110px;
 `
 export const CardWrapper = styled.div`
   padding-top: 80px;
   padding-bottom: 100px;
-  padding-left: 102px;
-  padding-right: 102px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -60,9 +60,10 @@ export default function Mypage() {
           <S.DefaultInfo>
             <p>
               <SavingsOutlined sx={{ color: "#ffc700" }} />{" "}
-              <strong>포인트</strong>{" "}
+              <strong>포인트</strong> 　　
               <S.Info>{data?.fetchUserLoggedIn.userPoint.amount}</S.Info>
             </p>
+            <S.Div />
             <p>
               <StoreOutlined sx={{ color: "#ffc700" }} />{" "}
               <strong>상점오픈일</strong>{" "}

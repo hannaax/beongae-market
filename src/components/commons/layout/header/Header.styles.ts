@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   z-index: 5;
   background-color: #fff;
   box-shadow: 0 0 8px #ccc;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 
   @media (max-width: 1000px) {
     padding: 30px;
@@ -46,7 +46,11 @@ export const LogoWrapper = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 150px;
+  width: 140px;
+`
+
+export const LogoMini = styled.img`
+  width: 110px;
 `
 
 export const Menu = styled.div`
@@ -67,9 +71,9 @@ export const Menu = styled.div`
     width: 22%;
     height: 1000px;
 
-    &.block {
+    /* &.block {
       display: block;
-    }
+    } */
   }
 `
 
@@ -105,16 +109,42 @@ export const RightBody = styled.div`
 export const Button1 = styled.div`
   padding: 10px 5px;
   width: 75px;
+  display: block;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 export const Button2 = styled.div`
   padding: 10px 5px;
   width: 55px;
+  display: block;
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
+
+export const ResponsiveIcon = styled.div`
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+    padding-top: 8px;
+  }
 `
 
 export const Button3 = styled.div`
   padding: 10px 5px;
   width: 55px;
+`
+
+export const SigninButton = styled.div`
+  padding: 10px 5px;
+  width: 55px;
+`
+
+export const SignupButton = styled.div`
+  padding: 10px 5px;
+  width: 75px;
 `
 
 export const DivisionLine = styled.div`

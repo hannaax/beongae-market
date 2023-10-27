@@ -1,4 +1,3 @@
-import BoardCommentWriteUI from "./BoardCommentWrite.presenter"
 import { useMutation, useQuery } from "@apollo/client"
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
 import { useRouter } from "next/router"
@@ -61,6 +60,8 @@ export default function BoardCommentWrite(props): JSX.Element {
     setPassword("")
     setContents("")
   }
+
+  const onClickUpdate = () => {}
 
   return (
     <S.Container>

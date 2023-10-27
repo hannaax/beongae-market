@@ -3,16 +3,19 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 110px;
+  margin: 110px 15vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 8px;
+  @media (max-width: 800px) {
+    margin: 110px 8vw;
+  }
 `
 
 export const FlexTop = styled.div`
@@ -82,16 +85,26 @@ export const Search = styled.input`
 
 export const Footer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
   padding-top: 50px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `
 
-export const PencilIcon = styled.img``
+export const Div = styled.div`
+  width: 20px;
+`
+
+export const PencilIcon = styled.img`
+  width: 13px;
+`
 
 export const Button = styled.button`
-  width: 171px;
-  height: 52px;
+  padding: 15px 22px;
   /* background-color: ${({ theme }) => theme.colors.yellow}; */
   background-color: #ffc700;
   display: flex;
@@ -99,10 +112,16 @@ export const Button = styled.button`
   justify-content: space-evenly;
   align-items: center;
   border: none;
+  margin-left: 20px;
   cursor: pointer;
   /* :hover {
     background-color: #f5f2fc;
   } */
+`
+
+export const ButtonText = styled.span`
+  display: inline-block;
+  padding-left: 5px;
 `
 
 export const TextToken = styled.span`

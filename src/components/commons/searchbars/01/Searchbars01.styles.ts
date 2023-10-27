@@ -2,15 +2,19 @@ import { Search } from "@mui/icons-material"
 import styled from "@emotion/styled"
 
 export const Searchbar = styled.div`
-  width: 500px;
-  height: 45px;
+  width: 40vw;
+  height: 50px;
   /* border-radius: 15px;
   background-color: #f5f2fc; */
   /* border: 2px solid #f70000; */
-  border: 2px solid #ffc700;
+  border: 3px solid #ffc700;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    width: 45vw;
+  }
 `
 
 export const SearchIcon = styled(Search)`

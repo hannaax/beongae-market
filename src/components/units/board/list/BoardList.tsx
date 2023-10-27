@@ -16,7 +16,7 @@ import * as S from "./BoardList.styles"
 import Paginations01 from "../../../commons/paginations/01/Paginations01"
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01"
 import { v4 as uuidv4 } from "uuid"
-import { Favorite } from "@mui/icons-material"
+import { Create, Favorite } from "@mui/icons-material"
 
 const SECRET = "@#$%"
 
@@ -88,6 +88,10 @@ export default function BoardList(): JSX.Element {
             refetchBoardsCount={refetchBoardsCount}
             onChangeKeyword={onChangeKeyword}
           />
+          <S.Button onClick={onClickMoveToBoardNew}>
+            <S.PencilIcon src="/images/board/list/write.png" />
+            <S.ButtonText>글쓰기</S.ButtonText>
+          </S.Button>
         </S.FlexTop>
         <S.FlexMid>
           <S.TableTop />
@@ -118,17 +122,17 @@ export default function BoardList(): JSX.Element {
           <S.TableBottom />
         </S.FlexMid>
         <S.FlexBottom>
-          <Paginations01
-            refetch={refetch}
-            count={dataBoardsCount?.fetchBoardsCount}
-          />
-          <div>
-            <S.Footer>
-              <S.Button onClick={onClickMoveToBoardNew}>
-                <S.PencilIcon src="/images/board/list/write.png" />글 작성하기
-              </S.Button>
-            </S.Footer>
-          </div>
+          <S.Footer>
+            {/* <S.Div></S.Div> */}
+            <Paginations01
+              refetch={refetch}
+              count={dataBoardsCount?.fetchBoardsCount}
+            />
+            {/* <S.Button onClick={onClickMoveToBoardNew}>
+              <S.PencilIcon src="/images/board/list/write.png" />
+              <S.ButtonText>글쓰기</S.ButtonText>
+            </S.Button> */}
+          </S.Footer>
         </S.FlexBottom>
       </S.Wrapper>
     </S.Container>

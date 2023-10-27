@@ -3,7 +3,7 @@ import * as S from "./Mypage.password.styles"
 export default function PasswordChange() {
   return (
     <S.Wrapper>
-      <S.Header>비밀번호 변경</S.Header>
+      {/* <S.Header>비밀번호 변경</S.Header> */}
       <S.Body>
         <S.InputWrapper>
           <S.Label>현재 비밀번호</S.Label>

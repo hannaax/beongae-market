@@ -1,7 +1,7 @@
 import Modal from "../modal/Modal"
-import * as S from "./MenuModal.styles"
+import * as S from "./ConfirmModal.styles"
 
-interface MenuModalProps {
+interface ConfirmModalProps {
   title: string
   isOpen: boolean
   isLoading?: boolean
@@ -11,7 +11,7 @@ interface MenuModalProps {
   handleCancel: () => void
 }
 
-const MenuModal = ({
+const ConfirmModal = ({
   isLoading,
   title,
   isOpen,
@@ -20,7 +20,7 @@ const MenuModal = ({
   handleConfirm,
   handleCancel,
   children,
-}: MenuModalProps) => {
+}: ConfirmModalProps) => {
   return (
     <Modal isOpenModal={isOpen} closeModalHandler={handleCancel}>
       <S.ModalContainer>
@@ -39,4 +39,4 @@ const MenuModal = ({
   )
 }
 
-export default MenuModal
+export default ConfirmModal
