@@ -8,13 +8,17 @@ export const ModalContainer = styled.div`
   left: 0;
   /* transform: translate(-50%, -50%); */
   /* padding: 2.4rem; */
-  padding: 25px 0rem;
+  padding: 25px 0;
   /* border-radius: 0.8rem; */
-  width: 25vw;
+  width: 30vw;
   height: 100%;
   z-index: 100;
   @media (max-width: 800px) {
     display: block;
+    font-size: 18px;
+  }
+  @media (max-width: 500px) {
+    width: 150px;
   }
 `
 

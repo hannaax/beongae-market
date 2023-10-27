@@ -98,6 +98,8 @@ export const MenuItem = styled.div`
   } */
   @media (max-width: 800px) {
     padding: 10px 0;
+    display: flex;
+    justify-content: center;
   }
 `
 
