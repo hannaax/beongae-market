@@ -58,7 +58,17 @@ export default function MypageMarket() {
                 <strong>{product.price}</strong>
                 <S.Div>원</S.Div>
               </S.ColumnBasic>
-              <S.ColumnBasic>{getDate(product.createdAt)}</S.ColumnBasic>
+              <S.ColumnBasic>
+                <S.Date>{getDate(product.createdAt)}</S.Date>
+              </S.ColumnBasic>
+              <S.ColumnBasic>
+                <S.SoldButton>판매완료</S.SoldButton>
+                {/* 이 버튼 누르면 판매완료로 바뀜
+                즉, fetchUsedItems의 soldAt이 null에서 판매완료를 누른 시점으로 바뀜
+                soldAt이 null이면 판매중 제품 // 판매완료 후에 포인트 적립됨
+                중고마켓 fetch 필터링?
+                 */}
+              </S.ColumnBasic>
             </div>
           </S.Row>
         ))}

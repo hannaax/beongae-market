@@ -54,7 +54,7 @@ export const Row = styled.div`
   align-items: center;
   /* display: grid; */
   height: 150px;
-  line-height: 35px;
+  line-height: 28px;
   /* border-bottom: 1px solid #ccc; */
   border: 1px solid #ddd;
   cursor: pointer;
@@ -125,4 +125,15 @@ export const ItemNumber = styled.span`
 export const Div = styled.span`
   display: inline-block;
   margin-top: 1px;
+`
+
+export const Date = styled.span`
+  display: inline-block;
+  font-size: 14px;
+  color: gray;
+`
+
+export const SoldButton = styled.button`
+  background-color: #eee;
+  padding: 2px 4px;
 `

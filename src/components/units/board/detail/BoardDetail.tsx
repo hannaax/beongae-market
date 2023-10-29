@@ -1,6 +1,11 @@
 import { useQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
-import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries"
+import {
+  FETCH_BOARD,
+  DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
+} from "./BoardDetail.queries"
 import type { MouseEvent } from "react"
 
 import * as S from "./BoardDetail.styles"
@@ -17,16 +22,38 @@ export default function BoardDetail(): JSX.Element {
   })
 
   const [deleteBoard] = useMutation(DELETE_BOARD)
+  const [likeBoard] = useMutation(LIKE_BOARD)
+  const [dislikeBoard] = useMutation(DISLIKE_BOARD)
 
   const onClickDelete = (event: MouseEvent): void => {
     void deleteBoard({
-      variables: { boardId: Number(event.currentTarget.id) },
+      variables: { boardId: event.currentTarget.id },
       refetchQueries: [
-        { queries: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],
     })
   }
 
+  const onClickLikeBoard = (event: MouseEvent) => {
+    console.log("data", data)
+    console.log("id", data?.fetchBoard?._id)
+
+    void likeBoard({
+      variables: { boardId: data?.fetchBoard?._id },
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    })
+  }
+
+  const onClickDislikeBoard = () => {
+    void dislikeBoard({
+      variables: { boardId: data?.fetchBoard?._id },
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    })
+  }
   const onClickMove = (): void => {
     void router.push(`/boards/${router.query.boardId}/edit`)
   }
@@ -83,13 +110,13 @@ export default function BoardDetail(): JSX.Element {
           </S.Body>
           <S.LikeBtns>
             <S.LikeBtnWrapper>
-              <S.LikeBtn>
+              <S.LikeBtn onClick={onClickLikeBoard}>
                 <ThumbUpAltOutlined sx={{ color: "#ffc700" }} />
               </S.LikeBtn>
               <S.LikeCount>{data?.fetchBoard?.likeCount}</S.LikeCount>
             </S.LikeBtnWrapper>
             <S.DislikeBtnWrapper>
-              <S.DislikeBtn>
+              <S.DislikeBtn onClick={onClickDislikeBoard}>
                 <ThumbDownAltOutlined sx={{ color: "#aaa" }} />
               </S.DislikeBtn>
               <S.DislikeCount>{data?.fetchBoard?.dislikeCount}</S.DislikeCount>
@@ -99,7 +126,7 @@ export default function BoardDetail(): JSX.Element {
         <S.BottomWrapper>
           <S.BottomBtn>목록으로</S.BottomBtn>
           <S.BottomBtn onClick={onClickMove}>수정하기</S.BottomBtn>
-          <S.BottomBtn id={data?.fetchBoard?.number} onClick={onClickDelete}>
+          <S.BottomBtn id={data?.fetchBoard?._id} onClick={onClickDelete}>
             삭제하기
           </S.BottomBtn>
         </S.BottomWrapper>

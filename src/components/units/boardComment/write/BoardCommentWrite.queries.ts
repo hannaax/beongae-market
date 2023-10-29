@@ -13,7 +13,3 @@ export const CREATE_BOARD_COMMENT = gql`
     }
   }
 `
-
-// export CREATE_USEDITEM_QUESTION_ANSWER = gql``
-
-// createUseditemQuestionAnswer
