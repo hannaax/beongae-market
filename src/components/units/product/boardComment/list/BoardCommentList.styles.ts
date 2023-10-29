@@ -51,6 +51,8 @@ export const OptionWrapper = styled.div`
   display: flex;
 `
 
+export const QusetionAnswerButton = styled.button``
+
 export const UpdateIcon = styled.img`
   width: 24px;
   height: 24px;

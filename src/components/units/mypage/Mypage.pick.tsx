@@ -24,7 +24,7 @@ export default function MypagePick() {
         찜
         <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
           {" "}
-          {dataUseditemsIPicked?.fetchUseditemIPicked.length ?? 0}건
+          {dataUseditemsIPicked?.fetchUseditemIPicked?.length ?? 0}건
         </S.ItemNumber>
       </div>
       <S.Wrapper>

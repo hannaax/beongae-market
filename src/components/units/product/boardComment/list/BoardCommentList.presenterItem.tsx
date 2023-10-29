@@ -1,14 +1,17 @@
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import * as S from "./BoardCommentList.styles"
 import { PasswordModal } from "./BoardCommentList.styles"
 import { useState } from "react"
 import type {
   IMutation,
   IMutationDeleteBoardCommentArgs,
+  IQuery,
+  IQueryFetchUseditemQuestionAnswersArgs,
 } from "../../../../../commons/types/generated/types"
 import {
   DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
+  FETCH_USEDITEM_QUESTION_ANSWERS,
 } from "./BoardCommentList.queries"
 import { useRouter } from "next/router"
 import { getDate } from "../../../../commons/libraries/utils"
@@ -78,7 +81,22 @@ export default function BoardCommentListUIItem(props) {
     setIsOpen(false)
   }
 
-  console.log(props.data)
+  const [isAnswerWrite, setIsAnswerWrite] = useState(false)
+  const [isAnswerList, setIsAnswerList] = useState(false)
+
+  const onClickWriteAnswer = () => {
+    setIsAnswerWrite(true)
+    console.log("AnswerWrite")
+  }
+
+  const { data: answersData, fetchMore2 } = useQuery<
+    Pick<IQuery, "fetchUseditemQuestionAnswers">,
+    IQueryFetchUseditemQuestionAnswersArgs
+  >(FETCH_USEDITEM_QUESTION_ANSWERS, {
+    variables: { useditemQuestionId: props.el._id },
+  })
+
+  console.log("answers", answersData?.fetchUseditemQuestionAnswers)
 
   return (
     <>
@@ -93,18 +111,19 @@ export default function BoardCommentListUIItem(props) {
         </PasswordModal>
       )}
       {!isEdit ? (
-        <S.Container>
-          <S.ItemWrapper key={props.el._id}>
-            <S.FlexWrapper>
-              <S.Avatar src="/images/avatar.png" />
-              <S.MainWrapper>
-                <S.WriterRateWrapper>
-                  <S.Writer>{props.el.user.name}</S.Writer>
-                </S.WriterRateWrapper>
-                <S.Contents>{props.el.contents}</S.Contents>
-              </S.MainWrapper>
-              <S.OptionWrapper>
-                {/* <S.UpdateIcon
+        <>
+          <S.Container>
+            <S.ItemWrapper key={props.el._id}>
+              <S.FlexWrapper>
+                <S.Avatar src="/images/avatar.png" />
+                <S.MainWrapper>
+                  <S.WriterRateWrapper>
+                    <S.Writer>{props.el.user.name}</S.Writer>
+                  </S.WriterRateWrapper>
+                  <S.Contents>{props.el.contents}</S.Contents>
+                </S.MainWrapper>
+                <S.OptionWrapper>
+                  {/* <S.UpdateIcon
                   src="/images/boardComment/list/option_update_icon.png/"
                   onClick={onClickUpdate}
                   id={props.el._id}
@@ -113,12 +132,58 @@ export default function BoardCommentListUIItem(props) {
                   src="/images/boardComment/list/option_delete_icon.png/"
                   onClick={showModal}
                 /> */}
-                <QuestionAnswer sx={{ color: "#bbb" }} />
-              </S.OptionWrapper>
-            </S.FlexWrapper>
-            <S.DateString>{getDate(props.el?.createdAt)}</S.DateString>
-          </S.ItemWrapper>
-        </S.Container>
+                  <S.QusetionAnswerButton onClick={onClickWriteAnswer}>
+                    <QuestionAnswer sx={{ color: "#bbb" }} />
+                  </S.QusetionAnswerButton>
+                </S.OptionWrapper>
+              </S.FlexWrapper>
+              <S.DateString>{getDate(props.el?.createdAt)}</S.DateString>
+            </S.ItemWrapper>
+          </S.Container>
+          {answersData?.fetchUseditemQuestionAnswers?.length !== 0
+            ? answersData?.fetchUseditemQuestionAnswers?.map((el) => (
+                <S.Container key={el._id}>
+                  <div>답글</div>
+                  <S.ItemWrapper key={el._id}>
+                    <S.FlexWrapper>
+                      <S.Avatar src="/images/avatar.png" />
+                      <S.MainWrapper>
+                        <S.WriterRateWrapper>
+                          <S.Writer>{el.user.name}</S.Writer>
+                        </S.WriterRateWrapper>
+                        <S.Contents>{el.contents}</S.Contents>
+                      </S.MainWrapper>
+                      <S.OptionWrapper>
+                        {/* <S.UpdateIcon
+                  src="/images/boardComment/list/option_update_icon.png/"
+                  onClick={onClickUpdate}
+                  id={el._id}
+                />
+                <S.DeleteIcon
+                  src="/images/boardComment/list/option_delete_icon.png/"
+                  onClick={showModal}
+                /> */}
+                        <S.QusetionAnswerButton onClick={onClickWriteAnswer}>
+                          <QuestionAnswer sx={{ color: "#bbb" }} />
+                        </S.QusetionAnswerButton>
+                      </S.OptionWrapper>
+                    </S.FlexWrapper>
+                    <S.DateString>{getDate(el?.createdAt)}</S.DateString>
+                  </S.ItemWrapper>
+                </S.Container>
+              ))
+            : null}
+          {isAnswerWrite && (
+            <BoardCommentWrite
+              isEdit={isEdit}
+              isAnswerWrite={isAnswerWrite}
+              setIsAnswerWrite={setIsAnswerWrite}
+              setIsAnswerList={setIsAnswerList}
+              onClickUpdate={onClickUpdate}
+              el={props.el}
+            />
+          )}
+        </>
       ) : (
         <BoardCommentWrite
           isEdit={isEdit}

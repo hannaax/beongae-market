@@ -23,7 +23,7 @@ export default function MypageMarket() {
         판매상품
         <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
           {" "}
-          {dataUseditemsISold?.fetchUseditemsISold.length ?? 0}건
+          {dataUseditemsISold?.fetchUseditemsISold?.length ?? 0}건
         </S.ItemNumber>
       </div>
       <S.Wrapper>

@@ -4,6 +4,7 @@ import BoardCommentListUI from "./BoardCommentList.presenter"
 import {
   FETCH_BOARD_COMMENTS,
   FETCH_USEDITEM_QUESTIONS,
+  FETCH_USEDITEM_QUESTION_ANSWERS,
 } from "./BoardCommentList.queries"
 import type {
   IMutation,
@@ -12,7 +13,10 @@ import type {
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
 import { MouseEvent, useState } from "react"
-import type { IQueryFetchUseditemQuestionsArgs } from "../../../../../commons/types/generated/types"
+import type {
+  IQueryFetchUseditemQuestionAnswersArgs,
+  IQueryFetchUseditemQuestionsArgs,
+} from "../../../../../commons/types/generated/types"
 
 // const DELETE_BOARD_COMMENTS = gql``
 
@@ -32,7 +36,16 @@ export default function BoardCommentList() {
     variables: { useditemId: router.query.useditemId },
   })
 
-  console.log("container", data)
+  console.log("questions", data)
+
+  // const { data2, fetchMore2 } = useQuery<
+  //   Pick<IQuery, "fetchUseditemQuestionAnswers">,
+  //   IQueryFetchUseditemQuestionAnswersArgs
+  // >(FETCH_USEDITEM_QUESTION_ANSWERS, {
+  //   variables: { useditemQuestionId: data?.fetchUseditemQuestions._id },
+  // })
+
+  // console.log("answers", data2)
 
   // const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENTS)
 

@@ -20,7 +20,7 @@ export default function RecentlyViewedItems() {
         최근본상품
         <S.ItemNumber style={{ color: "#bbb", fontWeight: "600" }}>
           {" "}
-          {recentlyViewedItems.length ?? 0}건
+          {recentlyViewedItems?.length ?? 0}건
         </S.ItemNumber>
       </S.WrapperHeader>
       <S.Wrapper>

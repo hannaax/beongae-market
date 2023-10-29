@@ -3,10 +3,14 @@ import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
 import { useRouter } from "next/router"
 import type { ChangeEvent } from "react"
 import { useState } from "react"
-import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries"
+import {
+  FETCH_BOARD_COMMENTS,
+  UPDATE_BOARD_COMMENT,
+} from "../list/BoardCommentList.queries"
 import type {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
@@ -21,6 +25,11 @@ export default function BoardCommentWrite(props): JSX.Element {
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT)
+
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT)
 
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
@@ -61,7 +70,33 @@ export default function BoardCommentWrite(props): JSX.Element {
     setContents("")
   }
 
-  const onClickUpdate = () => {}
+  const onClickUpdate = async () => {
+    console.log("props", props.el._id)
+    try {
+      const result = await updateBoardComment({
+        variables: {
+          updateBoardCommentInput: {
+            contents: "test",
+            rating: 3,
+          },
+          password,
+          boardCommentId: props.el._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      })
+      props.setIsEdit(false)
+      // void router.push(`/boards/${result.data.updateBoard._id}`)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+      // Modal.error({ content: error.message })
+    }
+  }
 
   return (
     <S.Container>

@@ -23,10 +23,10 @@ export default function BoardCommentListUIItem(props) {
   const [isOpen, setIsOpen] = useState(false)
   const [password, setPassword] = useState("")
 
-  const [updateBoardComment] = useMutation<
-    Pick<IMutation, "updateBoardComment">,
-    IMutationUpdateBoardCommentArgs
-  >(UPDATE_BOARD_COMMENT)
+  // const [updateBoardComment] = useMutation<
+  //   Pick<IMutation, "updateBoardComment">,
+  //   IMutationUpdateBoardCommentArgs
+  // >(UPDATE_BOARD_COMMENT)
 
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
@@ -56,7 +56,7 @@ export default function BoardCommentListUIItem(props) {
     setPassword(event.target.value)
   }
 
-  const onClickUpdate = async (event): void => {
+  const onClickWriteEdit = async (event): void => {
     // 기존 댓글들을 fetch로 불러오면 배열 형태
     // 아니면, 기존 댓글 개수만큼 배열 만들어서
     // 요소들에 다 false 넣기
@@ -128,6 +128,35 @@ export default function BoardCommentListUIItem(props) {
     }
   }
 
+  // const onClickUpdate = async (event) => {
+  //   console.log("id", event.currentTarget.id)
+  //   console.log("props", props.el._id)
+  //   try {
+  //     const result = await updateBoardComment({
+  //       variables: {
+  //         updateBoardCommentInput: {
+  //           contents: "test",
+  //           rating: 3,
+  //         },
+  //         password,
+  //         boardCommentId: props.el._id,
+  //       },
+  //       refetchQueries: [
+  //         {
+  //           query: FETCH_BOARD_COMMENTS,
+  //           variables: { boardId: router.query.boardId },
+  //         },
+  //       ],
+  //     })
+  //     setIsEdit(false)
+  //     // void router.push(`/boards/${result.data.updateBoard._id}`)
+  //     console.log(result)
+  //   } catch (error) {
+  //     console.log(error)
+  //     // Modal.error({ content: error.message })
+  //   }
+  // }
+
   const showModal = () => {
     setIsOpen(true)
   }
@@ -162,12 +191,13 @@ export default function BoardCommentListUIItem(props) {
             <S.OptionWrapper>
               <S.UpdateIcon
                 src="/images/boardComment/list/option_update_icon.png/"
-                onClick={onClickUpdate}
+                onClick={onClickWriteEdit}
                 id={props.el._id}
               />
               <S.DeleteIcon
                 src="/images/boardComment/list/option_delete_icon.png/"
                 onClick={showModal}
+                id={props.el._id}
               />
             </S.OptionWrapper>
           </S.FlexWrapper>
@@ -176,7 +206,7 @@ export default function BoardCommentListUIItem(props) {
       ) : (
         <BoardCommentWrite
           isEdit={isEdit}
-          onClickUpdate={onClickUpdate}
+          setIsEdit={setIsEdit}
           el={props.el}
           id={props.el._id}
         />

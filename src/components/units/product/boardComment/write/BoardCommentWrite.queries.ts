@@ -28,15 +28,16 @@ export const CREATE_USEDITEM_QUESTION = gql`
   }
 `
 
-// export CREATE_USEDITEM_QUESTION_ANSWER = gql`
-// mutation createUseditemQuestionAnswer(
-//   $createUseditemQuestionAnswerInput: createUseditemQuestionAnswerInput!
-//   $useditemId: ID!
-// ) {
-//   createUseditemQuestionAnswer(
-//     createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
-//     useditemId: $useditemId
-//   ) {
-//     _id
-//   }
-// }`
+export const CREATE_USEDITEM_QUESTION_ANSWER = gql`
+  mutation createUseditemQuestionAnswer(
+    $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
+    $useditemQuestionId: ID!
+  ) {
+    createUseditemQuestionAnswer(
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+    }
+  }
+`
