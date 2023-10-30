@@ -44,7 +44,7 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 45px;
+  line-height: 35px;
   border-bottom: 1px solid #ddd;
   padding: 10px 25px;
   cursor: pointer;
@@ -64,11 +64,14 @@ export const ColumnHeaderTitle = styled.div`
   cursor: default;
 `
 
+export const ColumnContents = styled.div``
+
 export const ColumnBasic = styled.div`
   /* width: 10%; */
   text-align: center;
   /* padding-right: 15px; */
   color: #aaa;
+  font-size: 15px;
 `
 
 export const ColumnTitle = styled.div`

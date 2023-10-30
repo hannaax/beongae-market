@@ -33,6 +33,9 @@ export default function BoardList(): JSX.Element {
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT)
+
+  console.log("board", data)
+
   const [startPage, setStartPage] = useState(1)
 
   const lastPage = Math.ceil(dataBoardsCount?.fetchBoardsCount / 10)
@@ -107,14 +110,16 @@ export default function BoardList(): JSX.Element {
                     </S.TextToken>
                   ))}
               </S.ColumnTitle>
+              <S.ColumnContents>{el.contents}</S.ColumnContents>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div style={{ display: "flex" }}>
                   <S.ColumnBasic>{el.writer}</S.ColumnBasic>
-                  <span style={{ padding: "0 5px" }}>·</span>
+                  <span style={{ padding: "0 5px", color: "#aaa" }}>·</span>
                   <S.ColumnBasic>{elapsedTime(el.createdAt)}</S.ColumnBasic>
                 </div>
                 <S.ColumnBasic>
-                  <Favorite fontSize="small" /> 1
+                  <Favorite fontSize="inherit" />
+                  <span> {el.likeCount}</span>
                 </S.ColumnBasic>
               </div>
             </S.Row>
