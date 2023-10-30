@@ -96,14 +96,14 @@ export default function Header() {
       )}
       <S.Container>
         <S.Wrapper>
+          <S.MenuIcon>
+            <MenuIcon onClick={test} />
+          </S.MenuIcon>
           <div
             onClick={() => {
               void router.push("/")
             }}
           >
-            <S.MenuIcon>
-              <MenuIcon onClick={test} />
-            </S.MenuIcon>
             <S.LogoWrapper>
               <S.Logo src="/images/logo_yellow.png"></S.Logo>
             </S.LogoWrapper>

@@ -23,7 +23,9 @@ const MenuModal = ({
 }: MenuModalProps) => {
   return (
     <Modal isOpenModal={isOpen} closeModalHandler={handleCancel}>
-      <S.ModalContainer>
+      <S.ModalContainer
+        style={{ transform: `translateX(${isOpen ? "0%" : "100%"})` }}
+      >
         {/* <S.ModalTitle>{title}</S.ModalTitle>
         <S.ButtonRow>
           <button onClick={handleConfirm} disabled={isLoading}>
