@@ -17,7 +17,7 @@ export const ItemWrapper = styled.div`
   height: 128px;
   border-bottom: 1px solid lightgray;
   @media (max-width: 800px) {
-    width: 80vw;
+    width: 90vw;
   }
 `
 

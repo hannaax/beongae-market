@@ -16,7 +16,7 @@ export const ItemWrapper = styled.div`
   height: 128px;
   border-bottom: 1px solid lightgray;
   @media (max-width: 800px) {
-    width: 80vw;
+    width: 90vw;
   }
 `
 
@@ -80,4 +80,14 @@ export const PasswordInput = styled.input`
   width: 100%;
   padding: 5px;
   margin-top: 10px;
+`
+
+export const ArrowRight = styled.div`
+  padding: 0 8px 0 53px;
+`
+
+export const DateStringAnswer = styled.div`
+  color: lightgray;
+  padding-top: 15px;
+  padding-left: 135px;
 `

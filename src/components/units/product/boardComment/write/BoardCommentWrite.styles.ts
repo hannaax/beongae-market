@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   margin: 20px 10vw;
   margin-bottom: 30px;
   @media (max-width: 800px) {
-    margin: 20px;
+    margin: 20px 0;
     padding: 0 20px;
   }
 `

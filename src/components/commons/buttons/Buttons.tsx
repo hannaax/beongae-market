@@ -2,8 +2,11 @@ import styled from "@emotion/styled"
 import { FavoriteBorder } from "@mui/icons-material"
 
 const BigButton = styled.button`
-  width: 175px;
-  height: 55px;
+  /* width: 175px;
+  height: 55px; */
+  /* width: 210px; */
+  width: 50%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +14,7 @@ const BigButton = styled.button`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.black};
   background-color: ${(props) => props.backgroundcolor};
-  margin-right: 5px;
+  /* margin-right: 5px; */
 `
 
 const MiniButton = styled.button`

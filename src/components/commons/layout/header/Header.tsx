@@ -172,9 +172,7 @@ export default function Header() {
             ) : (
               <>
                 <Link href="/signin">
-                  <S.SigninButton style={{ paddingRight: "0px" }}>
-                    로그인
-                  </S.SigninButton>
+                  <S.SigninButton>로그인</S.SigninButton>
                 </Link>
                 <Link href="/signup">
                   <S.SignupButton>회원가입</S.SignupButton>

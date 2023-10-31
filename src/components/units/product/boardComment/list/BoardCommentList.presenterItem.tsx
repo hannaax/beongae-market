@@ -17,7 +17,7 @@ import { useRouter } from "next/router"
 import { getDate } from "../../../../commons/libraries/utils"
 import type { ChangeEvent, MouseEvent } from "react"
 import BoardCommentWrite from "../write/BoardCommentWrite"
-import { QuestionAnswer } from "@mui/icons-material"
+import { QuestionAnswer, SubdirectoryArrowRight } from "@mui/icons-material"
 
 export default function BoardCommentListUIItem(props) {
   const router = useRouter()
@@ -143,9 +143,11 @@ export default function BoardCommentListUIItem(props) {
           {answersData?.fetchUseditemQuestionAnswers?.length !== 0
             ? answersData?.fetchUseditemQuestionAnswers?.map((el) => (
                 <S.Container key={el._id}>
-                  <div>답글</div>
                   <S.ItemWrapper key={el._id}>
                     <S.FlexWrapper>
+                      <S.ArrowRight>
+                        <SubdirectoryArrowRight fontSize="inherit" />
+                      </S.ArrowRight>
                       <S.Avatar src="/images/avatar.png" />
                       <S.MainWrapper>
                         <S.WriterRateWrapper>
@@ -168,7 +170,9 @@ export default function BoardCommentListUIItem(props) {
                         </S.QusetionAnswerButton>
                       </S.OptionWrapper>
                     </S.FlexWrapper>
-                    <S.DateString>{getDate(el?.createdAt)}</S.DateString>
+                    <S.DateStringAnswer>
+                      {getDate(el?.createdAt)}
+                    </S.DateStringAnswer>
                   </S.ItemWrapper>
                 </S.Container>
               ))

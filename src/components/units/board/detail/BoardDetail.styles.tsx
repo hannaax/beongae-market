@@ -8,17 +8,25 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 48px 110px;
+  /* margin: 48px 100px; */
+  margin: 20px 10vw;
+  margin-bottom: 30px;
+  @media (max-width: 800px) {
+    margin: 20px 0;
+    padding: 0 20px;
+  }
 `
 export const CardWrapper = styled.div`
   padding-top: 80px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* box-shadow: 0px 0px 10px ; */
+  /* box-shadow: 0px 0px 5px #ccc; */
+  /* border: 1px solid #ddd; */
+  border-bottom: 1px solid #aaa;
 `
 export const Header = styled.div`
   width: 100%;
@@ -104,7 +112,7 @@ export const BottomWrapper = styled.div`
   padding-top: 80px;
 `
 export const BottomBtn = styled.button`
-  width: 179px;
+  width: 140px;
   height: 45px;
   background-color: white;
   border: 1px solid gray;

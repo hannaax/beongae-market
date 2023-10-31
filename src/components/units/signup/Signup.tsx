@@ -80,7 +80,7 @@ export default function Signup(props) {
           createUserInput: {
             email: data.email,
             password: data.password,
-            name: "짱아",
+            name: data.name,
           },
         },
       })
@@ -122,7 +122,7 @@ export default function Signup(props) {
     <>
       <S.Container>
         <S.Wrapper>
-          <h1>{props.signin ? "로그인" : "회원가입"}</h1>
+          <S.Title>{props.signin ? "로그인" : "회원가입"}</S.Title>
           <form
             onSubmit={handleSubmit(
               props.signin ? onClickLoginUser : onClickCreateUser

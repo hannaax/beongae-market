@@ -110,18 +110,20 @@ export const RightBody = styled.div`
 `
 
 export const Button1 = styled.div`
-  padding: 10px 5px;
-  width: 75px;
+  padding: 10px 2px;
+  width: 63px;
   display: block;
+  cursor: pointer;
   @media (max-width: 800px) {
     display: none;
   }
 `
 
 export const Button2 = styled.div`
-  padding: 10px 5px;
-  width: 55px;
+  padding: 10px 2px;
+  width: 49px;
   display: block;
+  cursor: pointer;
   @media (max-width: 800px) {
     display: none;
   }
@@ -138,11 +140,13 @@ export const ResponsiveIcon = styled.div`
 export const Button3 = styled.div`
   padding: 10px 5px;
   width: 55px;
+  cursor: pointer;
 `
 
 export const SigninButton = styled.div`
   padding: 10px 5px;
   width: 55px;
+  cursor: pointer;
 `
 
 export const SignupButton = styled.div`

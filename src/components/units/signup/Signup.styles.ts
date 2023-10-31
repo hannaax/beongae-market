@@ -21,6 +21,11 @@ export const Wrapper = styled.div`
   margin: 48px;
 `
 
+export const Title = styled.h1`
+  display: inline-block;
+  padding-bottom: 30px;
+`
+
 export const Input = styled.input`
   width: 100%;
   padding: 10px;
@@ -40,5 +45,5 @@ export const SubmitButton = styled.button`
   height: 50px;
   border: none;
   background-color: #ffc700;
-  margin: 10px 0;
+  margin: 40px 0 10px 0;
 `

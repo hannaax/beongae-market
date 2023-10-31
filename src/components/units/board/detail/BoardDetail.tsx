@@ -54,6 +54,7 @@ export default function BoardDetail(): JSX.Element {
       ],
     })
   }
+
   const onClickMove = (): void => {
     void router.push(`/boards/${router.query.boardId}/edit`)
   }
