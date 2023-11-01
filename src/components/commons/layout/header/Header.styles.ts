@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
 
 export const MenuIcon = styled.div`
   display: none;
+  cursor: pointer;
   @media (max-width: 800px) {
     /* width: 100%; */
     display: flex;
@@ -38,6 +39,7 @@ export const LogoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  cursor: pointer;
   @media (max-width: 800px) {
     /* width: 100%; */
     display: flex;
@@ -52,6 +54,7 @@ export const Logo = styled.img`
 
 export const LogoMini = styled.img`
   width: 110px;
+  cursor: pointer;
 `
 
 export const Menu = styled.div`

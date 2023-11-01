@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   /* width: 1200px; */
-  margin: 100px;
+  margin: 100px 250px;
   height: 100%;
   width: 100%;
 `
@@ -76,21 +76,26 @@ export const DateSearch = styled.div``
 export const ItemWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `
 
 export const Item = styled.div`
   margin: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
 `
 
 export const Img = styled.img`
-  width: 200px;
+  width: 100%;
   height: 200px;
+  background-color: #eee;
 `
 
-export const Text = styled.div``
+export const Text = styled.div`
+  padding: 10px;
+`
 
 export const Name = styled.div`
   font-size: 16px;

@@ -7,8 +7,11 @@ export const Container = styled.div`
 `
 export const Wrapper = styled.div`
   width: 100%;
-  margin: 100px;
+  margin: 100px 10vw;
   padding: 8px;
+  @media (max-width: 800px) {
+    margin: 100px 8vw;
+  }
 `
 export const TableTop = styled.div`
   /* border-top: 2px solid #ccc;
@@ -123,15 +126,28 @@ export const ItemWrap = styled.div`
 `
 
 export const Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
 `
 
 export const Img = styled.img`
-  width: 200px;
+  /* width: 200px;
+  height: 200px; */
+  width: 100%;
   height: 200px;
+  background-color: #eee;
+  /* background-image: url("/images/header/sell.png"); */
 `
 
-export const Text = styled.div``
+export const Text = styled.div`
+  width: 100%;
+  padding: 10px;
+`
 
 export const Name = styled.div`
   font-size: 16px;
