@@ -27,8 +27,8 @@ const Wrapper = styled.div`
     }
     button::before {
       color: #ccc;
-    }
-  } */
+    } */
+  }
 `
 
 export const SliderItem = styled.img`
@@ -54,8 +54,8 @@ export default function Banner() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    // slidesToShow: 1,
+    // slidesToScroll: 1,
   }
 
   return (
@@ -74,9 +74,3 @@ export default function Banner() {
     </Wrapper>
   )
 }
-
-/* {" "}
-          <Div style={{ backgroundImage: "/images/banner1.jpg" }}>
-            <Span>당신을 위한 중고마켓</Span>
-          </Div>{" "}
-          */

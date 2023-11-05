@@ -2,15 +2,16 @@ import styled from "@emotion/styled"
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 250px;
+  height: 230px;
   border-top: 2px solid #eee;
-  padding: 20px;
+  /* padding: 30px; */
+  padding: 3vw;
   color: #666666;
   display: flex;
 `
 
 const Body = styled.div`
-  margin-right: 50px;
+  margin-right: 10vw;
 `
 
 const Title = styled.h1`

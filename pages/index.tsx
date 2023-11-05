@@ -3,6 +3,7 @@ import Banner from "../src/components/commons/layout/Banner"
 import MenuModal from "../src/components/commons/menuModal/MenuModal"
 import Home from "../src/components/units/home/Home"
 import ConfirmModal from "../src/components/commons/confirmModal/ConfirmModal"
+import Carousel from "../src/components/commons/carousel/Carousel"
 
 export default function HomePage(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(true)
@@ -24,7 +25,8 @@ export default function HomePage(): JSX.Element {
 
   return (
     <div style={{ marginTop: "47px" }}>
-      <Banner />
+      <Carousel />
+      {/* <Banner /> */}
       <Home />
       {/* <ConfirmModal
         title="대회에 참가하시겠습니까?"
