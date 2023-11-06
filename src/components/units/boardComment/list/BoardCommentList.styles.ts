@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
+  margin-bottom: 150px;
 `
 
 export const ItemWrapper = styled.div`

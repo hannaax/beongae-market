@@ -11,9 +11,10 @@ import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
 
 import ReactPlayer from "react-player"
-import { Tooltip } from "antd"
+import { Modal, Tooltip } from "antd"
 import { Favorite, AccessTimeFilled, FavoriteBorder } from "@mui/icons-material"
 import { Button1 } from "../../../commons/buttons/Buttons"
+import Map from "../../../commons/map/Map"
 
 export default function BoardDetail(): JSX.Element {
   const router = useRouter()
@@ -142,7 +143,10 @@ export default function BoardDetail(): JSX.Element {
                   </S.InfoWrapper>
                   <S.InfoWrapper>
                     <S.InfoLabel>· 거래지역</S.InfoLabel>
-                    <S.Info>서울특별시 서초구 방배4동</S.Info>
+                    <S.Info>
+                      {data?.fetchUseditem?.useditemAddress.address}{" "}
+                      {data?.fetchUseditem?.useditemAddress.addressDetail}
+                    </S.Info>
                   </S.InfoWrapper>
                 </S.ProductInfo>
               </S.HeaderInfo>
@@ -174,6 +178,9 @@ export default function BoardDetail(): JSX.Element {
               {data?.fetchUseditem?.seller.name}
             </S.RightBody>
           </S.Body>
+          <S.MapWrapper>
+            <Map address={data?.fetchUseditem?.useditemAddress.address} />
+          </S.MapWrapper>
           <S.BottomWrapper>
             <S.BottomBtn>목록으로</S.BottomBtn>
             <S.BottomBtn onClick={onClickMoveToEdit}>수정하기</S.BottomBtn>

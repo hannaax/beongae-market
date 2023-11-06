@@ -5,13 +5,14 @@ const Wrapper = styled.div`
   height: 230px;
   border-top: 2px solid #eee;
   /* padding: 30px; */
-  padding: 3vw;
+  padding: 30px 13vw;
   color: #666666;
   display: flex;
 `
 
 const Body = styled.div`
-  margin-right: 10vw;
+  /* margin-right: 13.5vw; */
+  /* margin-right: 10%; */
 `
 
 const Title = styled.h1`
@@ -29,6 +30,10 @@ const Contents = styled.div`
   }
 `
 
+const Div = styled.div`
+  width: 8vw;
+`
+
 export default function Footer() {
   return (
     <Wrapper>
@@ -37,15 +42,16 @@ export default function Footer() {
         <Contents>
           <p>대표이사 : 박한나 | 개인정보보호책임자 : 박한나</p>
           <p>
-            사업자등록번호 : 113-86-45836 | 통신판매업신고 : 2019-서울서초-1126
+            사업자등록번호 : 113-86-00000 | 통신판매업신고 : 2023-서울서초-0000
           </p>
-          <p>EMAIL : help@bunjang.co.kr | FAX : 02-598-8241</p>
+          <p>EMAIL : help@bungaemarket.co.kr | FAX : 02-598-8241</p>
           <p>
-            주소 : 서울특별시 서초구 서초대로 38길 12, 7, 10층(서초동,
-            마제스타시티, 힐스테이트 서리풀)
+            주소 : 서울특별시 서초구 서초대로 30길 30, 7, 5층(서초동,
+            마제스타시티, 힐스테이트)
           </p>
         </Contents>
       </Body>
+      <Div />
       <Body>
         <Title>
           고객센터 <span style={{ color: "#bbb", fontSize: "13px" }}>＞</span>

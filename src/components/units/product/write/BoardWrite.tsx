@@ -31,6 +31,7 @@ import {
   LocationOn,
   PersonPinOutlined,
 } from "@mui/icons-material"
+import Map from "../../../commons/map/Map"
 
 const ReactQuill = dynamic(
   async () => {
@@ -104,6 +105,22 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             // options.center(new window.kakao.maps.LatLng(38, 126.813369))
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
             map.setCenter(coords)
+
+            // 마커 이미지의 이미지 크기 입니다
+            const markerImageSize = new kakao.maps.Size(64, 69)
+
+            // 마커 이미지를 생성합니다
+            const markerImage = new kakao.maps.MarkerImage(
+              "/images/like.png",
+              markerImageSize
+            )
+
+            // 마커를 생성하고 지도에 표시합니다.
+            const marker = new kakao.maps.Marker({
+              map,
+              position: coords,
+              image: markerImage,
+            })
           }
         })
       })
@@ -257,12 +274,13 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             name,
             contents,
             remarks: "",
-            price: 1234,
-            // tag,
-            // boardAddress: {
-            //   address,
-            //   addressDetail,
-            // },
+            price: Number(price),
+            useditemAddress: {
+              address,
+              addressDetail,
+              lat: 1,
+              lng: 2,
+            },
             images: [...fileUrls],
           },
         },
@@ -277,32 +295,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     } catch (error) {
       Modal.error({ content: error.message })
     }
-    // }
-    // }
-    // const result = await createUseditem({
-    //   variables: {
-    //     createUseditemInput: {
-    //       name: data.name,
-    //       contents: data.contents,
-    //       price: data.price,
-    //       tags: [],
-    //       images: ["test"],
-    //     },
-    //   },
-    // })
-    // console.log(result)
-    // ===================== usehookform ========================== //
-    // console.log(data)
-    // console.log(data.images)
-    // const result = await createUseditem({
-    //   variables: {
-    //     createUseditemInput: {
-    //       name: data.name,
-    //       contents: data.contents,
-    //       price: data.price,
-    //       tags: [],
-    //       images: ["test"],
-    //     },
   }
 
   const onClickUpdate = async () => {
@@ -447,12 +439,12 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
                 ></script>
                 <S.MapWrapper id="map">
-                  <PersonPinCircleOutlined />
-                  {/* <LocationOn /> */}
-                  {/* <PersonPinOutlined /> */}
+                  {/* <PersonPinCircleOutlined /> */}
+                  <Map address={address} />
                 </S.MapWrapper>
               </S.LocationWrapper>
             </div>
+            {/* <Map address={address} /> */}
             <S.AddressWrapper>
               <S.Label>거래 주소</S.Label>
               {/* <S.Zipcode
@@ -498,11 +490,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             </S.ImageBox>
           </S.ImageWrapper>
           <S.OptionWrapper>
-            <S.Label>메인 사진 설정</S.Label>
+            {/* <S.Label>메인 사진 설정</S.Label>
             <S.RadioButton type="radio" id="youtube" name="radio-button" />
             <S.RadioLabel htmlFor="youtube">사진1</S.RadioLabel>
             <S.RadioButton type="radio" id="image" name="radio-button" />
-            <S.RadioLabel htmlFor="image">사진2</S.RadioLabel>
+            <S.RadioLabel htmlFor="image">사진2</S.RadioLabel> */}
           </S.OptionWrapper>
           <S.ButtonWrapper>
             <S.SubmitButton

@@ -92,13 +92,20 @@ export const LikeBtns = styled.div`
   justify-content: center;
 `
 export const LikeBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-right: 20px;
 `
 export const LikeBtn = styled.button`
   padding-bottom: 10px;
 `
 export const LikeCount = styled.p``
-export const DislikeBtnWrapper = styled.div``
+export const DislikeBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 export const DislikeBtn = styled.button`
   padding-bottom: 10px;
 `

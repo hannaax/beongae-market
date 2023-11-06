@@ -11,7 +11,7 @@ import type { MouseEvent } from "react"
 import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
 import ReactPlayer from "react-player"
-import { Tooltip } from "antd"
+import { Modal, Tooltip } from "antd"
 import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
 
 export default function BoardDetail(): JSX.Element {
@@ -26,11 +26,20 @@ export default function BoardDetail(): JSX.Element {
   const [dislikeBoard] = useMutation(DISLIKE_BOARD)
 
   const onClickDelete = (event: MouseEvent): void => {
-    void deleteBoard({
-      variables: { boardId: event.currentTarget.id },
-      refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
-      ],
+    Modal.confirm({
+      content: "삭제하시겠습니까?",
+      onOk: () => {
+        void deleteBoard({
+          variables: { boardId: data?.fetchBoard?._id },
+          refetchQueries: [
+            {
+              query: FETCH_BOARD,
+              variables: { boardId: router.query.boardId },
+            },
+          ],
+        })
+        Modal.info({ content: "게시글이 삭제됐습니다." })
+      },
     })
   }
 
@@ -54,7 +63,6 @@ export default function BoardDetail(): JSX.Element {
       ],
     })
   }
-
   const onClickMove = (): void => {
     void router.push(`/boards/${router.query.boardId}/edit`)
   }
@@ -127,9 +135,7 @@ export default function BoardDetail(): JSX.Element {
         <S.BottomWrapper>
           <S.BottomBtn>목록으로</S.BottomBtn>
           <S.BottomBtn onClick={onClickMove}>수정하기</S.BottomBtn>
-          <S.BottomBtn id={data?.fetchBoard?._id} onClick={onClickDelete}>
-            삭제하기
-          </S.BottomBtn>
+          <S.BottomBtn onClick={onClickDelete}>삭제하기</S.BottomBtn>
         </S.BottomWrapper>
       </S.Wrapper>
     </S.Container>

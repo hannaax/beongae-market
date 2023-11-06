@@ -7,6 +7,10 @@ export const Container = styled.div`
   width: 100vw;
 `
 
+export const Container2 = styled.div`
+  margin-bottom: 150px;
+`
+
 export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;

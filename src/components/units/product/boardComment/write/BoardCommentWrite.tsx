@@ -142,7 +142,7 @@ export default function BoardCommentWrite(props): JSX.Element {
                 value={contents}
               ></S.Contents>
               <S.BottomWrapper>
-                <S.ContentsLength>0/100</S.ContentsLength>
+                <S.ContentsLength>{/* 0/100 */}</S.ContentsLength>
                 <S.Button
                   onClick={props.isEdit ? onClickUpdate : onClickWriteAnswer}
                 >

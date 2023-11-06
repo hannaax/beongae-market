@@ -14,12 +14,16 @@ export const FETCH_USEDITEM = gql`
       _id
       name
       remarks
+      contents
       price
       tags
       images
       pickedCount
       useditemAddress {
-        _id
+        address
+        addressDetail
+        lat
+        lng
       }
       buyer {
         name

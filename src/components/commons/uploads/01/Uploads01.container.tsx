@@ -37,7 +37,7 @@ export default function Uploads01(props): JSX.Element {
       {props.fileUrl !== "" ? (
         <UploadImage
           onClick={onClickUpload}
-          src={`https://storage.googleapis.com/${fileUrl}`}
+          src={`https://storage.googleapis.com/${props.fileUrl}`}
         />
       ) : (
         <UploadButton onClick={onClickUpload}>

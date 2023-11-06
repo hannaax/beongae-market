@@ -1,6 +1,6 @@
 import { useState } from "react"
 import type { ChangeEvent } from "react"
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 import { Modal } from "antd"
@@ -16,6 +16,8 @@ import * as S from "./BoardWrite.styles"
 
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
 import { v4 as uuidv4 } from "uuid"
+import { UploadImage } from "../../../commons/uploads/01/Uploads01.styles"
+import { FormatIndentDecreaseOutlined } from "@mui/icons-material"
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
@@ -158,10 +160,13 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }
 
+  console.log("fileurls", fileUrls)
+  console.log("images", props.data?.fetchBoard.images)
+
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(fileUrls)
     const defaultFiles = JSON.stringify(props.data?.fetchBoard.images)
-    const isChangedFiles = currentFiles !== defaultFiles
+    // const isChangedFiles = currentFiles !== defaultFiles
 
     if (
       !title &&
@@ -169,8 +174,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       !youtubeUrl &&
       !address &&
       !addressDetail &&
-      !zipcode &&
-      !isChangedFiles
+      !zipcode
+      // &&
+      // !isChangedFiles
     ) {
       Modal.warning({ content: "수정한 내용이 없습니다." })
       return
@@ -191,7 +197,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail
     }
-    if (isChangedFiles) updateBoardInput.images = fileUrls
+    // if (isChangedFiles) updateBoardInput.images = fileUrls
 
     try {
       if (typeof router.query.boardId !== "string") {
@@ -206,11 +212,17 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           updateBoardInput,
         },
       })
+      void props.refetch({ boardId: result.data.updateBoard._id })
       void router.push(`/boards/${result.data.updateBoard._id}`)
       console.log(result)
     } catch (error) {
       Modal.error({ content: error.message })
     }
+  }
+
+  console.log("id", router.query.boardId)
+  const onClickUpload = (): void => {
+    // fileRef.current?.click()
   }
 
   return (
@@ -273,7 +285,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           <S.Error>{contentsError}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>주소</S.Label>
+          {/* <S.Label>주소</S.Label>
           <S.ZipcodeWrapper>
             <S.Zipcode
               placeholder="07250"
@@ -299,7 +311,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           <S.Address
             onChange={onChangeAddressDetail}
             defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
-          />
+          /> */}
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>유튜브</S.Label>
@@ -312,22 +324,31 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>
           <S.ImageBox>
-            {fileUrls.map((el, index) => (
-              <Uploads01
-                key={uuidv4()}
-                index={index}
-                fileUrl={el}
-                onChangeFileUrls={onChangeFileUrls}
-              />
-            ))}
+            {props.isEdit
+              ? props.data?.fetchBoard?.images?.map((el, index) => (
+                  <Uploads01
+                    key={uuidv4()}
+                    index={index}
+                    fileUrl={el}
+                    onChangeFileUrls={onChangeFileUrls}
+                  />
+                ))
+              : fileUrls?.map((el, index) => (
+                  <Uploads01
+                    key={uuidv4()}
+                    index={index}
+                    fileUrl={el}
+                    onChangeFileUrls={onChangeFileUrls}
+                  />
+                ))}
           </S.ImageBox>
         </S.ImageWrapper>
         <S.OptionWrapper>
-          <S.Label>메인설정</S.Label>
+          {/* <S.Label>메인설정</S.Label>
           <S.RadioButton type="radio" id="youtube" name="radio-button" />
           <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
           <S.RadioButton type="radio" id="image" name="radio-button" />
-          <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
+          <S.RadioLabel htmlFor="image">사진</S.RadioLabel> */}
         </S.OptionWrapper>
         <S.ButtonWrapper>
           <S.SubmitButton

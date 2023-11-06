@@ -28,7 +28,7 @@ export const LeftHeader = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 1000px) {
-    width: 80%;
+    width: 100%;
   }
 `
 
@@ -48,7 +48,7 @@ export const Img = styled.img`
   /* width: 100%; */
   width: 480px;
   @media (max-width: 1000px) {
-    width: 80%;
+    width: 100%;
     height: 480px;
   }
 `
@@ -172,6 +172,10 @@ export const MiniTitle = styled.div`
 `
 
 export const Avatar = styled.img``
+
+export const MapWrapper = styled.div`
+  margin-top: 50px;
+`
 
 export const BottomWrapper = styled.div`
   display: flex;

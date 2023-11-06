@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { FETCH_USEDITEMS_OF_THE_BEST } from "./Home.queries"
+import { useRouter } from "next/router"
 
 import * as S from "./Home.styles"
 import { v4 as uuidv4 } from "uuid"
@@ -7,6 +8,12 @@ import { v4 as uuidv4 } from "uuid"
 export default function Home(props) {
   const { data } = useQuery(FETCH_USEDITEMS_OF_THE_BEST)
   console.log(data)
+
+  const router = useRouter()
+
+  const onClickMoveToBoardDetail = (event: MouseEvent): void => {
+    void router.push(`/product/${event.currentTarget.id}`)
+  }
 
   return (
     <>
@@ -18,7 +25,7 @@ export default function Home(props) {
               <S.Item
                 key={uuidv4()}
                 id={product._id}
-                onClick={props.onClickMoveToBoardDetail}
+                onClick={onClickMoveToBoardDetail}
               >
                 {product.images[0] && product.images[1] ? (
                   <S.Img
