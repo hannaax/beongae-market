@@ -27,8 +27,6 @@ export default function Paginations01(props): JSX.Element {
     void props.refetch({ page: startPage + 10 })
   }
 
-  // styles
-
   return (
     <PaginationWrapper>
       <span onClick={onClickPrevPage}>{`<`}</span>

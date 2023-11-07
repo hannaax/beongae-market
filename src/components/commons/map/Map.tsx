@@ -37,9 +37,9 @@ const Map = ({ address, width }) => {
               result[0].x
             )
             map.setCenter(coords)
-            const markerImageSize = new window.kakao.maps.Size(64, 69)
+            const markerImageSize = new window.kakao.maps.Size(45, 45)
             const markerImage = new window.kakao.maps.MarkerImage(
-              "/images/like.png",
+              "/images/location.png",
               markerImageSize
             )
             const marker = new window.kakao.maps.Marker({

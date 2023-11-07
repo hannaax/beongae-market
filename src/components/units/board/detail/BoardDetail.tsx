@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@apollo/client"
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/router"
 import {
   FETCH_BOARD,
   DELETE_BOARD,
@@ -13,6 +13,7 @@ import { getDate } from "../../../commons/libraries/utils"
 import ReactPlayer from "react-player"
 import { Modal, Tooltip } from "antd"
 import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
+import { FETCH_BOARDS } from "../list/BoardList.queries"
 
 export default function BoardDetail(): JSX.Element {
   const router = useRouter()
@@ -33,11 +34,12 @@ export default function BoardDetail(): JSX.Element {
           variables: { boardId: data?.fetchBoard?._id },
           refetchQueries: [
             {
-              query: FETCH_BOARD,
+              query: FETCH_BOARDS,
               variables: { boardId: router.query.boardId },
             },
           ],
         })
+        void router.push(`/boards`)
         Modal.info({ content: "게시글이 삭제됐습니다." })
       },
     })

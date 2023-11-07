@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react"
 import type { ChangeEvent } from "react"
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import {
   CREATE_BOARD,
   CREATE_USEDITEM,
+  FETCH_USER_LOGGED_IN,
   UPDATE_BOARD,
 } from "./BoardWrite.queries"
 import { Modal } from "antd"
@@ -12,6 +13,7 @@ import type {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IQuery,
 } from "../../../../commons/types/generated/types"
 import type { Address } from "react-daum-postcode"
 import type { IBoardWriteProps } from "./BoardWrite.types"
@@ -150,27 +152,27 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
   // ================= //
 
-  useEffect(() => {
-    if (address) {
-      window.kakao.maps.load(function () {
-        const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
-        const options = {
-          center: new window.kakao.maps.LatLng(37.462381, 126.813369),
-          level: 3,
-        }
-        const map = new window.kakao.maps.Map(container, options)
+  // useEffect(() => {
+  //   if (address) {
+  //     window.kakao.maps.load(function () {
+  //       const container = document.getElementById("map") // 지도를 담을 영역의 DOM 레퍼런스
+  //       const options = {
+  //         center: new window.kakao.maps.LatLng(37.462381, 126.813369),
+  //         level: 3,
+  //       }
+  //       const map = new window.kakao.maps.Map(container, options)
 
-        const geocoder = new window.kakao.maps.services.Geocoder()
+  //       const geocoder = new window.kakao.maps.services.Geocoder()
 
-        geocoder.addressSearch(address, function (result, status) {
-          if (status === kakao.maps.services.Status.OK) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
-            map.setCenter(coords)
-          }
-        })
-      })
-    }
-  }, [address])
+  //       geocoder.addressSearch(address, function (result, status) {
+  //         if (status === kakao.maps.services.Status.OK) {
+  //           const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
+  //           map.setCenter(coords)
+  //         }
+  //       })
+  //     })
+  //   }
+  // }, [address])
 
   // ================= //
 
@@ -184,6 +186,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   >(UPDATE_BOARD)
 
   const [createUseditem] = useMutation(CREATE_USEDITEM)
+
+  const { data: loggedData } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN)
+
+  console.log("log", loggedData)
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
@@ -299,36 +306,46 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(fileUrls)
-    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images)
-    const isChangedFiles = currentFiles !== defaultFiles
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard?.images)
+    // const isChangedFiles = currentFiles !== defaultFiles
     if (
-      !title &&
+      // name,
+      // contents,
+      // remarks: "",
+      // price: Number(price),
+      // useditemAddress: {
+      //   address,
+      //   addressDetail,
+      //   lat: 1,
+      //   lng: 2,
+      // },
+      // images: [...fileUrls],
+      !name &&
       !contents &&
-      !youtubeUrl &&
+      !price &&
       !address &&
-      !addressDetail &&
-      !zipcode &&
-      !isChangedFiles
+      !addressDetail
+      // &&
+      // !isChangedFiles
     ) {
       Modal.warning({ content: "수정한 내용이 없습니다." })
       return
     }
-    if (!password) {
-      Modal.warning({ content: "비밀번호를 입력해주세요." })
-      return
-    }
+    // if (!password) {
+    //   Modal.warning({ content: "비밀번호를 입력해주세요." })
+    //   return
+    // }
     const updateBoardInput = {}
-    if (title) updateBoardInput.title = title
+    if (name) updateBoardInput.name = name
     if (contents) updateBoardInput.contents = contents
-    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl
-    if (zipcode || address || addressDetail) {
-      updateBoardInput.boardAddress = {}
-      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode
-      if (address) updateBoardInput.boardAddress.address = address
+    if (price) updateBoardInput.price = price
+    if (address || addressDetail) {
+      updateBoardInput.useditemAddress = {}
+      if (address) updateBoardInput.useditemAddress.address = address
       if (addressDetail)
-        updateBoardInput.boardAddress.addressDetail = addressDetail
+        updateBoardInput.useditemAddress.addressDetail = addressDetail
     }
-    if (isChangedFiles) updateBoardInput.images = fileUrls
+    // if (isChangedFiles) updateBoardInput.images = fileUrls
     try {
       if (typeof router.query.boardId !== "string") {
         alert("시스템에 문제가 있습니다.")
@@ -366,6 +383,8 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }, [QuillRef])
 
+  console.log("data", props.data)
+
   return (
     <>
       {/* <form onSubmit={handleSubmit({props.isEdit ? props.onClickUpdate : props.onClickSubmit})}> */}
@@ -390,7 +409,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 type="text"
                 placeholder="상품명을 작성해주세요"
                 onChange={onChangeName}
-                defaultValue={props.data?.fetchUseditem.name}
+                defaultValue={props.data?.fetchUseditem?.name}
                 // {...register("name")}
               />
               {/* <S.Error>{formState.errors.name?.message}</S.Error> */}
@@ -398,7 +417,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           </S.WriterWrapper>
           <S.InputWrapper>
             <S.Label>상품 설명</S.Label>
-            <ReactQuill
+            {/* <ReactQuill
               placeholder={
                 props.isEdit
                   ? props.data?.fetchUseditem.contents
@@ -408,6 +427,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
               style={{ width: "100%", height: "300px" }}
               // {...register("contents")}
               forwardedRef={QuillRef}
+            /> */}
+            <S.Contents
+              placeholder="내용을 작성해주세요."
+              onChange={onChangeContents}
+              defaultValue={props.data?.fetchUseditem?.contents}
             />
             {/* <S.Error>{formState.errors.contents?.message}</S.Error> */}
           </S.InputWrapper>
@@ -434,13 +458,18 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             <div>
               <S.Label>거래 위치</S.Label>
               <S.LocationWrapper>
-                <script
+                {/* <script
                   type="text/javascript"
                   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f11887ac006351d52e2ac59b193d4ce2&libraries=services"
-                ></script>
+                ></script> */}
                 <S.MapWrapper id="map">
                   {/* <PersonPinCircleOutlined /> */}
-                  <Map address={address} />
+                  <Map
+                    address={
+                      props.data?.fetchUseditem?.useditemAddress?.address ??
+                      address
+                    }
+                  />
                 </S.MapWrapper>
               </S.LocationWrapper>
             </div>
@@ -464,13 +493,13 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 value={
                   address !== ""
                     ? address
-                    : props.data?.usedItem.useditemAddress?.address ?? ""
+                    : props.data?.fetchUseditem?.useditemAddress?.address ?? ""
                 }
               />
               <S.Address
                 onChange={onChangeAddressDetail}
                 defaultValue={
-                  props.data?.usedItem.useditemAddress?.addressDetail
+                  props.data?.fetchUseditem?.useditemAddress?.addressDetail
                 }
               />
             </S.AddressWrapper>
@@ -479,14 +508,31 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           <S.ImageWrapper>
             <S.Label>사진 첨부</S.Label>
             <S.ImageBox>
-              {fileUrls.map((el, index) => (
+              {/* {fileUrls.map((el, index) => (
                 <Uploads01
                   key={uuidv4()}
                   index={index}
                   fileUrl={el}
                   onChangeFileUrls={onChangeFileUrls}
                 />
-              ))}
+              ))} */}
+              {props.isEdit
+                ? props.data?.fetchUseditem?.images?.map((el, index) => (
+                    <Uploads01
+                      key={uuidv4()}
+                      index={index}
+                      fileUrl={el}
+                      onChangeFileUrls={onChangeFileUrls}
+                    />
+                  ))
+                : fileUrls?.map((el, index) => (
+                    <Uploads01
+                      key={uuidv4()}
+                      index={index}
+                      fileUrl={el}
+                      onChangeFileUrls={onChangeFileUrls}
+                    />
+                  ))}
             </S.ImageBox>
           </S.ImageWrapper>
           <S.OptionWrapper>

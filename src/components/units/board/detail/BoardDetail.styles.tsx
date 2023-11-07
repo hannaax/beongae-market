@@ -49,10 +49,12 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 `
 export const Writer = styled.div`
   font-size: 20px;
   font-weight: 700;
+  padding-left: 3px;
 `
 export const DateWrapper = styled.div`
   display: flex;
@@ -69,6 +71,8 @@ export const RightHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 70px;
 `
 export const UrlCopyBtn = styled.button``
 export const LocationBtn = styled.button``
@@ -78,7 +82,7 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   margin: 30px 0px;
-  min-height: 600px;
+  min-height: 400px;
 `
 export const Title = styled.h2`
   padding: 30px 0px;

@@ -10,6 +10,7 @@ export const PaginationWrapper = styled.div`
 export const Page = styled.div`
   margin: 0 8px;
   padding: 1px 3px;
+  cursor: pointer;
 
   &.active {
     background-color: #090909;

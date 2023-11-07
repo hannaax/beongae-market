@@ -8,7 +8,7 @@ import {
 import { useEffect, useState, type MouseEvent } from "react"
 
 import * as S from "./BoardDetail.styles"
-import { getDate } from "../../../commons/libraries/utils"
+import { elapsedTime } from "../../../commons/libraries/utils"
 
 import ReactPlayer from "react-player"
 import { Modal, Tooltip } from "antd"
@@ -125,7 +125,9 @@ export default function BoardDetail(): JSX.Element {
                   </S.Favorite>
                   <S.CreatedAt>
                     <AccessTimeFilled fontSize="small" />
-                    <S.PostInfo>1주 전</S.PostInfo>
+                    <S.PostInfo>
+                      {elapsedTime(data?.fetchUseditem?.createdAt)}
+                    </S.PostInfo>
                   </S.CreatedAt>
                 </S.PostInfoWrapper>
                 <S.ProductInfo>
@@ -179,6 +181,7 @@ export default function BoardDetail(): JSX.Element {
             </S.RightBody>
           </S.Body>
           <S.MapWrapper>
+            <S.MiniTitle>거래 지역</S.MiniTitle>
             <Map address={data?.fetchUseditem?.useditemAddress.address} />
           </S.MapWrapper>
           <S.BottomWrapper>

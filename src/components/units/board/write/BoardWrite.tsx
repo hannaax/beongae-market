@@ -2,12 +2,17 @@ import { useState } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
+import {
+  CREATE_BOARD,
+  FETCH_USER_LOGGED_IN,
+  UPDATE_BOARD,
+} from "./BoardWrite.queries"
 import { Modal } from "antd"
 import type {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IQuery,
 } from "../../../../commons/types/generated/types"
 import type { Address } from "react-daum-postcode"
 import type { IBoardWriteProps } from "./BoardWrite.types"
@@ -47,6 +52,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     Pick<IMutation, "updateBoard">,
     IMutationUpdateBoardArgs
   >(UPDATE_BOARD)
+
+  const { data: loggedData } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN)
+
+  console.log("log", loggedData)
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value)
@@ -116,9 +126,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   }
 
   const onClickSubmit = async () => {
-    if (!writer) {
-      setWriterError("작성자를 입력해주세요.")
-    }
+    // if (!writer) {
+    //   setWriterError("작성자를 입력해주세요.")
+    // }
     if (!password) {
       setPasswordError("비밀번호를 입력해주세요.")
     }
@@ -128,12 +138,12 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     if (!contents) {
       setContentsError("내용을 입력해주세요.")
     }
-    if (writer && password && title && contents) {
+    if (password && title && contents) {
       try {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer,
+              writer: loggedData?.fetchUserLoggedIn?.name,
               password,
               title,
               contents,
@@ -242,15 +252,15 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           <S.InputWrapper>
             <S.Label>작성자</S.Label>
             <S.Writer
-              readOnly={props.data?.fetchBoard.writer}
+              readOnly={loggedData?.fetchUserLoggedIn?.name}
               type="text"
-              placeholder={
-                props.isEdit
-                  ? props.data?.fetchBoard.writer
-                  : "이름을 적어주세요"
-              }
+              // placeholder={
+              //   props.isEdit
+              //     ? props.data?.fetchBoard.writer
+              //     : "이름을 적어주세요"
+              // }
               onChange={onChangeWriter}
-              defaultValue={props.data?.fetchBoard.writer}
+              defaultValue={loggedData?.fetchUserLoggedIn?.name}
             />
             <S.Error>{writerError}</S.Error>
           </S.InputWrapper>
@@ -325,14 +335,23 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           <S.Label>사진첨부</S.Label>
           <S.ImageBox>
             {props.isEdit
-              ? props.data?.fetchBoard?.images?.map((el, index) => (
-                  <Uploads01
-                    key={uuidv4()}
-                    index={index}
-                    fileUrl={el}
-                    onChangeFileUrls={onChangeFileUrls}
-                  />
-                ))
+              ? props.data?.fetchBoard?.images.length !== 0
+                ? props.data?.fetchBoard?.images?.map((el, index) => (
+                    <Uploads01
+                      key={uuidv4()}
+                      index={index}
+                      fileUrl={el}
+                      onChangeFileUrls={onChangeFileUrls}
+                    />
+                  ))
+                : fileUrls?.map((el, index) => (
+                    <Uploads01
+                      key={uuidv4()}
+                      index={index}
+                      fileUrl={el}
+                      onChangeFileUrls={onChangeFileUrls}
+                    />
+                  ))
               : fileUrls?.map((el, index) => (
                   <Uploads01
                     key={uuidv4()}

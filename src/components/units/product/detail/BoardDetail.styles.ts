@@ -104,8 +104,11 @@ export const ProductInfo = styled.div`
 export const InfoWrapper = styled.div`
   display: flex;
   margin-top: 20px;
-  width: 300px;
+  width: 100%;
   height: 20px;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `
 
 export const InfoLabel = styled.div`
@@ -113,7 +116,12 @@ export const InfoLabel = styled.div`
   width: 100px;
 `
 
-export const Info = styled.div``
+export const Info = styled.div`
+  width: 300px;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`
 
 export const Buttons = styled.div`
   margin-top: 40px;

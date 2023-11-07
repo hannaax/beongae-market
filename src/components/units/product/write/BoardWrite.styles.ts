@@ -101,6 +101,15 @@ export const Price = styled.input`
   border: 1px solid #bdbdbd;
 `
 
+export const Contents = styled.textarea`
+  /* width: 996px; */
+  width: 100%;
+  height: 330px;
+  padding-left: 16px;
+  padding: 14px;
+  border: 1px solid #bdbdbd;
+`
+
 export const Tag = styled.input`
   width: 100%;
   height: 52px;
