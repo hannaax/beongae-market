@@ -4,16 +4,12 @@ const Wrapper = styled.div`
   width: 100%;
   height: 230px;
   border-top: 2px solid #eee;
-  /* padding: 30px; */
   padding: 30px 13vw;
   color: #666666;
   display: flex;
 `
 
-const Body = styled.div`
-  /* margin-right: 13.5vw; */
-  /* margin-right: 10%; */
-`
+const Body = styled.div``
 
 const Title = styled.h1`
   font-size: 15px;

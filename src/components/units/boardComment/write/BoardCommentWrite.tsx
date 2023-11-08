@@ -1,23 +1,20 @@
-import { useMutation, useQuery } from "@apollo/client"
-import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
-import { useRouter } from "next/router"
 import type { ChangeEvent } from "react"
 import { useState } from "react"
-import {
-  FETCH_BOARD_COMMENTS,
-  UPDATE_BOARD_COMMENT,
-} from "../list/BoardCommentList.queries"
+import { useMutation } from "@apollo/client"
+
+import { Rate } from "antd"
+import { useRouter } from "next/router"
 import type {
   IMutation,
   IMutationCreateBoardCommentArgs,
   IMutationUpdateBoardCommentArgs,
-  IQuery,
-  IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
-
+import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries"
 import * as S from "./BoardCommentWrite.styles"
-import { Rate } from "antd"
-import type { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types"
+import {
+  FETCH_BOARD_COMMENTS,
+  UPDATE_BOARD_COMMENT,
+} from "../list/BoardCommentList.queries"
 
 export default function BoardCommentWrite(props): JSX.Element {
   const router = useRouter()

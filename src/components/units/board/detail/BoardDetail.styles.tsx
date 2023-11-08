@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  /* margin: 48px 100px; */
   margin: 20px 10vw;
   margin-bottom: 30px;
   @media (max-width: 800px) {
@@ -24,8 +23,6 @@ export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* box-shadow: 0px 0px 5px #ccc; */
-  /* border: 1px solid #ddd; */
   border-bottom: 1px solid #aaa;
 `
 export const Header = styled.div`

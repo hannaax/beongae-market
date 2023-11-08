@@ -1,5 +1,5 @@
-import Modal from "../modal/Modal"
 import * as S from "./ConfirmModal.styles"
+import Modal from "../modal/Modal"
 
 interface ConfirmModalProps {
   title: string
@@ -23,18 +23,7 @@ const ConfirmModal = ({
 }: ConfirmModalProps) => {
   return (
     <Modal isOpenModal={isOpen} closeModalHandler={handleCancel}>
-      <S.ModalContainer>
-        {/* <S.ModalTitle>{title}</S.ModalTitle>
-        <S.ButtonRow>
-          <button onClick={handleConfirm} disabled={isLoading}>
-            {confirmText}
-          </button>
-          <button onClick={handleCancel} disabled={isLoading}>
-            {cancelText}
-          </button>
-        </S.ButtonRow> */}
-        {children}
-      </S.ModalContainer>
+      <S.ModalContainer>{children}</S.ModalContainer>
     </Modal>
   )
 }

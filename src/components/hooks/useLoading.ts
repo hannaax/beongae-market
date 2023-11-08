@@ -1,5 +1,5 @@
-import Router from "next/router"
 import { useEffect, useState } from "react"
+import Router from "next/router"
 
 export const useLoading = () => {
   const [nowLoading, setNowLoading] = useState<boolean>(false)

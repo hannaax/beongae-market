@@ -20,14 +20,6 @@ const Wrapper = styled.div`
   }
   .slick-dots {
     bottom: +20px;
-    /* .slick-active {
-      button::before {
-        color: #fff;
-      }
-    }
-    button::before {
-      color: #ccc;
-    } */
   }
 `
 
@@ -54,8 +46,6 @@ export default function Banner() {
     dots: true,
     infinite: true,
     speed: 500,
-    // slidesToShow: 1,
-    // slidesToScroll: 1,
   }
 
   return (

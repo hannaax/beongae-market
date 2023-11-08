@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import Link from "next/link"
-import * as S from "./style"
-import { carouselData } from "./carouselData"
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
+import Link from "next/link"
+import { carouselData } from "./carouselData"
+import * as S from "./style"
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(1)
@@ -47,13 +47,7 @@ const Carousel = () => {
               <S.ImgBox
                 opacity={carouselIndex === index + 1 ? "active" : "none"}
               >
-                <img
-                  src={
-                    // process.env.PUBLIC_URL +
-                    `/images/banner${index + 1}.jpg`
-                  }
-                  alt={item.alt}
-                />
+                <img src={`/images/banner${index + 1}.jpg`} alt={item.alt} />
               </S.ImgBox>
             </Link>
           )

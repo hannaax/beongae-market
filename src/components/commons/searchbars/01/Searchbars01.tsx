@@ -13,9 +13,6 @@ export default function Searchbars01(props): JSX.Element {
   const router = useRouter()
 
   const onChangeSearchbar = (event: ChangeEvent<HTMLInputElement>): void => {
-    // setTimeout(() => {
-    //   void router.push("/boards")
-    // }, 1000)
     getDebounce(event.target.value)
   }
 

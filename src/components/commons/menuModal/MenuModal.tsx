@@ -1,5 +1,5 @@
-import Modal from "../modal/Modal"
 import * as S from "./MenuModal.styles"
+import Modal from "../modal/Modal"
 
 interface MenuModalProps {
   title: string
@@ -26,15 +26,6 @@ const MenuModal = ({
       <S.ModalContainer
         style={{ transform: `translateX(${isOpen ? "0%" : "100%"})` }}
       >
-        {/* <S.ModalTitle>{title}</S.ModalTitle>
-        <S.ButtonRow>
-          <button onClick={handleConfirm} disabled={isLoading}>
-            {confirmText}
-          </button>
-          <button onClick={handleCancel} disabled={isLoading}>
-            {cancelText}
-          </button>
-        </S.ButtonRow> */}
         {children}
       </S.ModalContainer>
     </Modal>

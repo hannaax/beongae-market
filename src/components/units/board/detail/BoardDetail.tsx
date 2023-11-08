@@ -1,18 +1,18 @@
+import type { MouseEvent } from "react"
 import { useQuery, useMutation } from "@apollo/client"
-import { Router, useRouter } from "next/router"
+import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
+import { Modal, Tooltip } from "antd"
+import { useRouter } from "next/router"
+import ReactPlayer from "react-player"
 import {
   FETCH_BOARD,
   DELETE_BOARD,
   LIKE_BOARD,
   DISLIKE_BOARD,
 } from "./BoardDetail.queries"
-import type { MouseEvent } from "react"
 
 import * as S from "./BoardDetail.styles"
 import { getDate } from "../../../commons/libraries/utils"
-import ReactPlayer from "react-player"
-import { Modal, Tooltip } from "antd"
-import { ThumbUpAltOutlined, ThumbDownAltOutlined } from "@mui/icons-material"
 import { FETCH_BOARDS } from "../list/BoardList.queries"
 
 export default function BoardDetail(): JSX.Element {
@@ -79,7 +79,6 @@ export default function BoardDetail(): JSX.Element {
               <S.Info>
                 <S.Writer>{data?.fetchBoard?.writer}</S.Writer>
                 <S.DateWrapper>
-                  {/* <S.DateLabel>Date</S.DateLabel> */}
                   <S.Date>{getDate(data?.fetchBoard?.createdAt)}</S.Date>
                 </S.DateWrapper>
               </S.Info>

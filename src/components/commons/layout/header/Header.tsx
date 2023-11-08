@@ -1,11 +1,6 @@
-import styled from "@emotion/styled"
-import type { IQuery } from "../../src/commons/types/generated/types"
-import { gql, useMutation, useQuery } from "@apollo/client"
-import { useRecoilState } from "recoil"
 import { useEffect, Fragment, useState } from "react"
-import Link from "next/link"
-import Searchbars01 from "../../searchbars/01/Searchbars01"
-import { useRouter } from "next/router"
+import { gql, useMutation, useQuery } from "@apollo/client"
+import styled from "@emotion/styled"
 import {
   PaidOutlined,
   Person,
@@ -15,9 +10,14 @@ import {
   AddBusinessOutlined,
 } from "@mui/icons-material"
 import MenuIcon from "@mui/icons-material/Menu"
-import * as S from "./Header.styles"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useRecoilState } from "recoil"
+import type { IQuery } from "../../src/commons/types/generated/types"
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./Header.queries"
+import * as S from "./Header.styles"
 import MenuModal from "../../menuModal/MenuModal"
+import Searchbars01 from "../../searchbars/01/Searchbars01"
 
 const NAVIGATION_MENUS = [
   // { name: "게시판2", page: "/boards2" },
@@ -108,10 +108,7 @@ export default function Header() {
               <S.Logo src="/images/logo_yellow.png"></S.Logo>
             </S.LogoWrapper>
           </div>
-          {/* <Searchbars01 /> */}
-          <S.Menu
-          // className={openMenu ? "block" : ""}
-          >
+          <S.Menu>
             {NAVIGATION_MENUS.map((el) => (
               <Fragment key={el.page}>
                 <S.MenuItem id={el.page} onClick={onClickMenu}>
@@ -135,28 +132,15 @@ export default function Header() {
               <div style={{ display: "flex" }}>
                 <a href="/product/new">
                   <a>
-                    <S.Button1>
-                      {/* <S.Img src="/images/header/sell.png" alt="" /> */}
-                      판매하기
-                    </S.Button1>
+                    <S.Button1>판매하기</S.Button1>
                     <S.ResponsiveIcon>
                       <AddBusinessOutlined />
                     </S.ResponsiveIcon>
                   </a>
                 </a>
-                <S.DivisionLine>│</S.DivisionLine>
-                {/* <Link href="/mypage">
-                <S.HeaderIcon> */}{" "}
-                {/* <S.Img src="/images/header/mystore.png" alt="" />
-                  내상점
-                </S.HeaderIcon>
-              </Link> */}
+                <S.DivisionLine>│</S.DivisionLine>{" "}
                 <a href="/mypage">
-                  <S.Button2>
-                    {" "}
-                    {/* <S.Img src="/images/header/mystore.png" alt="" /> */}
-                    내상점
-                  </S.Button2>
+                  <S.Button2> 내상점</S.Button2>
                   <S.ResponsiveIcon>
                     <PersonOutline />
                   </S.ResponsiveIcon>

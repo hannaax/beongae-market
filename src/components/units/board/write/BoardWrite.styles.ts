@@ -9,21 +9,14 @@ export const Container = styled.div`
 `
 
 export const Wrapper = styled.div`
-  /* width: 1200px; */
   width: 100%;
-  /* height: 1847px; */
   border: 1px solid black;
   margin: 100px;
   padding: 0 12px;
-  /* padding-top: 80px;
-  padding-bottom: 100px;
-  padding-left: 102px;
-  padding-right: 102px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   border: none;
-  /* box-shadow: 0px 0px 10px gray; */
 `
 
 export const Title = styled.div`
@@ -44,7 +37,6 @@ export const Div = styled.div`
 `
 
 export const Writer = styled.input`
-  /* width: 486px; */
   width: 100%;
   height: 52px;
   padding-left: 16px;
@@ -53,7 +45,6 @@ export const Writer = styled.input`
 `
 
 export const Password = styled.input`
-  /* width: 486px; */
   width: 100%;
   height: 52px;
   padding-left: 16px;
@@ -72,7 +63,6 @@ export const InputWrapper = styled.div`
 `
 
 export const Subject = styled.input`
-  /* width: 996px; */
   width: 100%;
   height: 52px;
   padding-left: 16px;
@@ -80,7 +70,6 @@ export const Subject = styled.input`
 `
 
 export const Contents = styled.textarea`
-  /* width: 996px; */
   width: 100%;
   height: 480px;
   padding-left: 16px;
@@ -111,7 +100,6 @@ export const SearchButton = styled.button`
 `
 
 export const Address = styled.input`
-  /* width: 996px; */
   width: 100%;
   height: 52px;
   margin-top: 16px;
@@ -120,7 +108,6 @@ export const Address = styled.input`
 `
 
 export const Youtube = styled.input`
-  /* width: 996px; */
   width: 100%;
   height: 52px;
   padding-left: 16px;
@@ -128,7 +115,6 @@ export const Youtube = styled.input`
 `
 
 export const ImageWrapper = styled.div`
-  /* width: 996px; */
   width: 100%;
   padding-top: 40px;
 `

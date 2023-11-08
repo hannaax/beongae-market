@@ -21,7 +21,7 @@ import { useForm } from "react-hook-form"
 
 import * as S from "./BoardWrite.styles"
 
-import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
+import Uploads01 from "../../../commons/uploads/01/Uploads01"
 import { v4 as uuidv4 } from "uuid"
 
 import { yupResolver } from "@hookform/resolvers/yup"

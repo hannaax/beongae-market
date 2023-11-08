@@ -1,8 +1,10 @@
-import { useQuery } from "@apollo/client"
-import { useRouter } from "next/router"
 import type { ChangeEvent, MouseEvent } from "react"
 import { useState } from "react"
+import { useQuery } from "@apollo/client"
+import { Favorite } from "@mui/icons-material"
 import _ from "lodash"
+import { useRouter } from "next/router"
+import { v4 as uuidv4 } from "uuid"
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -11,12 +13,10 @@ import type {
 } from "../../../../commons/types/generated/types"
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries"
 
-import { elapsedTime } from "../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
+import { elapsedTime } from "../../../commons/libraries/utils"
 import Paginations01 from "../../../commons/paginations/01/Paginations01"
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01"
-import { v4 as uuidv4 } from "uuid"
-import { Create, Favorite } from "@mui/icons-material"
 
 const SECRET = "@#$%"
 

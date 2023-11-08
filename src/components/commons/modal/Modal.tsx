@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom"
 import * as S from "./Modal.styles"
 
 interface Props {

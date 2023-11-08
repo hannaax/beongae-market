@@ -1,7 +1,7 @@
-import BoardWrite from "../../../../src/components/units/board/write/BoardWrite"
+import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { FETCH_BOARD } from "../../../../src/components/units/board/detail/BoardDetail.queries"
-import { useQuery } from "@apollo/client"
+import BoardWrite from "../../../../src/components/units/board/write/BoardWrite"
 
 export default function BoardEditPage(): JSX.Element {
   const router = useRouter()

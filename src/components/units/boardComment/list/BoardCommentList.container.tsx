@@ -1,14 +1,14 @@
+import type { MouseEvent, useState } from "react"
 import { useQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
-import BoardCommentListUI from "./BoardCommentList.presenter"
-import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries"
 import type {
   IMutation,
   IMutationDeleteBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
-import type { MouseEvent, useState } from "react"
+import BoardCommentListUI from "./BoardCommentList.presenter"
+import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries"
 
 // const DELETE_BOARD_COMMENTS = gql``
 

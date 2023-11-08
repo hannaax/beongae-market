@@ -51,15 +51,11 @@ export const Row = styled.div`
 `
 
 export const ColumnHeaderBasic = styled.div`
-  /* width: 10%; */
-  /* text-align: center; */
   font-weight: 800;
   cursor: default;
 `
 
 export const ColumnHeaderTitle = styled.div`
-  /* width: 70%; */
-  /* text-align: center; */
   font-weight: 800;
   cursor: default;
 `
@@ -67,16 +63,12 @@ export const ColumnHeaderTitle = styled.div`
 export const ColumnContents = styled.div``
 
 export const ColumnBasic = styled.div`
-  /* width: 10%; */
   text-align: center;
-  /* padding-right: 15px; */
   color: #aaa;
   font-size: 15px;
 `
 
 export const ColumnTitle = styled.div`
-  /* width: 70%; */
-  /* text-align: center; */
   font-size: 18px;
   font-weight: 600;
 `
@@ -108,7 +100,6 @@ export const PencilIcon = styled.img`
 
 export const Button = styled.button`
   padding: 15px 22px;
-  /* background-color: ${({ theme }) => theme.colors.yellow}; */
   background-color: #ffc700;
   display: flex;
   flex-direction: row;
@@ -117,9 +108,6 @@ export const Button = styled.button`
   border: none;
   margin-left: 20px;
   cursor: pointer;
-  /* :hover {
-    background-color: #f5f2fc;
-  } */
 `
 
 export const ButtonText = styled.span`

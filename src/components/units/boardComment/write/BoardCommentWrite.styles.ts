@@ -47,8 +47,6 @@ export const RateInput = styled.div`
 
 export const ContentsWrapperDiv = styled.div``
 export const ContentsWrapper = styled.div`
-  /* display: flex;
-  justify-content: center; */
   width: 100%;
   border: 1px solid lightgray;
 `

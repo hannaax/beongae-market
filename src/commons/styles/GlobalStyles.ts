@@ -6,13 +6,11 @@ export const GlobalStyles = css`
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    /* font: inherit; */
     vertical-align: middle;
     text-decoration: none;
-    /* font-size: 16px; */
     color: "#0a0a0a";
   }
-  /* HTML5 display-role reset for older browsers */
+
   article,
   aside,
   details,
@@ -28,10 +26,8 @@ export const GlobalStyles = css`
   }
   html {
     font-family: "Noto Sans CJK KR", sans-serif;
-    /* font-family: "Noto Sans KR", sans-serif; */
   }
   body {
-    /* background-color: #eee; */
     color: navy;
   }
   ol,

@@ -1,13 +1,10 @@
 import { useState } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation, useQuery } from "@apollo/client"
-import { useRouter } from "next/router"
-import {
-  CREATE_BOARD,
-  FETCH_USER_LOGGED_IN,
-  UPDATE_BOARD,
-} from "./BoardWrite.queries"
 import { Modal } from "antd"
+import { useRouter } from "next/router"
+import { v4 as uuidv4 } from "uuid"
+import type { IBoardWriteProps } from "./BoardWrite.types"
 import type {
   IMutation,
   IMutationCreateBoardArgs,
@@ -15,14 +12,15 @@ import type {
   IQuery,
 } from "../../../../commons/types/generated/types"
 import type { Address } from "react-daum-postcode"
-import type { IBoardWriteProps } from "./BoardWrite.types"
+import {
+  CREATE_BOARD,
+  FETCH_USER_LOGGED_IN,
+  UPDATE_BOARD,
+} from "./BoardWrite.queries"
 
 import * as S from "./BoardWrite.styles"
 
-import Uploads01 from "../../../commons/uploads/01/Uploads01.container"
-import { v4 as uuidv4 } from "uuid"
-import { UploadImage } from "../../../commons/uploads/01/Uploads01.styles"
-import { FormatIndentDecreaseOutlined } from "@mui/icons-material"
+import Uploads01 from "../../../commons/uploads/01/Uploads01"
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter()
@@ -254,11 +252,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             <S.Writer
               readOnly={loggedData?.fetchUserLoggedIn?.name}
               type="text"
-              // placeholder={
-              //   props.isEdit
-              //     ? props.data?.fetchBoard.writer
-              //     : "이름을 적어주세요"
-              // }
               onChange={onChangeWriter}
               defaultValue={loggedData?.fetchUserLoggedIn?.name}
             />
@@ -294,35 +287,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
           />
           <S.Error>{contentsError}</S.Error>
         </S.InputWrapper>
-        <S.InputWrapper>
-          {/* <S.Label>주소</S.Label>
-          <S.ZipcodeWrapper>
-            <S.Zipcode
-              placeholder="07250"
-              readOnly
-              value={
-                zipcode !== ""
-                  ? zipcode
-                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
-              }
-            />
-            <S.SearchButton onClick={onClickAddressSearch}>
-              우편번호 검색
-            </S.SearchButton>
-          </S.ZipcodeWrapper>
-          <S.Address
-            readOnly
-            value={
-              address !== ""
-                ? address
-                : props.data?.fetchBoard.boardAddress?.address ?? ""
-            }
-          />
-          <S.Address
-            onChange={onChangeAddressDetail}
-            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
-          /> */}
-        </S.InputWrapper>
+        <S.InputWrapper></S.InputWrapper>
         <S.InputWrapper>
           <S.Label>유튜브</S.Label>
           <S.Youtube
@@ -362,13 +327,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 ))}
           </S.ImageBox>
         </S.ImageWrapper>
-        <S.OptionWrapper>
-          {/* <S.Label>메인설정</S.Label>
-          <S.RadioButton type="radio" id="youtube" name="radio-button" />
-          <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
-          <S.RadioButton type="radio" id="image" name="radio-button" />
-          <S.RadioLabel htmlFor="image">사진</S.RadioLabel> */}
-        </S.OptionWrapper>
+        <S.OptionWrapper></S.OptionWrapper>
         <S.ButtonWrapper>
           <S.SubmitButton
             onClick={props.isEdit ? onClickUpdate : onClickSubmit}

@@ -1,6 +1,5 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
 import { Fragment } from "react"
+import styled from "@emotion/styled"
 
 const Wrapper = styled.div`
   height: 64px;
@@ -22,11 +21,8 @@ const MenuItem = styled.div`
 `
 
 const NAVIGATION_MENUS = [
-  // { name: "게시판2", page: "/boards2" },
-  // { name: "고양이모음", page: "/openapis" },
   { name: "중고마켓", page: "/product" },
   { name: "커뮤니티", page: "/boards" },
-  // { name: "마이페이지", page: "/mypage" },
 ]
 
 export default function Navigation() {

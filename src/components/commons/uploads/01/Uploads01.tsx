@@ -1,12 +1,11 @@
-import Uploads01UI from "./Uploads01.presenter"
 import { useRef } from "react"
 import type { ChangeEvent } from "react"
-import { checkValidationImage } from "./Uploads01.validation"
 import { useMutation } from "@apollo/client"
-import { UPLOAD_FILE } from "./Uploads01.queries"
-import { Modal } from "antd"
-import { UploadButton, UploadFileHidden, UploadImage } from "./Uploads01.styles"
 import { AddPhotoAlternateOutlined } from "@mui/icons-material"
+import { Modal } from "antd"
+import { UPLOAD_FILE } from "./Uploads01.queries"
+import { UploadButton, UploadFileHidden, UploadImage } from "./Uploads01.styles"
+import { checkValidationImage } from "./Uploads01.validation"
 
 export default function Uploads01(props): JSX.Element {
   const fileRef = useRef<HTMLInputElement>(null)
@@ -41,8 +40,6 @@ export default function Uploads01(props): JSX.Element {
         />
       ) : (
         <UploadButton onClick={onClickUpload}>
-          {/* <p>+</p>
-          <p>Upload</p> */}
           <AddPhotoAlternateOutlined />
         </UploadButton>
       )}

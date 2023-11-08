@@ -1,14 +1,15 @@
-import type { AppProps } from "next/app"
-import "../styles/globals.css"
-import Layout from "../src/components/commons/Layout"
 import { Global, ThemeProvider } from "@emotion/react"
-import { GlobalStyles } from "../src/commons/styles/GlobalStyles"
-import ApolloSetting from "../src/components/commons/apollo"
 import { RecoilRoot } from "recoil"
+import type { AppProps } from "next/app"
+
+import "../styles/globals.css"
+import { GlobalStyles } from "../src/commons/styles/GlobalStyles"
 import theme from "../src/commons/styles/theme"
+import ApolloSetting from "../src/components/commons/apollo"
+import Layout from "../src/components/commons/Layout"
+import LoadingSpinner from "../src/components/commons/LoadingSpinner"
 import Toast from "../src/components/commons/toasfify"
 import { useLoading } from "../src/components/hooks/useLoading"
-import LoadingSpinner from "../src/components/commons/LoadingSpinner"
 
 function MyApp({ Component }: AppProps): JSX.Element {
   const nowLoading = useLoading()
@@ -21,7 +22,6 @@ function MyApp({ Component }: AppProps): JSX.Element {
             <Global styles={GlobalStyles} />
             <Toast />
             <Layout>
-              {/* <LoadingSpinner /> */}
               {nowLoading ? <LoadingSpinner /> : null}
               <Component />
             </Layout>
