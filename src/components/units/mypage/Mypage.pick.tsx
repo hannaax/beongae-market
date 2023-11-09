@@ -1,22 +1,10 @@
 import { useQuery } from "@apollo/client"
-import {
-  FETCH_USEDITEMS_COUNT_I_PICKED,
-  FETCH_USEDITEMS_I_PICKED,
-} from "./Mypage.market.queries"
+import { FETCH_USEDITEMS_I_PICKED } from "./Mypage.market.queries"
 import * as S from "./Mypage.market.styles"
-import { useEffect } from "react"
 import { getDate } from "../../commons/libraries/utils"
 
 export default function MypagePick() {
   const { data: dataUseditemsIPicked } = useQuery(FETCH_USEDITEMS_I_PICKED)
-
-  const { data: dataUseditemsCountIPicked } = useQuery(
-    FETCH_USEDITEMS_COUNT_I_PICKED
-  )
-
-  useEffect(() => {
-    console.log("pick", dataUseditemsIPicked)
-  }, [])
 
   return (
     <>
@@ -46,7 +34,6 @@ export default function MypagePick() {
               ></div>
             )}
 
-            {/* <div style={{ width: "200px", background: "#ddd" }}>이미지</div> */}
             <div
               style={{
                 display: "flex",

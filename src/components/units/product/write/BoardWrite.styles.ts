@@ -9,21 +9,11 @@ export const Container = styled.div`
 `
 
 export const Wrapper = styled.div`
-  /* width: 1200px; */
   width: 100%;
-  /* max-width: 1336px; */
-  /* height: 1847px; */
   border: 1px solid black;
-  /* margin: 100px; */
-  /* padding-top: 80px;
-  padding-bottom: 100px;
-  padding-left: 102px;
-  padding-right: 102px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: none;
-  box-shadow: 0px 0px 10px gray; */
   border: solid 2px #eee;
   border: none;
   margin: 80px 100px;
@@ -32,15 +22,10 @@ export const Wrapper = styled.div`
 
 export const Title = styled.div`
   font-size: 36px;
-  /* width: 1200px; */
   font-weight: 600;
 `
 
-export const TitleBottom = styled.div`
-  /* width: 1200px;
-  height: 10px;
-  border-bottom: 2px solid #000; */
-`
+export const TitleBottom = styled.div``
 
 export const WriterWrapper = styled.div`
   display: flex;
@@ -51,19 +36,11 @@ export const WriterWrapper = styled.div`
 `
 
 export const Name = styled.input`
-  /* width: 996px; */
   width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `
-
-// export const Password = styled.input`
-//   width: 486px;
-//   height: 52px;
-//   padding-left: 16px;
-//   border: 1px solid #bdbdbd;
-// `
 
 export const Label = styled.div`
   padding-bottom: 12px;
@@ -74,17 +51,9 @@ export const Label = styled.div`
 `
 
 export const InputWrapper = styled.div`
-  /* display: flex; */
   padding-top: 40px;
   width: 100%;
 `
-
-// export const Summary = styled.input`
-//   width: 996px;
-//   height: 52px;
-//   padding-left: 16px;
-//   border: 1px solid #bdbdbd;
-// `
 
 export const Detail = styled.textarea`
   width: 100%;
@@ -102,7 +71,6 @@ export const Price = styled.input`
 `
 
 export const Contents = styled.textarea`
-  /* width: 996px; */
   width: 100%;
   height: 330px;
   padding-left: 16px;
@@ -123,12 +91,7 @@ export const InputWrapper2 = styled.div`
   width: 100%;
 `
 
-export const LocationWrapper = styled.div`
-  /* display: flex; */
-  /* justify-content: space-between;
-  align-items: center; */
-  /* width: 100%; */
-`
+export const LocationWrapper = styled.div``
 
 export const MapWrapper = styled.div`
   width: 400px;
@@ -156,7 +119,7 @@ export const Zipcode = styled.input`
 export const SearchButton = styled.button`
   width: 124px;
   height: 52px;
-  /* margin-left: 16px; */
+
   background-color: #ffc700;
   cursor: pointer;
   color: #000;
@@ -168,13 +131,6 @@ export const Address = styled.input`
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `
-
-// export const Youtube = styled.input`
-//   width: 996px;
-//   height: 52px;
-//   padding-left: 16px;
-//   border: 1px solid #bdbdbd;
-// `
 
 export const ImageWrapper = styled.div`
   width: 100%;

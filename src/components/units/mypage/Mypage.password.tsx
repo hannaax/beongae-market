@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client"
-import * as S from "./Mypage.password.styles"
 import { useForm } from "react-hook-form"
 import { RESET_USER_PASSWORD } from "./Mypage.password.queries"
+import * as S from "./Mypage.password.styles"
 import {
   type IMutation,
   type IMutationResetUserPasswordArgs,

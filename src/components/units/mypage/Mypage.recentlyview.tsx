@@ -7,11 +7,8 @@ export default function RecentlyViewedItems() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("recentlyViewedItems"))
-    console.log(data)
     SetRecentlyViewedItems(data)
   }, [])
-
-  console.log("items", recentlyViewedItems)
 
   return (
     <>
@@ -42,7 +39,6 @@ export default function RecentlyViewedItems() {
               ></div>
             )}
 
-            {/* <div style={{ width: "200px", background: "#ddd" }}>이미지</div> */}
             <div
               style={{
                 display: "flex",

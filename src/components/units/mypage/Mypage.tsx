@@ -1,22 +1,19 @@
+import React, { useState } from "react"
 import { useQuery } from "@apollo/client"
-import useMoveToPage from "../../hooks/useMoveToPage"
-import { FETCH_USER_LOGGED_IN } from "./Mypage.queries"
-import type { IQuery } from "../../../commons/types/generated/types"
-
-import * as S from "./Mypage.styles"
-
 import {
   AccountCircle,
   SavingsOutlined,
-  ShoppingCartOutlined,
   StoreOutlined,
 } from "@mui/icons-material"
-import { elapsedTime } from "../../commons/libraries/utils"
-import React, { useState } from "react"
+import type { IQuery } from "../../../commons/types/generated/types"
 import MypageMarket from "./Mypage.market"
-import MypagePick from "./Mypage.pick"
-import RecentlyViewedItems from "./Mypage.recentlyview"
 import PasswordChange from "./Mypage.password"
+import MypagePick from "./Mypage.pick"
+import { FETCH_USER_LOGGED_IN } from "./Mypage.queries"
+import RecentlyViewedItems from "./Mypage.recentlyview"
+import * as S from "./Mypage.styles"
+import { elapsedTime } from "../../commons/libraries/utils"
+import useMoveToPage from "../../hooks/useMoveToPage"
 
 export default function Mypage() {
   const { onClickMoveToPage } = useMoveToPage()

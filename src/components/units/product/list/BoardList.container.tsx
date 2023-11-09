@@ -1,18 +1,17 @@
+import { type ChangeEvent, type MouseEvent, useState } from "react"
 import { useQuery, gql } from "@apollo/client"
-import BoardListUI from "./BoardList.presenter"
-import { useRouter } from "next/router"
-import { type ChangeEvent, type MouseEvent, useEffect, useState } from "react"
-
 import _ from "lodash"
+import { useRouter } from "next/router"
+import { useRecoilState } from "recoil"
 import type {
   IQuery,
   IQueryFetchBoardsCountArgs,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types"
-import { FETCH_USEDITEMS, shoppingData } from "./BoardList.queries"
-import { useRecoilState } from "recoil"
+import BoardListUI from "./BoardList.presenter"
+
+import { FETCH_USEDITEMS } from "./BoardList.queries"
 import { cartState } from "../../../../commons/stores"
-import axios from "axios"
 
 const FETCH_BOARDS_COUNT = gql`
   query fetchBoardsCount {
@@ -23,7 +22,6 @@ const FETCH_BOARDS_COUNT = gql`
 export default function BoardList(): JSX.Element {
   const router = useRouter()
   const [keyword, setKeyword] = useState("")
-  const [cart, setCart] = useRecoilState(cartState)
 
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditems">,
@@ -72,10 +70,6 @@ export default function BoardList(): JSX.Element {
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>): void => {
     void refetch({ search: event.currentTarget.value, page: 1 })
     searchDebounce(event.currentTarget.value)
-    // 디바운싱 최종 실행 후의 value 값을 저장하고,
-    // title에 value 부분만 map에서 키워드 표시
-    // '이것은 $$$$키워드$$$$입니다'
-    // $$$$ 기준 split
   }
 
   const onChangeKeyword = (value) => {
@@ -83,10 +77,6 @@ export default function BoardList(): JSX.Element {
   }
 
   const onClickMoveToCart = (product) => () => {
-    // setCart([...cart, event.target.id])
-    // console.log(cart)
-    console.log(product, "test")
-
     const baskets = JSON.parse(localStorage.getItem("baskets") ?? "[]")
 
     const temp = baskets.filter((el) => el._id === product._id)
@@ -117,7 +107,6 @@ export default function BoardList(): JSX.Element {
       onChangeKeyword={onChangeKeyword}
       refetchBoardsCount={refetchBoardsCount}
       onClickMoveToCart={onClickMoveToCart}
-      // shoppingData={shoppingData}
     />
   )
 }

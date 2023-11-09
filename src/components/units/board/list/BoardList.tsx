@@ -1,4 +1,4 @@
-import type { ChangeEvent, MouseEvent } from "react"
+import type { MouseEvent } from "react"
 import { useState } from "react"
 import { useQuery } from "@apollo/client"
 import { Favorite } from "@mui/icons-material"
@@ -34,48 +34,12 @@ export default function BoardList(): JSX.Element {
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT)
 
-  console.log("board", data)
-
-  const [startPage, setStartPage] = useState(1)
-
-  const lastPage = Math.ceil(dataBoardsCount?.fetchBoardsCount / 10)
   const onClickMoveToBoardNew = (): void => {
     void router.push("/boards/new")
   }
 
   const onClickMoveToBoardDetail = (event: MouseEvent): void => {
     void router.push(`/boards/${event.currentTarget.id}`)
-  }
-
-  const onClickPage = (event: MouseEvent): void => {
-    void refetch({ page: Number(event.currentTarget.id) })
-  }
-
-  const onClickPrevPage = (): void => {
-    if (startPage === 1) return
-    setStartPage((prev) => prev - 10)
-    void refetch({ page: startPage - 10 })
-  }
-
-  const onClickNextPage = (): void => {
-    if (startPage + 10 > lastPage) return
-    setStartPage((prev) => prev + 10)
-    void refetch({ page: startPage + 10 })
-  }
-
-  const searchDebounce = (value: string) => {
-    // _.debounce(() => {
-    //   value
-    // }, 500)
-  }
-
-  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>): void => {
-    void refetch({ search: event.currentTarget.value, page: 1 })
-    searchDebounce(event.currentTarget.value)
-    // 디바운싱 최종 실행 후의 value 값을 저장하고,
-    // title에 value 부분만 map에서 키워드 표시
-    // '이것은 $$$$키워드$$$$입니다'
-    // $$$$ 기준 split
   }
 
   const onChangeKeyword = (value: string) => {
@@ -128,15 +92,10 @@ export default function BoardList(): JSX.Element {
         </S.FlexMid>
         <S.FlexBottom>
           <S.Footer>
-            {/* <S.Div></S.Div> */}
             <Paginations01
               refetch={refetch}
               count={dataBoardsCount?.fetchBoardsCount}
             />
-            {/* <S.Button onClick={onClickMoveToBoardNew}>
-              <S.PencilIcon src="/images/board/list/write.png" />
-              <S.ButtonText>글쓰기</S.ButtonText>
-            </S.Button> */}
           </S.Footer>
         </S.FlexBottom>
       </S.Wrapper>

@@ -1,7 +1,6 @@
 import * as S from "./Cart.styles"
 
 export default function CartUI(props) {
-  console.log(props.baskets)
   return (
     <S.Wrapper>
       <S.TableTop />

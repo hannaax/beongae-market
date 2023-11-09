@@ -1,19 +1,17 @@
+import { useEffect, type MouseEvent } from "react"
 import { useQuery, useMutation } from "@apollo/client"
+import { Favorite, AccessTimeFilled } from "@mui/icons-material"
 import { useRouter } from "next/router"
 import {
   DELETE_USEDITEM,
   FETCH_USEDITEM,
   TOGGLE_USEDITEM_PICK,
 } from "./BoardDetail.queries"
-import { useEffect, useState, type MouseEvent } from "react"
 
 import * as S from "./BoardDetail.styles"
+import { Button1 } from "../../../commons/buttons/Buttons"
 import { elapsedTime } from "../../../commons/libraries/utils"
 
-import ReactPlayer from "react-player"
-import { Modal, Tooltip } from "antd"
-import { Favorite, AccessTimeFilled, FavoriteBorder } from "@mui/icons-material"
-import { Button1 } from "../../../commons/buttons/Buttons"
 import Map from "../../../commons/map/Map"
 
 export default function BoardDetail(): JSX.Element {
@@ -24,14 +22,9 @@ export default function BoardDetail(): JSX.Element {
   })
 
   useEffect(() => {
-    console.log("data", data)
     const recentlyViewedItems = JSON.parse(
       localStorage.getItem("recentlyViewedItems") ?? "[]"
     )
-
-    // recentlyViewedItems = new Set(recentlyViewedItems)
-
-    // recentlyViewedItems.add(JSON.stringify(data))
 
     let cnt = 0
 
@@ -41,8 +34,6 @@ export default function BoardDetail(): JSX.Element {
       })
       if (cnt === 0) recentlyViewedItems.push(data)
     }
-
-    console.log(recentlyViewedItems)
 
     localStorage.setItem(
       "recentlyViewedItems",
@@ -54,7 +45,6 @@ export default function BoardDetail(): JSX.Element {
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK)
 
   const onClickDeleteProduct = (event: MouseEvent): void => {
-    console.log(event.currentTarget.id)
     void deleteUseditem({
       variables: { useditemId: event.currentTarget.id },
       refetchQueries: [
@@ -76,9 +66,7 @@ export default function BoardDetail(): JSX.Element {
     })
   }
 
-  const onClickMoveToPay = (): void => {
-    // void router.push(`/payment`)
-  }
+  const onClickMoveToPay = (): void => {}
 
   return (
     <>
@@ -112,7 +100,6 @@ export default function BoardDetail(): JSX.Element {
                   }}
                 ></div>
               )}
-              {/* <S.Thumbnail /> */}
             </S.LeftHeader>
             <S.RightHeader>
               <S.Name>{data?.fetchUseditem?.name}</S.Name>

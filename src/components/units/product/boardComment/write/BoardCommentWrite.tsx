@@ -1,34 +1,37 @@
-import BoardCommentWriteUI from "./BoardCommentWrite.presenter"
-import { useMutation } from "@apollo/client"
-import {
-  CREATE_BOARD_COMMENT,
-  CREATE_USEDITEM_QUESTION,
-  CREATE_USEDITEM_QUESTION_ANSWER,
-} from "./BoardCommentWrite.queries"
-import { useRouter } from "next/router"
 import type { ChangeEvent } from "react"
 import { useState } from "react"
-import {
-  FETCH_BOARD_COMMENTS,
-  FETCH_USEDITEM_QUESTIONS,
-  FETCH_USEDITEM_QUESTION_ANSWERS,
-} from "../list/BoardCommentList.queries"
+import { useMutation } from "@apollo/client"
+import { useRouter } from "next/router"
 import type {
   IMutation,
-  IMutationCreateBoardCommentArgs,
   IMutationCreateUseditemQuestionAnswerArgs,
   IMutationCreateUseditemQuestionArgs,
 } from "../../../../../commons/types/generated/types"
-
+import {
+  CREATE_USEDITEM_QUESTION,
+  CREATE_USEDITEM_QUESTION_ANSWER,
+} from "./BoardCommentWrite.queries"
 import * as S from "./BoardCommentWrite.styles"
-import { Rate } from "antd"
+import {
+  FETCH_USEDITEM_QUESTIONS,
+  FETCH_USEDITEM_QUESTION_ANSWERS,
+} from "../list/BoardCommentList.queries"
 
-export default function BoardCommentWrite(props): JSX.Element {
+interface IBoardCommentWriteProps {
+  isEdit?: boolean
+  isAnswerWrite?: boolean
+  isAnswerList?: boolean
+  setIsAnswerWrite: (value: boolean) => void
+  setIsAnswerList: (value: boolean) => void
+  el: {
+    _id: string
+  }
+}
+
+export default function BoardCommentWrite(
+  props: IBoardCommentWriteProps
+): JSX.Element {
   const router = useRouter()
-  const [createBoardComment] = useMutation<
-    Pick<IMutation, "createBoardComment">,
-    IMutationCreateBoardCommentArgs
-  >(CREATE_BOARD_COMMENT)
   const [createUseditemQuestion] = useMutation<
     Pick<IMutation, "createUseditemQuestion">,
     IMutationCreateUseditemQuestionArgs
@@ -39,18 +42,8 @@ export default function BoardCommentWrite(props): JSX.Element {
     IMutationCreateUseditemQuestionAnswerArgs
   >(CREATE_USEDITEM_QUESTION_ANSWER)
 
-  const [writer, setWriter] = useState("")
-  const [password, setPassword] = useState("")
   const [contents, setContents] = useState("")
 
-  const [star, setStar] = useState(3)
-
-  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
-    setWriter(event.target.value)
-  }
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPassword(event.target.value)
-  }
   const onChangeContents = (event: ChangeEvent<HTMLInputElement>): void => {
     setContents(event.target.value)
   }
@@ -72,17 +65,12 @@ export default function BoardCommentWrite(props): JSX.Element {
         },
       ],
     })
-    console.log(result)
     setContents("")
   }
 
   const onClickWriteAnswer = async (): Promise<void> => {
-    console.log("답글등록")
     props.setIsAnswerWrite(false)
     props.setIsAnswerList(true)
-
-    // createanswer 실행
-    console.log("el", props.el)
 
     const result = await createUseditemQuestionAnswer({
       variables: {
@@ -129,12 +117,6 @@ export default function BoardCommentWrite(props): JSX.Element {
       ) : (
         <S.Container>
           <S.Wrapper>
-            {/* {props.isEdit || (
-              <div style={{ marginBottom: "20px" }}>
-                <S.PencilIcon src="/images/boardComment/write/pencil.png" />
-                <S.Title> 문의</S.Title>
-              </div>
-            )} */}
             <S.ContentsWrapper>
               <S.Contents
                 placeholder="답글을 남겨주세요."

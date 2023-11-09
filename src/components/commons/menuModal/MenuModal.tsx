@@ -9,6 +9,7 @@ interface MenuModalProps {
   cancelText: string
   handleConfirm: () => void
   handleCancel: () => void
+  children: JSX.Element
 }
 
 const MenuModal = ({

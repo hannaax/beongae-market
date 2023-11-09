@@ -1,21 +1,16 @@
-import { useEffect } from "react"
-import {
-  FETCH_USEDITEMS_COUNT_I_SOLD,
-  FETCH_USEDITEMS_I_SOLD,
-} from "./Mypage.market.queries"
 import { useQuery } from "@apollo/client"
+import { FETCH_USEDITEMS_I_SOLD } from "./Mypage.market.queries"
 import * as S from "./Mypage.market.styles"
 import { getDate } from "../../commons/libraries/utils"
 
+interface IProduct {
+  _id: string
+  images: []
+  name: string
+}
+
 export default function MypageMarket() {
   const { data: dataUseditemsISold } = useQuery(FETCH_USEDITEMS_I_SOLD)
-  const { data: dataUseditemsCountISold } = useQuery(
-    FETCH_USEDITEMS_COUNT_I_SOLD
-  )
-
-  useEffect(() => {
-    console.log("sold", dataUseditemsISold?.fetchUseditemsISold)
-  }, [])
 
   return (
     <>
@@ -27,7 +22,7 @@ export default function MypageMarket() {
         </S.ItemNumber>
       </div>
       <S.Wrapper>
-        {dataUseditemsISold?.fetchUseditemsISold.map((product, idx) => (
+        {dataUseditemsISold?.fetchUseditemsISold.map((product: IProduct) => (
           <S.Row key={product._id}>
             {product.images.length ? (
               <S.Img
@@ -45,7 +40,6 @@ export default function MypageMarket() {
               ></div>
             )}
 
-            {/* <div style={{ width: "200px", background: "#ddd" }}>이미지</div> */}
             <div
               style={{
                 display: "flex",
@@ -62,12 +56,7 @@ export default function MypageMarket() {
                 <S.Date>{getDate(product.createdAt)}</S.Date>
               </S.ColumnBasic>
               <S.ColumnBasic>
-                <S.SoldButton>판매완료</S.SoldButton>
-                {/* 이 버튼 누르면 판매완료로 바뀜
-                즉, fetchUsedItems의 soldAt이 null에서 판매완료를 누른 시점으로 바뀜
-                soldAt이 null이면 판매중 제품 // 판매완료 후에 포인트 적립됨
-                중고마켓 fetch 필터링?
-                 */}
+                {/* <S.SoldButton>판매완료</S.SoldButton> */}
               </S.ColumnBasic>
             </div>
           </S.Row>

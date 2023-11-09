@@ -1,22 +1,23 @@
-import { useMutation } from "@apollo/client"
 import { useState } from "react"
-import { CREATE_USER, LOGIN_USER } from "./Signup.queries"
+import { useMutation } from "@apollo/client"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { useForm } from "react-hook-form"
+import { useRecoilState } from "recoil"
+import * as yup from "yup"
 import type {
   IMutation,
   IMutationCreateUserArgs,
   IMutationLoginUserArgs,
 } from "../../../commons/types/generated/types"
-import { Modal } from "antd"
-import { useRouter } from "next/router"
-import { useRecoilState } from "recoil"
+import { CREATE_USER, LOGIN_USER } from "./Signup.queries"
+import * as S from "./Signup.styles"
 import { accessTokenState } from "../../../commons/stores"
 
-import { useForm } from "react-hook-form"
-import * as S from "./Signup.styles"
-import * as yup from "yup"
-import { yupResolver } from "@hookform/resolvers/yup"
-// import { ReactComponent as Kakao } from "./images/login/kakao.svg"
-// import { ReactComponent as Google } from "./images/login/google.svg"
+interface SignupProps {
+  signin?: boolean
+  onClickCreateUser?: () => void
+  onClickLoginUser?: () => void
+}
 
 const schema = yup.object({
   email: yup
@@ -30,8 +31,7 @@ const schema = yup.object({
     .required("비밀번호는 필수 입력입니다"),
 })
 
-export default function Signup(props) {
-  const router = useRouter()
+export default function Signup(props: SignupProps) {
   const [, setAccessToken] = useRecoilState(accessTokenState)
 
   const [email, setEmail] = useState("")
@@ -49,28 +49,7 @@ export default function Signup(props) {
     IMutationLoginUserArgs
   >(LOGIN_USER)
 
-  const onChangeEmail = (event) => {
-    setEmail(event.currentTarget.value)
-  }
-  const onChangePassword = (event) => {
-    setPassword(event.currentTarget.value)
-  }
-  const onChangeName = (event) => {
-    setName(event.currentTarget.value)
-  }
-
   const onClickCreateUser = async (data) => {
-    console.log(data)
-    // if (!email) {
-    //   Modal.error({
-    //     content: "이메일을 입력해주세요",
-    //   })
-    // }
-    // if (!password) {
-    //   Modal.error({
-    //     content: "비밀번호를 입력해주세요",
-    //   })
-    // }
     if (email && password && name) {
       setIsActive(true)
     }
@@ -84,16 +63,17 @@ export default function Signup(props) {
           },
         },
       })
-      // 성공 시 로그인페이지로 이동
-      console.log(result)
-      // void router.push("/signin")
     } catch (error) {
       alert(error.message)
     }
   }
 
-  const onClickLoginUser = async (data) => {
-    console.log(data)
+  interface LoginData {
+    email: string
+    password: string
+  }
+
+  const onClickLoginUser = async (data: LoginData) => {
     const result = await loginUser({
       variables: {
         email: data.email,
@@ -106,7 +86,6 @@ export default function Signup(props) {
       return
     }
     setAccessToken(accessToken)
-    console.log(accessToken)
     localStorage.setItem(
       "accessToken",
       result.data?.loginUser.accessToken ?? ""
@@ -139,32 +118,14 @@ export default function Signup(props) {
             <S.ErrorMessage>
               {formState.errors.password?.message}
             </S.ErrorMessage>
-            {/* {props.signin ? "" : <Input {...register(name)} />} */}
             <S.SubmitButton
               style={{ backgroundColor: formState.isValid ? "#ffc700" : "" }}
-              // isActive={props.isActive}
               onClick={
                 props.signin ? props.onClickLoginUser : props.onClickCreateUser
               }
             >
               {props.signin ? "로그인" : "회원가입"}
             </S.SubmitButton>
-            {/* <S.SubmitButton
-              style={{
-                backgroundColor: "#fff",
-                border: "1px solid #999",
-              }}
-            >
-              카카오 로그인
-            </S.SubmitButton>
-            <S.SubmitButton
-              style={{
-                backgroundColor: "#fff",
-                border: "1px solid #999",
-              }}
-            >
-              구글 로그인
-            </S.SubmitButton> */}
           </form>
         </S.Wrapper>
       </S.Container>

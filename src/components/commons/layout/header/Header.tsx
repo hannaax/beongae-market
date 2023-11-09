@@ -1,18 +1,10 @@
-import { useEffect, Fragment, useState } from "react"
-import { gql, useMutation, useQuery } from "@apollo/client"
-import styled from "@emotion/styled"
-import {
-  PaidOutlined,
-  Person,
-  PersonOutline,
-  Logout,
-  AddBusiness,
-  AddBusinessOutlined,
-} from "@mui/icons-material"
+import { Fragment, useState } from "react"
+import { useMutation, useQuery } from "@apollo/client"
+import { PersonOutline, Logout, AddBusinessOutlined } from "@mui/icons-material"
 import MenuIcon from "@mui/icons-material/Menu"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useRecoilState } from "recoil"
+
 import type { IQuery } from "../../src/commons/types/generated/types"
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./Header.queries"
 import * as S from "./Header.styles"
@@ -20,38 +12,24 @@ import MenuModal from "../../menuModal/MenuModal"
 import Searchbars01 from "../../searchbars/01/Searchbars01"
 
 const NAVIGATION_MENUS = [
-  // { name: "게시판2", page: "/boards2" },
-  // { name: "고양이모음", page: "/openapis" },
   { name: "중고마켓", page: "/product" },
   { name: "커뮤니티", page: "/boards" },
-  // { name: "마이페이지", page: "/mypage" },
 ]
 
 export default function Header() {
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN)
 
-  // console.log(data)
   const [logoutUser] = useMutation(LOGOUT_USER)
 
   const router = useRouter()
   const [openMenu, setOpenMenu] = useState(false)
-
-  //   useEffect(() => {
-  //     if (localStorage.getItem("accessToken") === null) {
-  //       alert("로그인 후 이용 가능합니다")
-  //       void router.push("/section23/23-05-login-check-hoc")
-  //     }
-  //   }, [])
-  // }
 
   const onClickMenu = (event) => {
     void router.push(event.currentTarget.id)
   }
 
   const onClickLogout = () => {
-    const token = localStorage.getItem("accessToken")
-    console.log("token", token)
     void logoutUser()
     localStorage.removeItem("accessToken")
   }

@@ -1,13 +1,12 @@
 import { useQuery } from "@apollo/client"
-import { FETCH_USEDITEMS_OF_THE_BEST } from "./Home.queries"
 import { useRouter } from "next/router"
+import { v4 as uuidv4 } from "uuid"
+import { FETCH_USEDITEMS_OF_THE_BEST } from "./Home.queries"
 
 import * as S from "./Home.styles"
-import { v4 as uuidv4 } from "uuid"
 
 export default function Home(props) {
   const { data } = useQuery(FETCH_USEDITEMS_OF_THE_BEST)
-  console.log(data)
 
   const router = useRouter()
 
@@ -63,7 +62,6 @@ export default function Home(props) {
               </S.Item>
             ))}
           </S.ItemWrap>
-          {/* <Paginations01 refetch={props.refetch} count={props.count} /> */}
         </S.Wrapper>
       </S.Container>
     </>

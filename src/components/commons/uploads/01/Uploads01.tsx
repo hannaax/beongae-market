@@ -7,7 +7,13 @@ import { UPLOAD_FILE } from "./Uploads01.queries"
 import { UploadButton, UploadFileHidden, UploadImage } from "./Uploads01.styles"
 import { checkValidationImage } from "./Uploads01.validation"
 
-export default function Uploads01(props): JSX.Element {
+interface Uploads01Props {
+  fileUrl: string
+  index: number
+  onChangeFileUrls: (url: string, index: number) => void
+}
+
+export default function Uploads01(props: Uploads01Props): JSX.Element {
   const fileRef = useRef<HTMLInputElement>(null)
   const [uploadFile] = useMutation(UPLOAD_FILE)
 
@@ -17,7 +23,6 @@ export default function Uploads01(props): JSX.Element {
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     // 파일 객체 가져오기
-    console.log(event)
     const file = event.target.files?.[0]
     // validation
     const isValid = checkValidationImage(file)

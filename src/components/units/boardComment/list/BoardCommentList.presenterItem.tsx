@@ -63,7 +63,6 @@ export default function BoardCommentListUIItem(props) {
           boardCommentId: event.currentTarget.id,
         },
       })
-      console.log(result)
     } catch (error) {
       console.log(error)
     }

@@ -1,5 +1,13 @@
 import styled from "@emotion/styled"
 
+interface Button1Props {
+  text: string
+  style?: object
+  onclick?: () => void
+  backgroundcolor?: string
+  id: string
+}
+
 const BigButton = styled.button`
   width: 50%;
   height: 60px;
@@ -12,7 +20,13 @@ const BigButton = styled.button`
   background-color: ${(props) => props.backgroundcolor};
 `
 
-export const Button1 = ({ text, style, onclick, backgroundcolor, id }) => {
+export const Button1 = ({
+  text,
+  style,
+  onclick,
+  backgroundcolor,
+  id,
+}: Button1Props) => {
   return (
     <BigButton
       onClick={onclick}
@@ -25,7 +39,19 @@ export const Button1 = ({ text, style, onclick, backgroundcolor, id }) => {
   )
 }
 
-export const Button2 = ({ text, style, onclick, backgroundcolor }) => {
+interface Button2Props {
+  text: string
+  style?: object
+  onclick?: () => void
+  backgroundcolor?: string
+}
+
+export const Button2 = ({
+  text,
+  style,
+  onclick,
+  backgroundcolor,
+}: Button2Props) => {
   return (
     <BigButton
       onClick={onclick}

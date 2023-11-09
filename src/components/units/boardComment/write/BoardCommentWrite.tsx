@@ -68,7 +68,6 @@ export default function BoardCommentWrite(props): JSX.Element {
   }
 
   const onClickUpdate = async () => {
-    console.log("props", props.el._id)
     try {
       const result = await updateBoardComment({
         variables: {
@@ -87,11 +86,8 @@ export default function BoardCommentWrite(props): JSX.Element {
         ],
       })
       props.setIsEdit(false)
-      // void router.push(`/boards/${result.data.updateBoard._id}`)
-      console.log(result)
     } catch (error) {
       console.log(error)
-      // Modal.error({ content: error.message })
     }
   }
 
@@ -121,8 +117,6 @@ export default function BoardCommentWrite(props): JSX.Element {
           ></S.Input>
           <S.RateInput>
             <Rate onChange={setStar} />
-            {/* <Rate onChange={props.setStar} value={props.star} />
-          {props.star ? <span className="ant-rate-text">{star - 1}</span> : ""} */}
           </S.RateInput>
         </S.InputWrapper>
         <S.ContentsWrapperDiv>

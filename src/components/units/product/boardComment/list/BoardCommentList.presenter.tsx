@@ -1,4 +1,3 @@
-import { Rate } from "antd"
 import InfiniteScroll from "react-infinite-scroller"
 import BoardCommentListUIItem from "./BoardCommentList.presenterItem"
 import * as S from "./BoardCommentList.styles"

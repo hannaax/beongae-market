@@ -1,16 +1,11 @@
-import type { MouseEvent, useState } from "react"
-import { useQuery, useMutation } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import type {
-  IMutation,
-  IMutationDeleteBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types"
 import BoardCommentListUI from "./BoardCommentList.presenter"
 import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries"
-
-// const DELETE_BOARD_COMMENTS = gql``
 
 export default function BoardCommentList() {
   const router = useRouter()
@@ -44,17 +39,5 @@ export default function BoardCommentList() {
     })
   }
 
-  return (
-    <BoardCommentListUI
-      data={data}
-      // onClickDelete={onClickDelete}
-      // showModal={showModal}
-      // handleOk={handleOk}
-      // handleCancel={handleCancel}
-      // isOpen={isOpen}
-      // onChangeDeletePw={onChangeDeletePw}
-      loadFunc={onLoadMore}
-      // onClickUpdate={onClickUpdate}
-    />
-  )
+  return <BoardCommentListUI data={data} loadFunc={onLoadMore} />
 }

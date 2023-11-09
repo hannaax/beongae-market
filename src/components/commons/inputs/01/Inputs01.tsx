@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useFormContext } from "react-hook-form"
 import styled from "styled-components"
 
@@ -37,7 +37,9 @@ const Input = ({
   onClick,
 }) => {
   const { register, setvalue } = useFormContext()
-
+  const onKeyup = (e) => {
+    handleKeyup(e)
+  }
   return (
     <InputEl
       type={type || "text"}

@@ -1,11 +1,5 @@
 import styled from "@emotion/styled"
 
-// export const Wrapper = styled.div`
-//   padding: 72px 48px;
-//   width: 100%;
-//   border: solid 1px #ddd;
-// `
-
 export const WrapperHeader = styled.div`
   margin-bottom: 15px;
 `
@@ -40,39 +34,20 @@ export const Category = styled.li``
 export const DivisionLine = styled.div``
 
 export const TableTop = styled.div`
-  /* border-top: 2px solid #ccc; */
   margin-top: 20px;
 `
 
-export const TableBottom = styled.div`
-  /* border-bottom: 2px solid #ccc; */
-`
+export const TableBottom = styled.div``
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* display: grid; */
   height: 150px;
   line-height: 28px;
-  /* border-bottom: 1px solid #ccc; */
   border: 1px solid #ddd;
   cursor: pointer;
 `
-
-// export const ColumnHeaderBasic = styled.div`
-//   width: 200px;
-//   text-align: center;
-//   font-weight: 600;
-//   cursor: default;
-// `
-
-// export const ColumnHeaderTitle = styled.div`
-//   width: 200px;
-//   text-align: center;
-//   font-weight: 600;
-//   cursor: default;
-// `
 
 export const Img = styled.img`
   width: 150px;
@@ -81,12 +56,10 @@ export const Img = styled.img`
 
 export const ColumnBasic = styled.div`
   width: 100%;
-  /* text-align: center; */
 `
 
 export const ColumnTitle = styled.div`
   width: 100%;
-  /* text-align: center; */
 `
 
 export const Footer = styled.div`
@@ -107,12 +80,13 @@ export const Button = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
-  /* :hover {
-    background-color: #f5f2fc;
-  } */
 `
 
-export const TextToken = styled.span`
+interface TextTokenProps {
+  isMatched: boolean
+}
+
+export const TextToken = styled.span<TextTokenProps>`
   color: ${(props) => (props.isMatched ? "red" : "black")};
 `
 

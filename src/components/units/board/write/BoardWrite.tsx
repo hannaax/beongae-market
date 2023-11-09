@@ -54,8 +54,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const { data: loggedData } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN)
 
-  console.log("log", loggedData)
-
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value)
     if (event.target.value !== "") {
@@ -108,13 +106,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setAddress(data.address)
     setZipcode(data.zonecode)
     setIsOpen((prev) => !prev)
-    console.log(data)
-  }
-
-  const onChangeAddressDetail = (
-    event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setAddressDetail(event.target.value)
   }
 
   const onChangeFileUrls = (fileUrl: string, index: number): void => {
@@ -124,9 +115,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   }
 
   const onClickSubmit = async () => {
-    // if (!writer) {
-    //   setWriterError("작성자를 입력해주세요.")
-    // }
     if (!password) {
       setPasswordError("비밀번호를 입력해주세요.")
     }
@@ -155,7 +143,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             },
           },
         })
-        console.log(result.data?.createBoard._id)
+
         if (result.data?.createBoard._id === undefined) {
           alert("요청에 문제가 있습니다.")
           return
@@ -168,14 +156,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   }
 
-  console.log("fileurls", fileUrls)
-  console.log("images", props.data?.fetchBoard.images)
-
   const onClickUpdate = async () => {
-    const currentFiles = JSON.stringify(fileUrls)
-    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images)
-    // const isChangedFiles = currentFiles !== defaultFiles
-
     if (
       !title &&
       !contents &&
@@ -183,8 +164,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       !address &&
       !addressDetail &&
       !zipcode
-      // &&
-      // !isChangedFiles
     ) {
       Modal.warning({ content: "수정한 내용이 없습니다." })
       return
@@ -205,7 +184,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail
     }
-    // if (isChangedFiles) updateBoardInput.images = fileUrls
 
     try {
       if (typeof router.query.boardId !== "string") {
@@ -222,15 +200,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       })
       void props.refetch({ boardId: result.data.updateBoard._id })
       void router.push(`/boards/${result.data.updateBoard._id}`)
-      console.log(result)
     } catch (error) {
       Modal.error({ content: error.message })
     }
-  }
-
-  console.log("id", router.query.boardId)
-  const onClickUpload = (): void => {
-    // fileRef.current?.click()
   }
 
   return (

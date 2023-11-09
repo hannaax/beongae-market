@@ -46,9 +46,6 @@ export default function BoardDetail(): JSX.Element {
   }
 
   const onClickLikeBoard = (event: MouseEvent) => {
-    console.log("data", data)
-    console.log("id", data?.fetchBoard?._id)
-
     void likeBoard({
       variables: { boardId: data?.fetchBoard?._id },
       refetchQueries: [

@@ -1,7 +1,12 @@
 import React, { useEffect } from "react"
 import { useRouter } from "next/router"
 
-const Map = ({ address, width }) => {
+interface MapProps {
+  address: string
+  width?: string
+}
+
+const Map = ({ address, width }: MapProps) => {
   const router = useRouter()
 
   useEffect(() => {

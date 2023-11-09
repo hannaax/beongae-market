@@ -9,6 +9,7 @@ interface ConfirmModalProps {
   cancelText: string
   handleConfirm: () => void
   handleCancel: () => void
+  children: JSX.Element
 }
 
 const ConfirmModal = ({

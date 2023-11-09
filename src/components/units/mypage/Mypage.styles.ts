@@ -3,10 +3,7 @@ import styled from "@emotion/styled"
 export const Container = styled.div`
   margin-top: 100px;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  /* width: 1200px; */
-  /* height: 900px; */
 `
 export const Wrapper = styled.div`
   display: flex;
@@ -16,15 +13,6 @@ export const Wrapper = styled.div`
   padding: 8px;
   margin-bottom: 500px;
 `
-
-// export const TopWrapper = styled.div`
-//   width: 100%;
-//   height: 35%;
-//   border-right: 1px solid #bbb;
-//   border: 2px solid #eee;
-//   margin: 5px;
-//   display: flex;
-// `
 
 export const LeftWrapper = styled.div`
   padding: 50px 0px;
@@ -50,7 +38,6 @@ export const AvatarWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
-  /* height: 150px; */
 `
 
 export const Name = styled.div`
@@ -59,7 +46,6 @@ export const Name = styled.div`
 `
 
 export const DefaultInfo = styled.div`
-  /* margin-bottom: 50px; */
   margin-top: 5px;
 `
 
@@ -93,7 +79,6 @@ export const Ul = styled.ul`
 `
 
 export const Li = styled.li`
-  /* width: 200px; */
   width: 25%;
   padding: 10px;
   background-color: #f6f6f6;
@@ -101,9 +86,6 @@ export const Li = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* @media (max-width: 900px) {
-    width: 80px;
-  } */
 `
 
 export const Div = styled.div`

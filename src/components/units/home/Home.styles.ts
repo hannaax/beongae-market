@@ -61,7 +61,11 @@ export const Search = styled.input`
   height: 30px;
 `
 
-export const TextToken = styled.span`
+interface TextTokenProps {
+  isMatched: boolean
+}
+
+export const TextToken = styled.span<TextTokenProps>`
   color: ${(props) => (props.isMatched ? "red" : "black")};
 `
 

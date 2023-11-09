@@ -115,6 +115,10 @@ export const ButtonText = styled.span`
   padding-left: 5px;
 `
 
-export const TextToken = styled.span`
+interface TextTokenProps {
+  isMatched: boolean
+}
+
+export const TextToken = styled.span<TextTokenProps>`
   color: ${(props) => (props.isMatched ? "red" : "black")};
 `

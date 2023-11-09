@@ -3,7 +3,6 @@ import styled from "@emotion/styled"
 export const Wrapper = styled.div`
   padding: 50px 48px;
   width: 100%;
-  /* border: solid 1px #ddd; */
 `
 
 export const Header = styled.div`
@@ -30,8 +29,6 @@ export const Label = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  /* background-color: #f4f4f4;
-  border: none; */
   outline: none;
   padding: 12px;
   border: 1px solid #ccc;

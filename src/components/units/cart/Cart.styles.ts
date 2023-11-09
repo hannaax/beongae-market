@@ -64,11 +64,12 @@ export const Button = styled.button`
   align-items: center;
   border: none;
   cursor: pointer;
-  /* :hover {
-    background-color: #f5f2fc;
-  } */
 `
 
-export const TextToken = styled.span`
+interface TextTokenProps {
+  isMatched: boolean
+}
+
+export const TextToken = styled.span<TextTokenProps>`
   color: ${(props) => (props.isMatched ? "red" : "black")};
 `

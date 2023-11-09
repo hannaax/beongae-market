@@ -1,9 +1,11 @@
 import type { ChangeEvent, MouseEvent } from "react"
+import { type ApolloQueryResult } from "@apollo/client"
 import type { IQuery } from "../../../../commons/types/generated/types"
 
 export interface IBoardWriteProps {
   isEdit: boolean
   data?: Pick<IQuery, "fetchBoard">
+  refetch?: () => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoard">>>
 }
 
 export interface IBoardWriteUIProps {

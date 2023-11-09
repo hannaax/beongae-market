@@ -14,8 +14,6 @@ export const Wrapper = styled.div`
   }
 `
 export const TableTop = styled.div`
-  /* border-top: 2px solid #ccc;
-  margin-top: 20px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +27,6 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  /* height: 52px;
-  line-height: 52px; */
   border-bottom: 1px solid #ccc;
 
   :hover {
@@ -77,10 +73,7 @@ export const PencilIcon = styled.img`
 `
 
 export const Button = styled.button`
-  /* width: 171px;
-  height: 52px; */
   padding: 15px 22px;
-  /* background-color: ${({ theme }) => theme.colors.yellow}; */
   background-color: #ffc700;
   display: flex;
   flex-direction: row;
@@ -89,9 +82,6 @@ export const Button = styled.button`
   border: none;
   margin-left: 20px;
   cursor: pointer;
-  /* :hover {
-    background-color: #f5f2fc;
-  } */
 `
 
 export const ButtonText = styled.span`
@@ -99,7 +89,11 @@ export const ButtonText = styled.span`
   padding-left: 5px;
 `
 
-export const TextToken = styled.span`
+interface TextTokenProps {
+  isMatched: boolean
+}
+
+export const TextToken = styled.span<TextTokenProps>`
   color: ${(props) => (props.isMatched ? "red" : "black")};
 `
 
@@ -136,12 +130,9 @@ export const Item = styled.div`
 `
 
 export const Img = styled.img`
-  /* width: 200px;
-  height: 200px; */
   width: 100%;
   height: 200px;
   background-color: #eee;
-  /* background-image: url("/images/header/sell.png"); */
 `
 
 export const Text = styled.div`
