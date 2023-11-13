@@ -64,7 +64,7 @@ $ yarn dev
 </details>
 
 <details>
-<summary>물품 등록</summary>
+<summary>상품 등록</summary>
 <img src="https://user-images.githubusercontent.com/111215320/282360990-d7a4c962-1c09-442e-82b8-25d5fb9f800d.gif"/>
 </details>
 
@@ -92,15 +92,15 @@ $ yarn dev
 
 ### 🗨️ 커뮤니티
 <details>
-<summary>글작성</summary>
+<summary>글 작성</summary>
 <img src="https://user-images.githubusercontent.com/111215320/281990659-d83cf94d-9fd9-4bdc-8ab4-931fc3cc1e7d.gif"/>
 </details>
 <details>
-<summary>글수정</summary>
+<summary>글 수정</summary>
 <img src="https://user-images.githubusercontent.com/111215320/281991764-0362ab52-3f19-4162-92c9-1894ed5a6ed3.gif"/>
 </details>
 <details>
-<summary>글삭제</summary>
+<summary>글 삭제</summary>
 <img src="https://user-images.githubusercontent.com/111215320/281991819-ff983f77-c553-4c77-ac7a-6b66333bc783.gif"/>
 </details>
 <details>
@@ -135,12 +135,12 @@ $ yarn dev
 </details>
 
 <details>
-<summary>물품 목록</summary>
+<summary>상품 목록</summary>
 <img src="https://user-images.githubusercontent.com/111215320/282362685-aaa492c8-5aa6-4148-8d67-f0ce33c15012.gif"/>
 </details>
 
 <details>
-<summary>물품 상세</summary>
+<summary>상품 상세</summary>
 <img src="https://user-images.githubusercontent.com/111215320/282362701-881f2ebc-367e-440f-a02e-cca1ab110e1c.gif"/>
 </details>
 
