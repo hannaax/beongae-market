@@ -15,7 +15,7 @@
 
 ## 🛠️ 기술스택
 
-<p><strong>frontend</strong></p>
+### frontend
 <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white">
 <br/>
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
@@ -28,7 +28,7 @@
 
 <p></p>
 
-<p><strong>backend</strong></p>
+### backend
 <p>제공 API 사용</p>
 
 
