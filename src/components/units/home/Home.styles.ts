@@ -16,6 +16,7 @@ export const Title = styled.h1`
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 20px;
+  padding-left: 8px;
 `
 
 export const TableBottom = styled.div`

@@ -106,7 +106,7 @@ export default function BoardCommentWrite(
                 value={contents}
               ></S.Contents>
               <S.BottomWrapper>
-                <S.ContentsLength>0/100</S.ContentsLength>
+                <S.ContentsLength>{contents.length}/100</S.ContentsLength>
                 <S.Button onClick={props.isEdit ? onClickUpdate : onClickWrite}>
                   {props.isEdit ? "수정하기" : "문의하기"}
                 </S.Button>
@@ -124,7 +124,7 @@ export default function BoardCommentWrite(
                 value={contents}
               ></S.Contents>
               <S.BottomWrapper>
-                <S.ContentsLength>{/* 0/100 */}</S.ContentsLength>
+                <S.ContentsLength>{contents.length}/100</S.ContentsLength>
                 <S.Button
                   onClick={props.isEdit ? onClickUpdate : onClickWriteAnswer}
                 >
